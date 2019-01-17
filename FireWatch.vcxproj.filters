@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-
   <!-- フィルタ -->
   <ItemGroup>
     <Filter Include="ゲーム">
@@ -37,44 +36,240 @@
     <Filter Include="ライブラリ\ユーティリティ">
       <UniqueIdentifier>{daae40c7-ff74-47e6-98c1-472de706acab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ゲーム\シーン関係">
+      <UniqueIdentifier>{e7e3bdd5-4ace-4e49-8d3e-c9674b141150}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\ユーティリティ">
+      <UniqueIdentifier>{a1a507b0-df92-4e9f-9f66-3d129ee7f2f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\ユーティリティ\色関係">
+      <UniqueIdentifier>{ad701353-84c1-41e1-a773-ba027f66e84d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\ユーティリティ\入力関係">
+      <UniqueIdentifier>{ad7ed644-a88a-4ca2-afe7-997fb06292b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\ユーティリティ\リソース関係">
+      <UniqueIdentifier>{7eb2a89e-5010-4139-9eac-c4767aa518b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\ユーティリティ\数学関係">
+      <UniqueIdentifier>{56470279-096b-4e27-8d96-c9436e6c0b28}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
-
   <!-- ソースファイル -->
   <ItemGroup>
     <ClCompile Include="WinMain.cpp" />
-    <ClCompile Include="Libraries\GameLibrary\GameLibAudio.cpp">     <Filter>ライブラリ\ゲームライブラリ</Filter> </ClCompile>
-    <ClCompile Include="Libraries\GameLibrary\GameLibCollision.cpp"> <Filter>ライブラリ\ゲームライブラリ</Filter> </ClCompile>
-    <ClCompile Include="Libraries\GameLibrary\GameLibGraphics.cpp">  <Filter>ライブラリ\ゲームライブラリ</Filter> </ClCompile>
-    <ClCompile Include="Libraries\GameLibrary\GameLibInput.cpp">     <Filter>ライブラリ\ゲームライブラリ</Filter> </ClCompile>
-    <ClCompile Include="Libraries\GameLibrary\GameLibMath.cpp">      <Filter>ライブラリ\ゲームライブラリ</Filter> </ClCompile>
-    <ClCompile Include="Libraries\GameLibrary\GameLibScreen.cpp">    <Filter>ライブラリ\ゲームライブラリ</Filter> </ClCompile>
-    <ClCompile Include="Libraries\GameLibrary\GameLibSystem.cpp">    <Filter>ライブラリ\ゲームライブラリ</Filter> </ClCompile>
-    <ClCompile Include="Libraries\GameLibrary\GameLibTime.cpp">      <Filter>ライブラリ\ゲームライブラリ</Filter> </ClCompile>
-    <ClCompile Include="Game\GameMain.cpp">                          <Filter>ゲーム</Filter>                      </ClCompile>
+    <ClCompile Include="Libraries\GameLibrary\GameLibAudio.cpp">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\GameLibrary\GameLibCollision.cpp">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\GameLibrary\GameLibGraphics.cpp">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\GameLibrary\GameLibInput.cpp">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\GameLibrary\GameLibMath.cpp">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\GameLibrary\GameLibScreen.cpp">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\GameLibrary\GameLibSystem.cpp">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\GameLibrary\GameLibTime.cpp">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\GameMain.cpp">
+      <Filter>ゲーム\シーン関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\LogoScene.cpp">
+      <Filter>ゲーム\シーン関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\PlayScene.cpp">
+      <Filter>ゲーム\シーン関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ResultScene.cpp">
+      <Filter>ゲーム\シーン関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\TitleScene.cpp">
+      <Filter>ゲーム\シーン関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\MyMath.cpp">
+      <Filter>ゲーム\ユーティリティ\数学関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Vector2.cpp">
+      <Filter>ゲーム\ユーティリティ\数学関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ShareDataManager.cpp">
+      <Filter>ゲーム\ユーティリティ</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Color.cpp">
+      <Filter>ゲーム\ユーティリティ\色関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Keyboard.cpp">
+      <Filter>ゲーム\ユーティリティ\入力関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Pad.cpp">
+      <Filter>ゲーム\ユーティリティ\入力関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Resource.cpp">
+      <Filter>ゲーム\ユーティリティ\リソース関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ResourceManager.cpp">
+      <Filter>ゲーム\ユーティリティ\リソース関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Sound.cpp">
+      <Filter>ゲーム\ユーティリティ\リソース関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\AbstractScene.cpp">
+      <Filter>ゲーム\シーン関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Collider.cpp">
+      <Filter>ゲーム\ユーティリティ\数学関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Collision.cpp">
+      <Filter>ゲーム</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Map.cpp">
+      <Filter>ゲーム</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\MapChip.cpp">
+      <Filter>ゲーム</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\RenderManager.cpp">
+      <Filter>ゲーム</Filter>
+    </ClCompile>
   </ItemGroup>
-  
   <!-- ヘッダファイル -->
   <ItemGroup>
-    <ClInclude Include="Libraries\GameLibrary\GameLib.h">          <Filter>ライブラリ\ゲームライブラリ</Filter> </ClInclude>
-    <ClInclude Include="Libraries\GameLibrary\GameLibAudio.h">     <Filter>ライブラリ\ゲームライブラリ</Filter> </ClInclude>
-    <ClInclude Include="Libraries\GameLibrary\GameLibCollision.h"> <Filter>ライブラリ\ゲームライブラリ</Filter> </ClInclude>
-    <ClInclude Include="Libraries\GameLibrary\GameLibGraphics.h">  <Filter>ライブラリ\ゲームライブラリ</Filter> </ClInclude>
-    <ClInclude Include="Libraries\GameLibrary\GameLibInput.h">     <Filter>ライブラリ\ゲームライブラリ</Filter> </ClInclude>
-    <ClInclude Include="Libraries\GameLibrary\GameLibMath.h">      <Filter>ライブラリ\ゲームライブラリ</Filter> </ClInclude>
-    <ClInclude Include="Libraries\GameLibrary\GameLibScreen.h">    <Filter>ライブラリ\ゲームライブラリ</Filter> </ClInclude>
-    <ClInclude Include="Libraries\GameLibrary\GameLibSystem.h">    <Filter>ライブラリ\ゲームライブラリ</Filter> </ClInclude>
-    <ClInclude Include="Libraries\GameLibrary\GameLibTime.h">      <Filter>ライブラリ\ゲームライブラリ</Filter> </ClInclude>
-    <ClInclude Include="Libraries\Utilities\MemoryLeakDetector.h"> <Filter>ライブラリ\ユーティリティ</Filter>   </ClInclude>
-    <ClInclude Include="Game\GameMain.h">                          <Filter>ゲーム</Filter>                      </ClInclude>
+    <ClInclude Include="Libraries\GameLibrary\GameLib.h">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\GameLibrary\GameLibAudio.h">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\GameLibrary\GameLibCollision.h">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\GameLibrary\GameLibGraphics.h">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\GameLibrary\GameLibInput.h">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\GameLibrary\GameLibMath.h">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\GameLibrary\GameLibScreen.h">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\GameLibrary\GameLibSystem.h">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\GameLibrary\GameLibTime.h">
+      <Filter>ライブラリ\ゲームライブラリ</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\Utilities\MemoryLeakDetector.h">
+      <Filter>ライブラリ\ユーティリティ</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\GameMain.h">
+      <Filter>ゲーム\シーン関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\LogoScene.h">
+      <Filter>ゲーム\シーン関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\PlayScene.h">
+      <Filter>ゲーム\シーン関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ResultScene.h">
+      <Filter>ゲーム\シーン関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\TitleScene.h">
+      <Filter>ゲーム\シーン関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\MyMath.h">
+      <Filter>ゲーム\ユーティリティ\数学関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Vector2.h">
+      <Filter>ゲーム\ユーティリティ\数学関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Singleton.h">
+      <Filter>ゲーム\ユーティリティ</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ShareDataManager.h">
+      <Filter>ゲーム\ユーティリティ</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\RequestSceneListener.h">
+      <Filter>ゲーム\シーン関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\SceneID.h">
+      <Filter>ゲーム\シーン関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Color.h">
+      <Filter>ゲーム\ユーティリティ\色関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Keyboard.h">
+      <Filter>ゲーム\ユーティリティ\入力関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Pad.h">
+      <Filter>ゲーム\ユーティリティ\入力関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Resource.h">
+      <Filter>ゲーム\ユーティリティ\リソース関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ResourceManager.h">
+      <Filter>ゲーム\ユーティリティ\リソース関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Sound.h">
+      <Filter>ゲーム\ユーティリティ\リソース関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\AbstractScene.h">
+      <Filter>ゲーム\シーン関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Collider.h">
+      <Filter>ゲーム\ユーティリティ\数学関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Collision.h">
+      <Filter>ゲーム</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Map.h">
+      <Filter>ゲーム</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\MapChip.h">
+      <Filter>ゲーム</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ErrorMessage.h">
+      <Filter>ゲーム\ユーティリティ</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\RenderManager.h">
+      <Filter>ゲーム\ユーティリティ</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ScreenInfo.h">
+      <Filter>ゲーム</Filter>
+    </ClInclude>
   </ItemGroup>
-  
   <!-- リソースファイル -->
   <ItemGroup>
-    <None            Include="Resources\Audio\SE00.ogg">           <Filter>リソース\音</Filter>         </None>
-    <None            Include="Resources\Fonts\PongScore.dft">      <Filter>リソース\フォント</Filter>   </None>
-    <ClInclude       Include="Resources\Icon\Icon.h">              <Filter>リソース\アイコン</Filter>   </ClInclude>
-    <Image           Include="Resources\Icon\Icon.ico">            <Filter>リソース\アイコン</Filter>   </Image>
-    <ResourceCompile Include="Resources\Icon\Icon.rc">             <Filter>リソース\アイコン</Filter>   </ResourceCompile>
-    <Image           Include="Resources\Textures\TridentLogo.png"> <Filter>リソース\テクスチャ</Filter> </Image>
+    <None Include="Resources\Audio\SE00.ogg">
+      <Filter>リソース\音</Filter>
+    </None>
+    <None Include="Resources\Fonts\PongScore.dft">
+      <Filter>リソース\フォント</Filter>
+    </None>
+    <ClInclude Include="Resources\Icon\Icon.h">
+      <Filter>リソース\アイコン</Filter>
+    </ClInclude>
+    <Image Include="Resources\Icon\Icon.ico">
+      <Filter>リソース\アイコン</Filter>
+    </Image>
+    <ResourceCompile Include="Resources\Icon\Icon.rc">
+      <Filter>リソース\アイコン</Filter>
+    </ResourceCompile>
+    <Image Include="Resources\Textures\TridentLogo.png">
+      <Filter>リソース\テクスチャ</Filter>
+    </Image>
   </ItemGroup>
 </Project>

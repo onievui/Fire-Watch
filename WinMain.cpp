@@ -4,8 +4,6 @@
 //! @brief  ゲームプログラムのエントリーポイントのソースファイル
 //!
 //! @date   2017/3/17
-//!
-//! @author 高木 晋
 //__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/
 
 // ヘッダファイルの読み込み ================================================
@@ -73,18 +71,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	Game* game = new Game;
 
 	// ゲームの処理
-	game->Initialize();    // ゲームの初期化処理
+	game->initialize();    // ゲームの初期化処理
 	
 	while (!ProcessMessage() && !CheckHitKey(EXIT_KEY))
 	{ 
-		game->Update();          // ゲームの更新処理
-		game->Render();          // ゲームの描画処理
+		game->update();          // ゲームの更新処理
+		game->render();          // ゲームの描画処理
 
 		ScreenFlip();          // 裏画面の内容を表画面に反映
 		ClearDrawScreen();     // 裏画面の消去
 	}
 
-	game->Finalize();      // ゲームの終了処理
+	game->finalize();      // ゲームの終了処理
 
 	// ゲームオブジェクトの破棄
 	delete game;

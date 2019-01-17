@@ -86,9 +86,27 @@
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
- 
   <!-- ソースファイル -->
   <ItemGroup>
+    <ClCompile Include="Game\AbstractScene.cpp" />
+    <ClCompile Include="Game\Collider.cpp" />
+    <ClCompile Include="Game\Collision.cpp" />
+    <ClCompile Include="Game\Color.cpp" />
+    <ClCompile Include="Game\Keyboard.cpp" />
+    <ClCompile Include="Game\LogoScene.cpp" />
+    <ClCompile Include="Game\Map.cpp" />
+    <ClCompile Include="Game\MapChip.cpp" />
+    <ClCompile Include="Game\MyMath.cpp" />
+    <ClCompile Include="Game\Pad.cpp" />
+    <ClCompile Include="Game\PlayScene.cpp" />
+    <ClCompile Include="Game\RenderManager.cpp" />
+    <ClCompile Include="Game\Resource.cpp" />
+    <ClCompile Include="Game\ResourceManager.cpp" />
+    <ClCompile Include="Game\ResultScene.cpp" />
+    <ClCompile Include="Game\ShareDataManager.cpp" />
+    <ClCompile Include="Game\Sound.cpp" />
+    <ClCompile Include="Game\TitleScene.cpp" />
+    <ClCompile Include="Game\Vector2.cpp" />
     <ClCompile Include="WinMain.cpp" />
     <ClCompile Include="Libraries\GameLibrary\GameLibAudio.cpp" />
     <ClCompile Include="Libraries\GameLibrary\GameLibCollision.cpp" />
@@ -100,9 +118,32 @@
     <ClCompile Include="Libraries\GameLibrary\GameLibTime.cpp" />
     <ClCompile Include="Game\GameMain.cpp" />
   </ItemGroup>
-
   <!-- ヘッダファイル -->
   <ItemGroup>
+    <ClInclude Include="Game\AbstractScene.h" />
+    <ClInclude Include="Game\Collider.h" />
+    <ClInclude Include="Game\Collision.h" />
+    <ClInclude Include="Game\Color.h" />
+    <ClInclude Include="Game\ErrorMessage.h" />
+    <ClInclude Include="Game\Keyboard.h" />
+    <ClInclude Include="Game\LogoScene.h" />
+    <ClInclude Include="Game\Map.h" />
+    <ClInclude Include="Game\MapChip.h" />
+    <ClInclude Include="Game\MyMath.h" />
+    <ClInclude Include="Game\Pad.h" />
+    <ClInclude Include="Game\PlayScene.h" />
+    <ClInclude Include="Game\RenderManager.h" />
+    <ClInclude Include="Game\RequestSceneListener.h" />
+    <ClInclude Include="Game\Resource.h" />
+    <ClInclude Include="Game\ResourceManager.h" />
+    <ClInclude Include="Game\ResultScene.h" />
+    <ClInclude Include="Game\SceneID.h" />
+    <ClInclude Include="Game\ScreenInfo.h" />
+    <ClInclude Include="Game\ShareDataManager.h" />
+    <ClInclude Include="Game\Singleton.h" />
+    <ClInclude Include="Game\Sound.h" />
+    <ClInclude Include="Game\TitleScene.h" />
+    <ClInclude Include="Game\Vector2.h" />
     <ClInclude Include="Libraries\GameLibrary\GameLibAudio.h" />
     <ClInclude Include="Libraries\GameLibrary\GameLibCollision.h" />
     <ClInclude Include="Libraries\GameLibrary\GameLibGraphics.h" />
@@ -115,24 +156,19 @@
     <ClInclude Include="Libraries\Utilities\MemoryLeakDetector.h" />
     <ClInclude Include="Game\GameMain.h" />
   </ItemGroup>
- 
   <!--リソースファイル -->
   <ItemGroup>
     <!-- 音 -->
     <None Include="Resources\Audio\SE00.ogg" />
-
     <!-- フォント -->
     <None Include="Resources\Fonts\PongScore.dft" />
-
     <!-- アイコン -->
     <ClInclude Include="Resources\Icon\Icon.h" />
     <Image Include="Resources\Icon\Icon.ico" />
     <ResourceCompile Include="Resources\Icon\Icon.rc" />
- 
     <!-- テクスチャ -->
     <Image Include="Resources\Textures\TridentLogo.png" />
   </ItemGroup>
-
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

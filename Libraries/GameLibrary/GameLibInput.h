@@ -5,7 +5,7 @@
 //!
 //! @date   2018/10/20
 //!
-//! @author S.Takaki
+//! @author onievui
 //__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/__/
 
 // 多重インクルードの防止 ==================================================
@@ -40,7 +40,7 @@ class InputDevice
 		virtual ~InputDevice();
 
 		// 操作
-		virtual void Update() = 0;    // 更新
+		virtual void update() = 0;    // 更新
 
 		bool IsButtonDown(int button);         // 指定されたボタンが押されているかどうかを判断
 		bool IsButtonUp(int button);           // 指定されたボタンが押されていないかどうかを判断
@@ -64,7 +64,7 @@ class Joypad final :public InputDevice
 		~Joypad();
 
 		// 操作
-		void Update() override;    // 更新
+		void update() override;    // 更新
 };
 
 
@@ -86,7 +86,7 @@ class Mouse final :public InputDevice
 		~Mouse();
 
 		// 操作
-		void Update() override;    // 更新
+		void update() override;    // 更新
 		
 		// 属性
 		const Point2D& GetPosition();    // カーソルの座標の取得
