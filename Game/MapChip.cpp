@@ -27,13 +27,12 @@ MapChip::~MapChip() {
 /// <param name="y"></param>
 /// <param name="grid_size"></param>
 void MapChip::render(int _x, int _y, int _grid_size) const {
-	int x1 = _x * _grid_size;
-	int y1 = _y * _grid_size;
-	int x2 = x1 + _grid_size;
-	int y2 = y1 + _grid_size;
+	float x1 = (float)_x * _grid_size;
+	float y1 = (float)_y * _grid_size;
+	float x2 = x1 + _grid_size;
+	float y2 = y1 + _grid_size;
 
 	RenderManager::getIns()->drawExtendGraphF(x1, y1, x2, y2, texture, TRUE);
-	DrawExtendGraph(x1, y1, x2, y2, texture, TRUE);
 }
 
 

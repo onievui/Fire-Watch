@@ -5,6 +5,9 @@
 #include <array>
 
 
+/// <summary>
+/// 描画先スクリーンID
+/// </summary>
 enum ScreenType : int {
 	BackScreen,
 	MapScreen,
@@ -13,6 +16,9 @@ enum ScreenType : int {
 };
 
 
+/// <summary>
+/// 描画制御クラス
+/// </summary>
 class RenderManager : public Singleton<RenderManager> {
 
 	friend Singleton<RenderManager>;
@@ -21,7 +27,7 @@ private:
 	std::array<int, ScreenType::Num> screensIndex;	//スクリーンタイプとスクリーンの対応用
 	std::vector<int> screens;                       //スクリーン
 	std::vector<Vector2> offsets;                   //オフセット
-	ScreenType currentScreenType;                              //現在使用中のスクリーン
+	ScreenType currentScreenType;                   //現在使用中のスクリーン
 
 public:
 	RenderManager();
@@ -40,7 +46,8 @@ private:
 	bool canUseScreenType(const ScreenType _screen_type);
 
 public:
-	void drawExtendGraphF(const float _x1, const float _y1, const float _x2, const float _y2, const int _handle, const int _trans_flag);
+	void drawExtendGraphF(const float _x1, const float _y1, const float _x2, const float _y2, const int _handle, const int _trans_flag) const;
+	void drawRotaGraphF(const float _x, const float _y, const float _exrate, const float _angle, int _handle, const int _trans_flag, const int _reverse_x_flag = 0, const int _reverse_y_flag = 0) const;
 };
 
 

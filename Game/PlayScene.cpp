@@ -4,6 +4,8 @@
 #include "Sound.h"
 #include "RenderManager.h"
 #include "ScreenInfo.h"
+#include "MessageManager.h"
+#include "Collision.h"
 
 
 /// <summary>
@@ -29,15 +31,29 @@ PlayScene::~PlayScene() {
 void PlayScene::initialize() {
 	ResourceManager::getIns()->load(SCENE_PLAY);
 	SoundPlayer::getIns()->reset();
+	MessageManager* message_manager = MessageManager::getIns();
+	//マップ管理クラスの生成
 	map = std::make_unique<Map>();
 	map->initialize();
+	message_manager->add(map.get());
+	//プレイヤーの生成
+	player = std::make_unique<Player>();
+	player->initialize();
+	message_manager->add(player.get());
+
 }
 
 /// <summary>
 /// シーンの更新
 /// </summary>
 void PlayScene::update() {
-	
+	//各オブジェクトの更新
+	map->update();
+	player->update();
+
+	//当たり判定処理
+	Collision collision;
+	collision.update();
 }
 
 
@@ -45,9 +61,15 @@ void PlayScene::update() {
 /// シーンの描画
 /// </summary>
 void PlayScene::render() {
+	RenderManager* render_manager = RenderManager::getIns();
+	//描画先をマップにする
+	render_manager->changeScreen(ScreenType::MapScreen);
 	map->draw();
-	RenderManager::getIns()->flipScreen();
-	RenderManager::getIns()->clearScreen(ScreenType::MapScreen);
+	player->draw();
+	render_manager->flipScreen();
+	render_manager->clearScreen(ScreenType::MapScreen);
+
+
 }
 
 /// <summary>

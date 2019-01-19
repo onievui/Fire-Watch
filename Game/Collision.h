@@ -1,7 +1,5 @@
 #pragma once
 
-#include <vector>
-
 
 //“–‚½‚è”»’èƒNƒ‰ƒX
 class Collision {

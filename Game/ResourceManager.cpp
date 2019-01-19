@@ -16,6 +16,7 @@ void ResourceManager::load(const SceneID _id) {
 	case SCENE_PLAY:
 		addTexture(TEXTURE_MAPCHIP_ALL, std::make_shared<TextureResource>("Protected/mapchip1.png"));
 		addTexture(TEXTURE_MAPCHIP, std::make_shared<TextureResource>(getTexture(TEXTURE_MAPCHIP_ALL).get(), 11, 1, 64, 64, 4, 4, 4));
+		addTexture(TEXTURE_PLAYER, std::make_shared<TextureResource>("Protected/player.png", 12, 3, 4, 48, 48));
 		break;
 	case SCENE_RESULT:
 		break;

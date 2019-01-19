@@ -89,6 +89,7 @@
   <!-- ソースファイル -->
   <ItemGroup>
     <ClCompile Include="Game\AbstractScene.cpp" />
+    <ClCompile Include="Game\Character.cpp" />
     <ClCompile Include="Game\Collider.cpp" />
     <ClCompile Include="Game\Collision.cpp" />
     <ClCompile Include="Game\Color.cpp" />
@@ -98,6 +99,7 @@
     <ClCompile Include="Game\MapChip.cpp" />
     <ClCompile Include="Game\MyMath.cpp" />
     <ClCompile Include="Game\Pad.cpp" />
+    <ClCompile Include="Game\Player.cpp" />
     <ClCompile Include="Game\PlayScene.cpp" />
     <ClCompile Include="Game\RenderManager.cpp" />
     <ClCompile Include="Game\Resource.cpp" />
@@ -121,6 +123,7 @@
   <!-- ヘッダファイル -->
   <ItemGroup>
     <ClInclude Include="Game\AbstractScene.h" />
+    <ClInclude Include="Game\Character.h" />
     <ClInclude Include="Game\Collider.h" />
     <ClInclude Include="Game\Collision.h" />
     <ClInclude Include="Game\Color.h" />
@@ -129,8 +132,11 @@
     <ClInclude Include="Game\LogoScene.h" />
     <ClInclude Include="Game\Map.h" />
     <ClInclude Include="Game\MapChip.h" />
+    <ClInclude Include="Game\MessageInterface.h" />
+    <ClInclude Include="Game\MessageManager.h" />
     <ClInclude Include="Game\MyMath.h" />
     <ClInclude Include="Game\Pad.h" />
+    <ClInclude Include="Game\Player.h" />
     <ClInclude Include="Game\PlayScene.h" />
     <ClInclude Include="Game\RenderManager.h" />
     <ClInclude Include="Game\RequestSceneListener.h" />

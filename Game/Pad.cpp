@@ -16,10 +16,14 @@ Pad::Pad() {
 	padId[PadCode::Z]       = 4;
 	padId[PadCode::X]       = 5;
 	padId[PadCode::C]       = 6;
-	padId[PadCode::SPACE]   = 7;
-	padId[PadCode::RETURN]  = 8;
-	padId[PadCode::LSHIFT] = 9;
-	padId[PadCode::TAB]     = 10;
+	padId[PadCode::W]       = 7;
+	padId[PadCode::A]       = 8;
+	padId[PadCode::S]       = 9;
+	padId[PadCode::D]       = 10;
+	padId[PadCode::SPACE]   = 11;
+	padId[PadCode::RETURN]  = 12;
+	padId[PadCode::LSHIFT]  = 13;
+	padId[PadCode::TAB]     = 14;
 
 	reset();
 }
@@ -74,6 +78,10 @@ void Pad::mergeKeyboardAll() {
 	mergeKeyboard(PadCode::Z,      KEY_INPUT_Z);
 	mergeKeyboard(PadCode::X,      KEY_INPUT_X);
 	mergeKeyboard(PadCode::C,      KEY_INPUT_C);
+	mergeKeyboard(PadCode::W,      KEY_INPUT_W);
+	mergeKeyboard(PadCode::A,      KEY_INPUT_A);
+	mergeKeyboard(PadCode::S,      KEY_INPUT_S);
+	mergeKeyboard(PadCode::D,      KEY_INPUT_D);
 	mergeKeyboard(PadCode::SPACE,  KEY_INPUT_SPACE);
 	mergeKeyboard(PadCode::RETURN, KEY_INPUT_RETURN);
 	mergeKeyboard(PadCode::LSHIFT, KEY_INPUT_LSHIFT);
@@ -220,7 +228,7 @@ int Pad::statePressLater4(const PadCode _id1, const PadCode _id2, const PadCode 
 	pad_state[3] = padStatePress[padId[_id4]];
 
 	for (int i = 0; i < 4; i++) {
-		if (pad_state[i] && pad_state[i] < shortest) {
+		if (pad_state[i] > 0 && pad_state[i] < shortest) {
 			later = i + 1;
 			shortest = pad_state[i];
 		}

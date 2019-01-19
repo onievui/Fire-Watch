@@ -195,8 +195,12 @@ bool RenderManager::canUseScreenType(const ScreenType _screen_type) {
 	return true;
 }
 
-
-void RenderManager::drawExtendGraphF(const float _x1, const float _y1, const float _x2, const float _y2, const int _handle, const int _trans_flag) {
+void RenderManager::drawExtendGraphF(const float _x1, const float _y1, const float _x2, const float _y2, const int _handle, const int _trans_flag) const {
 	Vector2 offset = offsets[screensIndex[currentScreenType]];
 	DrawExtendGraphF(_x1 - offset.x, _y1 - offset.y, _x2 - offset.x, _y2 - offset.y, _handle, _trans_flag);
+}
+
+void RenderManager::drawRotaGraphF(const float _x, const float _y, const float _exrate, const float _angle, int _handle, const int _trans_flag, const int _reverse_x_flag, const int _reverse_y_flag) const {
+	Vector2 offset = offsets[screensIndex[currentScreenType]];
+	DrawRotaGraphF(_x - offset.x, _y - offset.y, _exrate, _angle, _handle, _trans_flag, _reverse_x_flag, _reverse_y_flag);
 }

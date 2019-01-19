@@ -2,11 +2,12 @@
 #include "MapChip.h"
 #include "ResourceManager.h"
 #include "ErrorMessage.h"
-#include <fstream>
-#include <sstream>
-#include <string>
+#include "RenderManager.h"
+#include "MessageManager.h"
+#include "ScreenInfo.h"
 
-const int Map::DEFAULT_GRID_SIZE = 64;
+
+const int Map::DEFAULT_GRID_SIZE = 48;
 
 
 
@@ -27,14 +28,51 @@ Map::~Map() {
 	
 }
 
+/// <summary>
+/// メッセージの受け取り処理
+/// </summary>
+/// <param name="_type">メッセージの種類</param>
+/// <param name="ret">戻り値</param>
+/// <returns>
+/// 有効なメッセージを受信したかどうか
+/// </returns>
+bool Map::getMessage(const MessageType _type, void** _ret) {
+	switch (_type) {
+	case MessageType::GET_MAP:
+		*_ret = this;
+		return true;
+	case MessageType::GET_MAP_CENTER_POS:
+		*(Vector2*)_ret = getCenterPos();
+		return true;
+	default:
+		break;
+	}
+	return false;
+}
+
 
 
 /// <summary>
 /// マップの初期化
 /// </summary>
 void Map::initialize() {
-	loadMapData("tes");
+	loadMapData();
 	loadMapChip();
+}
+
+/// <summary>
+/// マップの更新
+/// </summary>
+void Map::update() {
+	MessageManager* message_manager = MessageManager::getIns();
+	//マップのオフセットの更新
+	Vector2 player_pos = message_manager->sendMessage<Vector2>(MessageType::GET_PLAYER_POS);
+	Vector2 screen_pos;
+	screen_pos.x = ClampT(player_pos.x - SCREEN_CENTER_X, 0.f, (float)GRID_COLS*DEFAULT_GRID_SIZE - SCREEN_WIDTH);
+	screen_pos.y = ClampT(player_pos.y - SCREEN_CENTER_Y, 0.f, (float)GRID_ROWS*DEFAULT_GRID_SIZE - SCREEN_HEIGHT);
+
+	RenderManager* render_manager = RenderManager::getIns();
+	render_manager->setScreenOffset(ScreenType::MapScreen, screen_pos);
 }
 
 
@@ -50,47 +88,38 @@ void Map::draw() const {
 			}
 		}
 	}
-
+	Vector2 screen_pos = RenderManager::getIns()->getScreenOffset(ScreenType::MapScreen);
+	DrawFormatString(0, 10, ColorCode::COLOR_BLACK, "x=%f,y=%f", screen_pos.x, screen_pos.y);
 	// グリッドの描画(Debug用)
-	for (int i = 0; i < GRID_ROWS; i++) {
-		for (int j = 0; j < GRID_COLS; j++) {
-			int x1 = j * gridSize - 0;
-			int y1 = i * gridSize - 0;
-			int x2 = x1 + gridSize;
-			int y2 = y1 + gridSize;
-			DrawBox(x1, y1, x2, y2, COLOR_GRAY, FALSE);
-		}
-	}
+	//for (int i = 0; i < GRID_ROWS; i++) {
+	//	for (int j = 0; j < GRID_COLS; j++) {
+	//		int x1 = j * gridSize - 0;
+	//		int y1 = i * gridSize - 0;
+	//		int x2 = x1 + gridSize;
+	//		int y2 = y1 + gridSize;
+	//		DrawBox(x1, y1, x2, y2, COLOR_GRAY, FALSE);
+	//	}
+	//}
 }
 
 
 /// <summary>
 /// マップデータの読み込み
 /// </summary>
-/// <param name="_filename">読み込むファイル名</param>
 /// <returns>
-/// true : 成功
-/// false : 失敗
+/// 読み込みに成功したかどうか
 /// </returns>
-bool Map::loadMapData(const char* _filename) {
-	// ファイルのオープン
-	std::ifstream ifs(_filename);
-	if (!ifs.is_open()) {
-		ErrorMessage("マップデータのロードに失敗しました");
-		return false;
-	}
-
-	std::string line;
-	int grid_y = 0;
-	while (getline(ifs, line)) {
-		std::istringstream data(line);
-		std::string field;
-		int grid_x = 0;
-		while (getline(data, field, ',')) {
-			cells[grid_y][grid_x] = atoi(field.c_str());
-			grid_x++;
+bool Map::loadMapData() {
+	for (int i = 0; i < GRID_ROWS; i++) {
+		for (int j = 0; j < GRID_COLS; j++) {
+			if (i <= 1 || i >= GRID_ROWS - 2 ||
+				j <= 1 || j >= GRID_COLS - 2) {
+				cells[i][j] = 0 + j % 2;
+			}
+			else {
+				cells[i][j] = 6;
+			}
 		}
-		grid_y++;
 	}
 	return true;
 }
@@ -104,10 +133,11 @@ void Map::loadMapChip() {
 
 	// マップチップの生成
 	for (int i = 0; i < NUM_MAPCHIPS; i++) {
-		bool is_passable = (i == 0) ? true : false;
+		bool is_passable = (i <= 1) ? false : true;
 		HGRP texture     = mapchip_texture->getResource(i);
 		mapchips[i] = std::make_unique<MapChip>(texture, is_passable);
 	}
+
 }
 
 
@@ -122,8 +152,8 @@ void Map::loadMapChip() {
 /// <returns>マップチップ</returns>
 MapChip* Map::getCell(int _grid_x, int _grid_y) const {
 	//範囲外チェック
-	if ((_grid_x >= 0) && (_grid_x < GRID_COLS) &&
-		(_grid_y >= 0) && (_grid_y < GRID_ROWS)) {
+	if ((_grid_x < 0) || (_grid_x >= GRID_COLS) ||
+		(_grid_y < 0) || (_grid_y >= GRID_ROWS)) {
 		ErrorMessage("領域外のセルを取得しようとしました");
 		return nullptr;
 	}
@@ -150,4 +180,12 @@ bool Map::isPassable(int _grid_x, int _grid_y) const {
 		return false;
 	}
 	return mapchip->isPassable();
+}
+
+/// <summary>
+/// 中心座標の取得
+/// </summary>
+/// <returns></returns>
+Vector2 Map::getCenterPos() const {
+	return Vector2(GRID_COLS*0.5f*DEFAULT_GRID_SIZE, GRID_ROWS*0.5f*DEFAULT_GRID_SIZE);
 }
