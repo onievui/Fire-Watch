@@ -47,8 +47,10 @@ bool Player::getMessage(const MessageType _type, void* _out, void* _in) {
 /// ‰Šú‰»
 /// </summary>
 void Player::initialize() {
-	pos = MessageManager::getIns()->sendMessage<Vector2>(MessageType::GET_MAP_CENTER_POS);
-	pos.y += 50.0f;
+	MessageManager* message_manager = MessageManager::getIns();
+	Vector2 start_grid = message_manager->sendMessage<Vector2>(MessageType::GET_MAP_CENTER_GRID);
+	start_grid.y += 2.0f;
+	pos = MessageManager::getIns()->sendMessage<Vector2>(MessageType::GRID_TO_POS, &start_grid);
 }
 
 /// <summary>

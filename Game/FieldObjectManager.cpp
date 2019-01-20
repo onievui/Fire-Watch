@@ -25,7 +25,7 @@ void FieldObjectManager::initialize() {
 /// XV
 /// </summary>
 void FieldObjectManager::update() {
-	for (auto& field_object : fieldObjects) {
+	for (const auto& field_object : fieldObjects) {
 		field_object->update();
 	}
 }
@@ -34,7 +34,7 @@ void FieldObjectManager::update() {
 /// •`‰æ
 /// </summary>
 void FieldObjectManager::draw() {
-	for (auto& field_object : fieldObjects) {
+	for (const auto& field_object : fieldObjects) {
 		field_object->draw();
 	}
 }

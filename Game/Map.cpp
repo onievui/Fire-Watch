@@ -42,8 +42,14 @@ bool Map::getMessage(const MessageType _type, void* _out, void* _in) {
 	case MessageType::GET_MAP:
 		*(Map**)_out = this;
 		return true;
+	case MessageType::GET_MAP_CENTER_GRID:
+		*(Vector2*)_out = getCenterGrid();
+		return true;
 	case MessageType::GET_MAP_CENTER_POS:
 		*(Vector2*)_out = getCenterPos();
+		return true;
+	case MessageType::GRID_TO_POS:
+		*(Vector2*)_out = gridToPos((*(Vector2*)_in).x, (*(Vector2*)_in).y);
 		return true;
 	default:
 		break;
@@ -182,10 +188,28 @@ bool Map::isPassable(int _grid_x, int _grid_y) const {
 	return mapchip->isPassable();
 }
 
+Vector2 Map::getCenterGrid() const {
+	return Vector2{ GRID_COLS*0.5f - 0.5f, GRID_ROWS*0.5f - 0.5f };
+}
+
 /// <summary>
 /// 中心座標の取得
 /// </summary>
-/// <returns></returns>
+/// <returns>
+/// 中心座標
+/// </returns>
 Vector2 Map::getCenterPos() const {
-	return Vector2(GRID_COLS*0.5f*DEFAULT_GRID_SIZE, GRID_ROWS*0.5f*DEFAULT_GRID_SIZE);
+	return gridToPos(GRID_COLS*0.5f - 0.5f, GRID_ROWS*0.5f - 0.5f);
+}
+
+/// <summary>
+/// グリッド座標からワールド座標に変換
+/// </summary>
+/// <param name="_grid_x">グリッドX座標</param>
+/// <param name="_grid_y">グリッドY座標</param>
+/// <returns>
+/// ワールド座標
+/// </returns>
+Vector2 Map::gridToPos(float _grid_x, float _grid_y) const {
+	return Vector2((_grid_x + 0.5f)*DEFAULT_GRID_SIZE, (_grid_y + 0.5f)*DEFAULT_GRID_SIZE);
 }

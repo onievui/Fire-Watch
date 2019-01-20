@@ -69,6 +69,7 @@ void PlayScene::render() {
 	map->draw();
 	fieldObjectManager->draw();
 	player->draw();
+	//ƒ}ƒbƒv‚ð— ‰æ–Ê‚É”½‰f
 	render_manager->flipScreen();
 	render_manager->clearScreen(ScreenType::MapScreen);
 

@@ -40,5 +40,7 @@ private:
 public:
 	MapChip* getCell(int _grid_x, int _grid_y) const;
 	bool isPassable(int _grid_x, int _grid_y) const;
+	Vector2 getCenterGrid() const;
 	Vector2 getCenterPos() const;
+	Vector2 gridToPos(float _grid_x, float _grid_y) const;
 };

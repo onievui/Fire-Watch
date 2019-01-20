@@ -21,7 +21,8 @@ void Collision::update() {
 	Player* player = message_manager->sendMessage<Player*>(MessageType::GET_PLAYER);
 	RectCollider* player_collider = player->getCollider();
 	Map* map = message_manager->sendMessage<Map*>(MessageType::GET_MAP);
-	auto field_objects = message_manager->sendMessage<std::vector<std::unique_ptr<FieldObject>>*>(MessageType::GET_FIELDOBJECTS);
+	using FieldObjects = std::vector<std::unique_ptr<FieldObject>>;
+	FieldObjects* field_objects = message_manager->sendMessage<FieldObjects*>(MessageType::GET_FIELDOBJECTS);
 	
 	//プレイヤーとマップの当たり判定
 	for (int i = 0; i < Map::GRID_ROWS; i++) {
@@ -53,5 +54,7 @@ void Collision::update() {
 			}
 		}
 	}
+
+
 }
 
