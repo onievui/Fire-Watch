@@ -169,6 +169,9 @@
     <ClCompile Include="Game\Tent.cpp">
       <Filter>ゲーム\オブジェクト関係\フィールドオブジェクト関係</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Bonfire.cpp">
+      <Filter>ゲーム</Filter>
+    </ClCompile>
   </ItemGroup>
   <!-- ヘッダファイル -->
   <ItemGroup>
@@ -297,6 +300,9 @@
     </ClInclude>
     <ClInclude Include="Game\MapChip.h">
       <Filter>ゲーム\オブジェクト関係\マップ関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Bonfire.h">
+      <Filter>ゲーム\オブジェクト関係\フィールドオブジェクト関係</Filter>
     </ClInclude>
   </ItemGroup>
   <!-- リソースファイル -->

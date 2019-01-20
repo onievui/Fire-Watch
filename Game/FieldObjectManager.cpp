@@ -1,5 +1,7 @@
 #include "FieldObjectManager.h"
 #include "Tent.h"
+#include "Bonfire.h"
+#include "MessageManager.h"
 
 
 /// <summary>
@@ -14,11 +16,26 @@ FieldObjectManager::FieldObjectManager()
 /// ‰Šú‰»ˆ—
 /// </summary>
 void FieldObjectManager::initialize() {
+	MessageManager* message_manager = MessageManager::getIns();
 	fieldObjects.clear();
 	fieldObjects.shrink_to_fit();
+
 	//ƒeƒ“ƒg‚Ì¶¬
 	fieldObjects.emplace_back(std::make_unique<Tent>());
 	fieldObjects[0]->initialize();
+
+	//•°‰Î‚Ì¶¬
+	static const Vector2 spawn_offset[3] = {
+		{ 0, -4},
+		{-4,  3},
+		{ 4,  3}
+	};
+	Vector2 center_grid = message_manager->sendMessage<Vector2>(MessageType::GET_MAP_CENTER_GRID);
+	for (const auto& offset : spawn_offset) {
+		Vector2 spawn_grid = center_grid + offset;
+		Vector2 spawn_pos = message_manager->sendMessage<Vector2>(MessageType::GRID_TO_POS, &spawn_grid);
+		fieldObjects.emplace_back(std::make_unique<Bonfire>(spawn_pos, 1800, true));
+	}
 }
 
 /// <summary>
