@@ -12,7 +12,7 @@ class Map : public MessageInterface {
 public:
 	static const int GRID_COLS    = 31;	//横方向のグリッド数
 	static const int GRID_ROWS	  = 31;	//縦方向のグリッド数
-	static const int NUM_MAPCHIPS = 11;	//マップチップの数
+	static const int NUM_MAPCHIPS = 6;	//マップチップの数
 
 	static const int DEFAULT_GRID_SIZE;	//初期グリッドサイズ
 
@@ -26,7 +26,7 @@ public:
 	~Map();
 
 public:
-	bool getMessage(const MessageType _type, void** _ret);
+	bool getMessage(const MessageType _type, void* _out, void* _in);
 
 public:
 	void initialize();

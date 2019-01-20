@@ -18,7 +18,7 @@ Map::Map()
 	: cells()
 	, mapchips()
 	, gridSize(DEFAULT_GRID_SIZE) {
-	
+	initialize();
 }
 
 /// <summary>
@@ -32,17 +32,18 @@ Map::~Map() {
 /// メッセージの受け取り処理
 /// </summary>
 /// <param name="_type">メッセージの種類</param>
-/// <param name="ret">戻り値</param>
+/// <param name="_out">出力</param>
+/// <param name="_in">入力</param>
 /// <returns>
 /// 有効なメッセージを受信したかどうか
 /// </returns>
-bool Map::getMessage(const MessageType _type, void** _ret) {
+bool Map::getMessage(const MessageType _type, void* _out, void* _in) {
 	switch (_type) {
 	case MessageType::GET_MAP:
-		*_ret = this;
+		*(Map**)_out = this;
 		return true;
 	case MessageType::GET_MAP_CENTER_POS:
-		*(Vector2*)_ret = getCenterPos();
+		*(Vector2*)_out = getCenterPos();
 		return true;
 	default:
 		break;
@@ -114,10 +115,10 @@ bool Map::loadMapData() {
 		for (int j = 0; j < GRID_COLS; j++) {
 			if (i <= 1 || i >= GRID_ROWS - 2 ||
 				j <= 1 || j >= GRID_COLS - 2) {
-				cells[i][j] = 0 + j % 2;
+				cells[i][j] = GetRand(5);
 			}
 			else {
-				cells[i][j] = 6;
+				cells[i][j] = GetRand(5);
 			}
 		}
 	}
@@ -130,14 +131,13 @@ bool Map::loadMapData() {
 void Map::loadMapChip() {
 	//マップチップの読み込み
 	auto mapchip_texture = ResourceManager::getIns()->getTexture(TEXTURE_MAPCHIP);
-
+	
 	// マップチップの生成
 	for (int i = 0; i < NUM_MAPCHIPS; i++) {
-		bool is_passable = (i <= 1) ? false : true;
+		bool is_passable = (i <= 1) ? true : true;
 		HGRP texture     = mapchip_texture->getResource(i);
 		mapchips[i] = std::make_unique<MapChip>(texture, is_passable);
 	}
-
 }
 
 
@@ -158,7 +158,7 @@ MapChip* Map::getCell(int _grid_x, int _grid_y) const {
 		return nullptr;
 	}
 
-	int id = cells[_grid_y][_grid_x];
+	int id = cells[_grid_x][_grid_y];
 
 	return mapchips[id].get();
 }

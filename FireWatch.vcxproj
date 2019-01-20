@@ -93,6 +93,8 @@
     <ClCompile Include="Game\Collider.cpp" />
     <ClCompile Include="Game\Collision.cpp" />
     <ClCompile Include="Game\Color.cpp" />
+    <ClCompile Include="Game\FieldObject.cpp" />
+    <ClCompile Include="Game\FieldObjectManager.cpp" />
     <ClCompile Include="Game\Keyboard.cpp" />
     <ClCompile Include="Game\LogoScene.cpp" />
     <ClCompile Include="Game\Map.cpp" />
@@ -107,6 +109,7 @@
     <ClCompile Include="Game\ResultScene.cpp" />
     <ClCompile Include="Game\ShareDataManager.cpp" />
     <ClCompile Include="Game\Sound.cpp" />
+    <ClCompile Include="Game\Tent.cpp" />
     <ClCompile Include="Game\TitleScene.cpp" />
     <ClCompile Include="Game\Vector2.cpp" />
     <ClCompile Include="WinMain.cpp" />
@@ -128,6 +131,9 @@
     <ClInclude Include="Game\Collision.h" />
     <ClInclude Include="Game\Color.h" />
     <ClInclude Include="Game\ErrorMessage.h" />
+    <ClInclude Include="Game\FieldObject.h" />
+    <ClInclude Include="Game\FieldObjectManager.h" />
+    <ClInclude Include="Game\Tent.h" />
     <ClInclude Include="Game\Keyboard.h" />
     <ClInclude Include="Game\LogoScene.h" />
     <ClInclude Include="Game\Map.h" />

@@ -7,7 +7,7 @@
 
 
 
-const float Player::MOVE_SPEED = 3.0f;	//プレイヤーの移動速度
+const float Player::MOVE_SPEED = 4.0f;	//プレイヤーの移動速度
 
 
 
@@ -16,25 +16,26 @@ const float Player::MOVE_SPEED = 3.0f;	//プレイヤーの移動速度
 /// コンストラクタ
 /// </summary>
 Player::Player()
-	: Character({ 0,0 }, RectCollider(&pos, { 0,0 }, &vel, 48, 48), ResourceManager::getIns()->getTexture(TextureID::TEXTURE_PLAYER)) 
-	, animeCount() {
+	: Character({ 0,0 }, RectCollider(&pos, { 0,0 }, &vel, 48, 48), ResourceManager::getIns()->getTexture(TextureID::TEXTURE_PLAYER)) {
+	initialize();
 }
 
 /// <summary>
 /// メッセージの受け取り
 /// </summary>
 /// <param name="_type">メッセージの種類</param>
-/// <param name="_ret">戻り値格納用</param>
+/// <param name="_out">出力</param>
+/// <param name="_in">入力</param>
 /// <returns>
 /// 有効なメッセージを受け取ったかどうか
 /// </returns>
-bool Player::getMessage(const MessageType _type, void** _ret) {
+bool Player::getMessage(const MessageType _type, void* _out, void* _in) {
 	switch (_type) {
 	case MessageType::GET_PLAYER:
-		*_ret = this;
+		*(Player**)_out = this;
 		return true;
 	case MessageType::GET_PLAYER_POS:
-		*(Vector2*)_ret = pos;
+		*(Vector2*)_out = pos;
 		return true;
 	default:
 		break;
@@ -47,6 +48,7 @@ bool Player::getMessage(const MessageType _type, void** _ret) {
 /// </summary>
 void Player::initialize() {
 	pos = MessageManager::getIns()->sendMessage<Vector2>(MessageType::GET_MAP_CENTER_POS);
+	pos.y += 50.0f;
 }
 
 /// <summary>

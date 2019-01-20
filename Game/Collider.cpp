@@ -14,7 +14,7 @@
 /// <returns>
 /// 衝突したかどうか
 /// </returns>
-bool Collider::collisionRect(RectCollider &_rect1, RectCollider &_rect2, float *_time, float *_ref_normal) {
+bool Collider::collisionRect(RectCollider& _rect1, RectCollider& _rect2, float* _time, float* _ref_normal) {
 	//各方向の衝突するまでの時間
 	float xmin, xmax, ymin, ymax;
 	xmin = xmax = ymin = ymax = -1.f;
@@ -95,7 +95,7 @@ bool Collider::collisionRect(RectCollider &_rect1, RectCollider &_rect2, float *
 /// <returns>
 /// 衝突したかどうか
 /// </returns>
-bool Collider::collisionRectRotate(RectRotateCollider &_rect_rotate1, RectRotateCollider &_rect_rotate2) {
+bool Collider::collisionRectRotate(RectRotateCollider& _rect_rotate1, RectRotateCollider& _rect_rotate2) {
 	//中心座標の計算
 	Vector2 pos1 = *_rect_rotate1.pos + _rect_rotate1.offset;
 	Vector2 pos2 = *_rect_rotate2.pos + _rect_rotate2.offset;
@@ -134,7 +134,7 @@ bool Collider::collisionRectRotate(RectRotateCollider &_rect_rotate1, RectRotate
 /// <returns>
 /// 衝突したかどうか
 /// </returns>
-bool Collider::collisionCircleRectRotate(CircleCollider &_circle, RectRotateCollider &_rect_rotate) {
+bool Collider::collisionCircleRectRotate(CircleCollider& _circle, RectRotateCollider& _rect_rotate) {
 
 	//オフセットの計算
 	Vector2 circle_pos = *_circle.pos + _circle.offset;
@@ -195,7 +195,7 @@ bool Collider::collisionCircleRectRotate(CircleCollider &_circle, RectRotateColl
 /// <returns>
 /// 衝突したかどうか
 /// </returns>
-bool Collider::collisionCircleRectRotate(CircleCollider &_circle, RectRotateCollider &_rect_rotate, float *_time, float *_ref_normal) {
+bool Collider::collisionCircleRectRotate(CircleCollider& _circle, RectRotateCollider& _rect_rotate, float* _time, float* _ref_normal) {
 
 	//オフセットの計算
 	Vector2 circle_pos = *_circle.pos + _circle.offset;
@@ -312,7 +312,7 @@ bool Collider::collisionCircleRectRotate(CircleCollider &_circle, RectRotateColl
 /// <returns>
 /// 衝突したかどうか
 /// </returns>
-bool Collider::collisionCirclePoint(CircleCollider &_circle, Vector2 &_point) {
+bool Collider::collisionCirclePoint(CircleCollider& _circle, Vector2& _point) {
 	Vector2 circle_pos = *_circle.pos + _circle.offset;
 	if (Vector2::distanceSquare(circle_pos, _point) <= _circle.radius*_circle.radius) {
 		return true;
@@ -331,7 +331,7 @@ bool Collider::collisionCirclePoint(CircleCollider &_circle, Vector2 &_point) {
 /// <returns>
 /// 衝突したかどうか
 /// </returns>
-bool Collider::collisionSegment(const Vector2 &_p1, const Vector2 &_p2, const Vector2 &_p3, const Vector2 &_p4, float *_time) {
+bool Collider::collisionSegment(const Vector2& _p1, const Vector2& _p2, const Vector2& _p3, const Vector2& _p4, float* _time) {
 
 	//交差判定
 	float d1 = Vector2::cross(_p4 - _p3, _p1 - _p3);
@@ -370,7 +370,7 @@ bool Collider::collisionSegment(const Vector2 &_p1, const Vector2 &_p2, const Ve
 /// <returns>
 /// 衝突したかどうか
 /// </returns>
-bool Collider::collisionRayCircle(const Vector2 &_ray_pos, const Vector2 &_ray_vec, const Vector2 &_circle_pos, const float _radius, float *_time) {
+bool Collider::collisionRayCircle(const Vector2& _ray_pos, const Vector2& _ray_vec, const Vector2& _circle_pos, const float _radius, float* _time) {
 	//エラーチェック
 	if (_radius < 0.f) {
 		return false;
@@ -413,7 +413,7 @@ bool Collider::collisionRayCircle(const Vector2 &_ray_pos, const Vector2 &_ray_v
 /// <returns>
 /// 衝突したかどうか
 /// </returns>
-bool Collider::collisionCircleSegment(const CircleCollider & _circle, Vector2 & _p1, Vector2 & _p2, float * _time) {
+bool Collider::collisionCircleSegment(const CircleCollider&  _circle, Vector2& _p1, Vector2& _p2, float* _time) {
 
 	//衝突したかの判定
 	bool is_collision = false;
@@ -550,7 +550,6 @@ bool Collider::collisionCircleSegment(const CircleCollider & _circle, Vector2 & 
 	//return true;
 }
 
-
 /// <summary>
 /// コンストラクタ
 /// </summary>
@@ -559,7 +558,7 @@ bool Collider::collisionCircleSegment(const CircleCollider & _circle, Vector2 & 
 /// <param name="_vel">速度のポインタ</param>
 /// <param name="_width">横幅</param>
 /// <param name="_height">縦幅</param>
-RectCollider::RectCollider(Vector2 *_pos, const Vector2 &_offset, Vector2 *_vel, const float _width, const float _height) 
+RectCollider::RectCollider(Vector2* _pos, const Vector2& _offset, Vector2* _vel, const float _width, const float _height) 
 	: Collider(COLLIDER_TYPE_RECT)
 	, pos(_pos)
 	, offset(_offset)
@@ -578,7 +577,7 @@ RectCollider::RectCollider(Vector2 *_pos, const Vector2 &_offset, Vector2 *_vel,
 /// <param name="_width">横幅</param>
 /// <param name="_height">縦幅</param>
 /// <param name="_type">当たり判定の種類</param>
-RectCollider::RectCollider(Vector2 * _pos, const Vector2 & _offset, Vector2 * _vel, const float _width, const float _height, const ColliderType _type)
+RectCollider::RectCollider(Vector2* _pos, const Vector2& _offset, Vector2* _vel, const float _width, const float _height, const ColliderType _type)
 	: Collider(_type)
 	, pos(_pos)
 	, offset(_offset)
@@ -596,7 +595,7 @@ RectCollider::RectCollider(Vector2 * _pos, const Vector2 & _offset, Vector2 * _v
 /// <param name="_width">横幅</param>
 /// <param name="_height">縦幅</param>
 /// <param name="_angle">角度のポインタ</param>
-RectRotateCollider::RectRotateCollider(Vector2 *_pos, const Vector2 &_offset, Vector2 *_vel, const float _width, const float _height, float *_angle)
+RectRotateCollider::RectRotateCollider(Vector2* _pos, const Vector2& _offset, Vector2* _vel, const float _width, const float _height, float*_angle)
 	: RectCollider(_pos, _offset, _vel, _width, _height, COLLIDER_TYPE_RECT_ROTATE)
 	, angle(_angle) {
 
@@ -609,7 +608,7 @@ RectRotateCollider::RectRotateCollider(Vector2 *_pos, const Vector2 &_offset, Ve
 /// <param name="_offset">オフセット</param>
 /// <param name="_vel">速度のポインタ</param>
 /// <param name="_radius">半径</param>
-CircleCollider::CircleCollider(Vector2 *_pos, const Vector2 &_offset, Vector2 *_vel, const float _radius) 
+CircleCollider::CircleCollider(Vector2* _pos, const Vector2& _offset, Vector2* _vel, const float _radius) 
 	: Collider(COLLIDER_TYPE_CIRCLE)
 	, pos(_pos)
 	, offset(_offset)

@@ -34,12 +34,13 @@ void PlayScene::initialize() {
 	MessageManager* message_manager = MessageManager::getIns();
 	//マップ管理クラスの生成
 	map = std::make_unique<Map>();
-	map->initialize();
 	message_manager->add(map.get());
 	//プレイヤーの生成
 	player = std::make_unique<Player>();
-	player->initialize();
 	message_manager->add(player.get());
+	//フィールドオブジェクト管理クラスの生成
+	fieldObjectManager = std::make_unique<FieldObjectManager>();
+	message_manager->add(fieldObjectManager.get());
 
 }
 
@@ -48,8 +49,9 @@ void PlayScene::initialize() {
 /// </summary>
 void PlayScene::update() {
 	//各オブジェクトの更新
-	map->update();
 	player->update();
+	fieldObjectManager->update();
+	map->update();
 
 	//当たり判定処理
 	Collision collision;
@@ -65,6 +67,7 @@ void PlayScene::render() {
 	//描画先をマップにする
 	render_manager->changeScreen(ScreenType::MapScreen);
 	map->draw();
+	fieldObjectManager->draw();
 	player->draw();
 	render_manager->flipScreen();
 	render_manager->clearScreen(ScreenType::MapScreen);
@@ -76,6 +79,7 @@ void PlayScene::render() {
 /// シーンの終了処理
 /// </summary>
 void PlayScene::finalize() {
+	MessageManager::getIns()->reset();
 	ResourceManager::getIns()->release();
 	SoundPlayer::getIns()->stopAll();
 	SoundPlayer::getIns()->reset();

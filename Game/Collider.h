@@ -26,14 +26,14 @@ public:
 	Collider(const ColliderType _type) : type(_type){}
 	virtual ~Collider() = default;
 
-	static bool collisionRect(RectCollider &_rect1, RectCollider &_rect2, float *_time, float *_ref_normal);	//‹éŒ`“¯m‚Ì“–‚½‚è”»’è
-	static bool collisionRectRotate(RectRotateCollider &_rect_rotate1, RectRotateCollider &_rect_rotate2);		//‰ñ“]‹éŒ`“¯m‚Ìd‚È‚è”»’è
-	static bool collisionCircleRectRotate(CircleCollider &_circle, RectRotateCollider &_rect_rotate);	//‰~‚Æ‰ñ“]‹éŒ`‚Ìd‚È‚è”»’è
-	static bool collisionCircleRectRotate(CircleCollider &_circle, RectRotateCollider &_rect_rotate, float *_time, float *_ref_normal);	//‰~‚Æ‰ñ“]‹éŒ`‚Ì“–‚½‚è”»’è
-	static bool collisionCirclePoint(CircleCollider &_circle, Vector2 &_point);	//‰~‚Æ“_‚Ìd‚È‚è”»’è
-	static bool collisionSegment(const Vector2 &_p1, const Vector2 &_p2, const Vector2 &_p3, const Vector2 &_p4, float *_time);	//ü•ª“¯m‚ÌÕ“Ë”»’è
-	static bool collisionRayCircle(const Vector2 &_ray_pos, const Vector2 &_ray_vec, const Vector2 &_circle_pos, const float _radius, float *_time);	//ƒŒƒC‚Æ‰~‚ÌÕ“Ë”»’è
-	static bool collisionCircleSegment(const CircleCollider &_circle, Vector2 &_p1, Vector2 &_p2, float *_time);	//ü•ª‚Æ‰~‚ÌÕ“Ë”»’è
+	static bool collisionRect(RectCollider& _rect1, RectCollider& _rect2, float* _time, float* _ref_normal);	//‹éŒ`“¯m‚Ì“–‚½‚è”»’è
+	static bool collisionRectRotate(RectRotateCollider& _rect_rotate1, RectRotateCollider& _rect_rotate2);		//‰ñ“]‹éŒ`“¯m‚Ìd‚È‚è”»’è
+	static bool collisionCircleRectRotate(CircleCollider& _circle, RectRotateCollider& _rect_rotate);	//‰~‚Æ‰ñ“]‹éŒ`‚Ìd‚È‚è”»’è
+	static bool collisionCircleRectRotate(CircleCollider& _circle, RectRotateCollider& _rect_rotate, float* _time, float* _ref_normal);	//‰~‚Æ‰ñ“]‹éŒ`‚Ì“–‚½‚è”»’è
+	static bool collisionCirclePoint(CircleCollider& _circle, Vector2& _point);	//‰~‚Æ“_‚Ìd‚È‚è”»’è
+	static bool collisionSegment(const Vector2& _p1, const Vector2& _p2, const Vector2& _p3, const Vector2& _p4, float* _time);	//ü•ª“¯m‚ÌÕ“Ë”»’è
+	static bool collisionRayCircle(const Vector2& _ray_pos, const Vector2& _ray_vec, const Vector2& _circle_pos, const float _radius, float* _time);	//ƒŒƒC‚Æ‰~‚ÌÕ“Ë”»’è
+	static bool collisionCircleSegment(const CircleCollider& _circle, Vector2& _p1, Vector2& _p2, float* _time);	//ü•ª‚Æ‰~‚ÌÕ“Ë”»’è
 
 };
 
@@ -41,18 +41,18 @@ public:
 class RectCollider : public Collider {
 
 public:
-	Vector2 *pos;	//À•W
+	Vector2* pos;	//À•W
 	Vector2 offset;	//ƒIƒtƒZƒbƒg
-	Vector2 *vel;	//‘¬“x
+	Vector2* vel;	//‘¬“x
 	float width;	//‰¡•
 	float height;	//c•
 
 public:
-	RectCollider(Vector2 *_pos, const Vector2 &_offset, Vector2 *_vel, const float _width, const float _height);
+	RectCollider(Vector2* _pos, const Vector2& _offset, Vector2* _vel, const float _width, const float _height);
 	virtual ~RectCollider() = default;
 
 protected:
-	RectCollider(Vector2 *_pos, const Vector2 &_offset, Vector2 *_vel, const float _width, const float _height, const ColliderType _type);
+	RectCollider(Vector2* _pos, const Vector2& _offset, Vector2* _vel, const float _width, const float _height, const ColliderType _type);
 
 };
 
@@ -60,10 +60,10 @@ protected:
 class RectRotateCollider : public RectCollider {
 
 public:
-	float *angle;	//‰ñ“]—Ê
+	float* angle;	//‰ñ“]—Ê
 
 public:
-	RectRotateCollider(Vector2 *_pos, const Vector2 &_offset, Vector2 *_vel, const float _width, const float _height, float *_angle);
+	RectRotateCollider(Vector2* _pos, const Vector2& _offset, Vector2* _vel, const float _width, const float _height, float* _angle);
 	virtual ~RectRotateCollider() = default;
 
 };
@@ -73,13 +73,13 @@ public:
 class CircleCollider : public Collider {
 
 public:
-	Vector2 * pos;	//À•W
+	Vector2* pos;	//À•W
 	Vector2 offset;	//ƒIƒtƒZƒbƒg
-	Vector2 *vel;	//‘¬“x
+	Vector2* vel;	//‘¬“x
 	float radius;	//”¼Œa
 
 public:
-	CircleCollider(Vector2 *_pos, const Vector2 &_offset, Vector2 *_vel, const float _radius);
+	CircleCollider(Vector2* _pos, const Vector2& _offset, Vector2* _vel, const float _radius);
 	virtual ~CircleCollider() = default;
 
 };

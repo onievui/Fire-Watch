@@ -3,6 +3,7 @@
 #include "Collider.h"
 #include "Player.h"
 #include "Map.h"
+#include "FieldObject.h"
 
 
 /// <summary>
@@ -20,6 +21,7 @@ void Collision::update() {
 	Player* player = message_manager->sendMessage<Player*>(MessageType::GET_PLAYER);
 	RectCollider* player_collider = player->getCollider();
 	Map* map = message_manager->sendMessage<Map*>(MessageType::GET_MAP);
+	auto field_objects = message_manager->sendMessage<std::vector<std::unique_ptr<FieldObject>>*>(MessageType::GET_FIELDOBJECTS);
 	
 	//プレイヤーとマップの当たり判定
 	for (int i = 0; i < Map::GRID_ROWS; i++) {
@@ -36,6 +38,18 @@ void Collision::update() {
 				if (Collider::collisionRect(*player_collider, cell_collider, &time, &normal)) {
 					*player_collider->vel *= 0;
 				}
+			}
+		}
+	}
+
+	//プレイヤーとフィールドオブジェクトの当たり判定
+	for (auto& field_object : *field_objects) {
+		//衝突情報格納用
+		float time, normal;
+		RectCollider* field_object_colider = field_object->getCollider();
+		if (Collider::collisionRect(*player_collider, *field_object_colider, &time, &normal)) {
+			if (!field_object->isPassabe()) {
+				*player_collider->vel *= 0;
 			}
 		}
 	}

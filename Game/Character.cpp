@@ -9,11 +9,12 @@
 /// <param name="_texture"></param>
 Character::Character(const Vector2& _pos, const RectCollider& _collider, const std::shared_ptr<TextureResource>& _texture) 
 	: pos(_pos)
-	, vel{ 0,0 }
+	, vel()
 	, collider(_collider)
 	, texture(_texture)
 	, direction(Direction::DIRECTION_DOWN)
-	, textureIndex(0) {
+	, textureIndex()
+	, animeCount() {
 }
 
 /// <summary>

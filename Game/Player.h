@@ -11,14 +11,11 @@ class Player : public Character, public MessageInterface {
 private:
 	static const float MOVE_SPEED;
 
-private:
-	int animeCount;
-
 public:
 	Player();
 
 public:
-	virtual bool getMessage(const MessageType _type, void** _ret);
+	virtual bool getMessage(const MessageType _type, void* _out, void* _in);
 
 public:
 	void initialize() override;
@@ -26,8 +23,8 @@ public:
 	void draw() override;
 
 private:
+	void animate() override;
 	void move();
-	void animate();
 };
 
 

@@ -14,9 +14,11 @@ void ResourceManager::load(const SceneID _id) {
 	case SCENE_TITLE:
 		break;
 	case SCENE_PLAY:
-		addTexture(TEXTURE_MAPCHIP_ALL, std::make_shared<TextureResource>("Protected/mapchip1.png"));
-		addTexture(TEXTURE_MAPCHIP, std::make_shared<TextureResource>(getTexture(TEXTURE_MAPCHIP_ALL).get(), 11, 1, 64, 64, 4, 4, 4));
+		addTexture(TEXTURE_MAPCHIP, std::make_shared<TextureResource>("Protected/tile.png", 6, 6, 1, 32, 32));
 		addTexture(TEXTURE_PLAYER, std::make_shared<TextureResource>("Protected/player.png", 12, 3, 4, 48, 48));
+		addTexture(TEXTURE_TENT, std::make_shared<TextureResource>("Protected/tent2.png"));
+		addTexture(TEXTURE_FIRE, std::make_shared<TextureResource>("Protected/fire.png", 4, 4, 1, 32, 32));
+		addTexture(TEXTURE_CROSSBOW, std::make_shared<TextureResource>("Protected/cross_bow.png"));
 		break;
 	case SCENE_RESULT:
 		break;

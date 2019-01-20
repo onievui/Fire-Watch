@@ -57,6 +57,15 @@
     <Filter Include="ゲーム\オブジェクト関係">
       <UniqueIdentifier>{114b0212-17ca-4698-9010-0ff10251263c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ゲーム\オブジェクト関係\キャラクター関係">
+      <UniqueIdentifier>{0c2c61f7-da6a-4a27-b96d-68959025ce49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\オブジェクト関係\フィールドオブジェクト関係">
+      <UniqueIdentifier>{76c436d2-81af-4d82-ab28-04a20db24137}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ゲーム\オブジェクト関係\マップ関係">
+      <UniqueIdentifier>{6e46bde4-67ce-4c22-8379-2589c5d597f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <!-- ソースファイル -->
   <ItemGroup>
@@ -139,17 +148,26 @@
     <ClCompile Include="Game\RenderManager.cpp">
       <Filter>ゲーム\ユーティリティ</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Map.cpp">
-      <Filter>ゲーム\オブジェクト関係</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\MapChip.cpp">
-      <Filter>ゲーム\オブジェクト関係</Filter>
+    <ClCompile Include="Game\Character.cpp">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
     </ClCompile>
     <ClCompile Include="Game\Player.cpp">
-      <Filter>ゲーム\オブジェクト関係</Filter>
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
     </ClCompile>
-    <ClCompile Include="Game\Character.cpp">
-      <Filter>ゲーム</Filter>
+    <ClCompile Include="Game\FieldObject.cpp">
+      <Filter>ゲーム\オブジェクト関係\フィールドオブジェクト関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\FieldObjectManager.cpp">
+      <Filter>ゲーム\オブジェクト関係\フィールドオブジェクト関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Map.cpp">
+      <Filter>ゲーム\オブジェクト関係\マップ関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\MapChip.cpp">
+      <Filter>ゲーム\オブジェクト関係\マップ関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Tent.cpp">
+      <Filter>ゲーム\オブジェクト関係\フィールドオブジェクト関係</Filter>
     </ClCompile>
   </ItemGroup>
   <!-- ヘッダファイル -->
@@ -253,23 +271,32 @@
     <ClInclude Include="Game\ScreenInfo.h">
       <Filter>ゲーム</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Map.h">
-      <Filter>ゲーム\オブジェクト関係</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\MapChip.h">
-      <Filter>ゲーム\オブジェクト関係</Filter>
-    </ClInclude>
     <ClInclude Include="Game\MessageInterface.h">
       <Filter>ゲーム\ユーティリティ</Filter>
     </ClInclude>
     <ClInclude Include="Game\MessageManager.h">
       <Filter>ゲーム\ユーティリティ</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Player.h">
-      <Filter>ゲーム\オブジェクト関係</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Character.h">
-      <Filter>ゲーム\オブジェクト関係</Filter>
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Player.h">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\FieldObject.h">
+      <Filter>ゲーム\オブジェクト関係\フィールドオブジェクト関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Tent.h">
+      <Filter>ゲーム\オブジェクト関係\フィールドオブジェクト関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\FieldObjectManager.h">
+      <Filter>ゲーム\オブジェクト関係\フィールドオブジェクト関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Map.h">
+      <Filter>ゲーム\オブジェクト関係\マップ関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\MapChip.h">
+      <Filter>ゲーム\オブジェクト関係\マップ関係</Filter>
     </ClInclude>
   </ItemGroup>
   <!-- リソースファイル -->
