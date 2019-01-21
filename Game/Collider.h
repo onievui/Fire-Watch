@@ -64,6 +64,7 @@ public:
 
 public:
 	RectRotateCollider(Vector2* _pos, const Vector2& _offset, Vector2* _vel, const float _width, const float _height, float* _angle);
+	RectRotateCollider(RectCollider* _rect_collider, float* _angle);
 	virtual ~RectRotateCollider() = default;
 
 };

@@ -108,6 +108,7 @@
     <ClCompile Include="Game\Resource.cpp" />
     <ClCompile Include="Game\ResourceManager.cpp" />
     <ClCompile Include="Game\ResultScene.cpp" />
+    <ClCompile Include="Game\ShaderManager.cpp" />
     <ClCompile Include="Game\ShareDataManager.cpp" />
     <ClCompile Include="Game\Sound.cpp" />
     <ClCompile Include="Game\Tent.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="Game\ErrorMessage.h" />
     <ClInclude Include="Game\FieldObject.h" />
     <ClInclude Include="Game\FieldObjectManager.h" />
+    <ClInclude Include="Game\ShaderManager.h" />
     <ClInclude Include="Game\Tent.h" />
     <ClInclude Include="Game\Keyboard.h" />
     <ClInclude Include="Game\LogoScene.h" />

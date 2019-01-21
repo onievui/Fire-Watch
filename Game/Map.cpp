@@ -80,6 +80,7 @@ void Map::update() {
 
 	RenderManager* render_manager = RenderManager::getIns();
 	render_manager->setScreenOffset(ScreenType::MapScreen, screen_pos);
+	render_manager->setScreenOffset(ScreenType::LightAlphaScreen, screen_pos);
 }
 
 

@@ -170,6 +170,9 @@
       <Filter>ゲーム\オブジェクト関係\フィールドオブジェクト関係</Filter>
     </ClCompile>
     <ClCompile Include="Game\Bonfire.cpp">
+      <Filter>ゲーム\オブジェクト関係\フィールドオブジェクト関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ShaderManager.cpp">
       <Filter>ゲーム</Filter>
     </ClCompile>
   </ItemGroup>
@@ -274,12 +277,6 @@
     <ClInclude Include="Game\ScreenInfo.h">
       <Filter>ゲーム</Filter>
     </ClInclude>
-    <ClInclude Include="Game\MessageInterface.h">
-      <Filter>ゲーム\ユーティリティ</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\MessageManager.h">
-      <Filter>ゲーム\ユーティリティ</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Character.h">
       <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
     </ClInclude>
@@ -303,6 +300,15 @@
     </ClInclude>
     <ClInclude Include="Game\Bonfire.h">
       <Filter>ゲーム\オブジェクト関係\フィールドオブジェクト関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\MessageInterface.h">
+      <Filter>ゲーム</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\MessageManager.h">
+      <Filter>ゲーム</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ShaderManager.h">
+      <Filter>ゲーム</Filter>
     </ClInclude>
   </ItemGroup>
   <!-- リソースファイル -->

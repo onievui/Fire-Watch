@@ -55,6 +55,5 @@ void Collision::update() {
 		}
 	}
 
-
 }
 

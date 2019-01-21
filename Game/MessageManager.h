@@ -34,6 +34,15 @@ public:
 		return T();
 	}
 
+	void sendMessage(const MessageType _type, void* _in = nullptr) {
+		for (const auto& element : watchList) {
+			if (element->getMessage(_type, nullptr, _in)) {
+				return;
+			}
+		}
+		return;
+	}
+
 public:
 	/// <summary>
 	/// ŠÄ‹‚·‚é‘ÎÛ‚Ì’Ç‰Á

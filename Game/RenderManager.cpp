@@ -195,6 +195,12 @@ bool RenderManager::canUseScreenType(const ScreenType _screen_type) {
 	return true;
 }
 
+
+void RenderManager::drawCircleAA(const float _x, const float _y, const float _r, const int _pos_num, const unsigned int _color, const int _fill_flag, const float _thickness) {
+	Vector2 offset = offsets[screensIndex[currentScreenType]];
+	DrawCircleAA(_x - offset.x, _y - offset.y, _r, _pos_num, _color, _fill_flag, _thickness);
+}
+
 void RenderManager::drawExtendGraphF(const float _x1, const float _y1, const float _x2, const float _y2, const int _handle, const int _trans_flag) const {
 	Vector2 offset = offsets[screensIndex[currentScreenType]];
 	DrawExtendGraphF(_x1 - offset.x, _y1 - offset.y, _x2 - offset.x, _y2 - offset.y, _handle, _trans_flag);

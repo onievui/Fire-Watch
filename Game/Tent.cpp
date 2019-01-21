@@ -31,6 +31,9 @@ void Tent::update() {
 /// </summary>
 void Tent::draw() {
 	RenderManager::getIns()->drawRotaGraphF(pos.x, pos.y, 1.5f, 0.0f, texture->getResource(), true);
+	RenderManager::getIns()->changeScreen(ScreenType::LightAlphaScreen);
+	RenderManager::getIns()->drawCircleAA(pos.x, pos.y, 24, 24, ColorCode::COLOR_WHITE);
+	RenderManager::getIns()->changeScreen(ScreenType::MapScreen);
 }
 
 /// <summary>

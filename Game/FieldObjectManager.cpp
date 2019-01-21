@@ -34,7 +34,7 @@ void FieldObjectManager::initialize() {
 	for (const auto& offset : spawn_offset) {
 		Vector2 spawn_grid = center_grid + offset;
 		Vector2 spawn_pos = message_manager->sendMessage<Vector2>(MessageType::GRID_TO_POS, &spawn_grid);
-		fieldObjects.emplace_back(std::make_unique<Bonfire>(spawn_pos, 1800, true));
+		fieldObjects.emplace_back(std::make_unique<Bonfire>(spawn_pos, 3600, true));
 	}
 }
 

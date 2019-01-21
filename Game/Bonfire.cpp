@@ -1,6 +1,7 @@
 #include "Bonfire.h"
 #include "ResourceManager.h"
 #include "RenderManager.h"
+#include <algorithm>
 
 
 /// <summary>
@@ -21,6 +22,7 @@ Bonfire::Bonfire(const Vector2& _pos, const int _life_time, const bool _is_fire_
 /// ‰Šú‰»ˆ—
 /// </summary>
 void Bonfire::initialize() {
+	power = 60;
 }
 
 /// <summary>
@@ -29,6 +31,7 @@ void Bonfire::initialize() {
 void Bonfire::update() {
 	if (isFireFlag) {
 		--lifeTime;
+		power = (std::min)(lifeTime, 1800) / 1800.0f * 0.8f + 0.2f;
 		if (lifeTime <= 0) {
 			isFireFlag = false;
 		}
@@ -40,7 +43,18 @@ void Bonfire::update() {
 /// •`‰æˆ—
 /// </summary>
 void Bonfire::draw() {
-	RenderManager::getIns()->drawRotaGraphF(pos.x, pos.y, 1.5f, 0.0f, texture->getResource(textureIndex), true);
+	RenderManager* render_manager = RenderManager::getIns();
+	//‰æ‘œ‚Ì•`‰æ
+	render_manager->drawRotaGraphF(pos.x, pos.y, 1.5f, 0.0f, texture->getResource(textureIndex), true);
+	//ƒ‰ƒCƒg‚Ì•`‰æ
+	render_manager->changeScreen(ScreenType::LightAlphaScreen);
+	if (isFireFlag) {
+		SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
+		render_manager->drawRotaGraphF(pos.x, pos.y, 4.5f * power, 0.0f, ResourceManager::getIns()->getTexture(TextureID::TEXTURE_LIGHT1)->getResource(), true);
+		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	}
+	render_manager->drawCircleAA(pos.x, pos.y, 24, 24, ColorCode::COLOR_WHITE);
+	render_manager->changeScreen(ScreenType::MapScreen);
 }
 
 /// <summary>

@@ -6,6 +6,8 @@
 #include "ScreenInfo.h"
 #include "MessageManager.h"
 #include "Collision.h"
+#include "ShaderManager.h"
+
 
 
 /// <summary>
@@ -16,6 +18,7 @@ PlayScene::PlayScene(RequestSceneListener* _impl)
 	: AbstractScene(_impl) {
 	initialize();
 	RenderManager::getIns()->addScreen(ScreenType::MapScreen, MakeScreen(SCREEN_WIDTH, SCREEN_HEIGHT, TRUE), Vector2(0, 0));
+	RenderManager::getIns()->addScreen(ScreenType::LightAlphaScreen, MakeScreen(SCREEN_WIDTH, SCREEN_HEIGHT, TRUE), Vector2(0, 0));
 	RenderManager::getIns()->changeScreen(ScreenType::MapScreen);
 }
 
@@ -41,6 +44,8 @@ void PlayScene::initialize() {
 	//フィールドオブジェクト管理クラスの生成
 	fieldObjectManager = std::make_unique<FieldObjectManager>();
 	message_manager->add(fieldObjectManager.get());
+	//使用するシェーダーの設定
+	ShaderManager::getIns()->setShader(ShaderID::SHADER_LIGHT);
 
 }
 
@@ -56,6 +61,9 @@ void PlayScene::update() {
 	//当たり判定処理
 	Collision collision;
 	collision.update();
+
+	//シェーダーの更新
+	ShaderManager::getIns()->update();
 }
 
 
@@ -68,12 +76,18 @@ void PlayScene::render() {
 	render_manager->changeScreen(ScreenType::MapScreen);
 	map->draw();
 	fieldObjectManager->draw();
+
+	//シェーダーの使用
+	ShaderManager::getIns()->draw();
+
 	player->draw();
+
 	//マップを裏画面に反映
 	render_manager->flipScreen();
 	render_manager->clearScreen(ScreenType::MapScreen);
+	render_manager->clearScreen(ScreenType::LightAlphaScreen);
 
-
+	
 }
 
 /// <summary>
@@ -85,6 +99,9 @@ void PlayScene::finalize() {
 	SoundPlayer::getIns()->stopAll();
 	SoundPlayer::getIns()->reset();
 	RenderManager::getIns()->deleteScreen(ScreenType::MapScreen);
+	RenderManager::getIns()->deleteScreen(ScreenType::LightAlphaScreen);
+	//使用するシェーダーの設定
+	ShaderManager::getIns()->setShader(ShaderID::SHADER_NONE);
 }
 
 /// <summary>

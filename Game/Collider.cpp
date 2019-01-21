@@ -604,6 +604,16 @@ RectRotateCollider::RectRotateCollider(Vector2* _pos, const Vector2& _offset, Ve
 /// <summary>
 /// コンストラクタ
 /// </summary>
+/// <param name="_rect_collider">矩形コライダー</param>
+/// <param name="_angle">角度のポインタ</param>
+RectRotateCollider::RectRotateCollider(RectCollider* _rect_collider, float* _angle)
+	: RectCollider(*_rect_collider)
+	, angle(_angle) {
+}
+
+/// <summary>
+/// コンストラクタ
+/// </summary>
 /// <param name="_pos">座標のポインタ</param>
 /// <param name="_offset">オフセット</param>
 /// <param name="_vel">速度のポインタ</param>

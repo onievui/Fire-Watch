@@ -15,6 +15,7 @@
 #include "Pad.h"
 #include "ShareDataManager.h"
 #include "RenderManager.h"
+#include "ShaderManager.h"
 #include "Sound.h"
 
 
@@ -59,6 +60,7 @@ void Game::initialize(void) {
 	nextScene = SCENE_NONE;
 	ShareDataManager::getIns()->initialize();
 	RenderManager::getIns()->addScreen(ScreenType::BackScreen, DX_SCREEN_BACK, Vector2(0, 0));
+	ShaderManager::getIns();
 }
 
 
