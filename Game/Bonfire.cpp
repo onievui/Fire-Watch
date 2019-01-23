@@ -2,7 +2,7 @@
 #include "ResourceManager.h"
 #include "RenderManager.h"
 #include <algorithm>
-
+#include <functional>
 
 /// <summary>
 /// コンストラクタ
@@ -30,7 +30,7 @@ void Bonfire::initialize() {
 /// </summary>
 void Bonfire::update() {
 	if (isFireFlag) {
-		--lifeTime;
+		lifeTime -= 5;
 		power = (std::min)(lifeTime, 1800) / 1800.0f * 0.8f + 0.2f;
 		if (lifeTime <= 0) {
 			isFireFlag = false;

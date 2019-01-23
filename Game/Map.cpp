@@ -98,16 +98,6 @@ void Map::draw() const {
 	}
 	Vector2 screen_pos = RenderManager::getIns()->getScreenOffset(ScreenType::MapScreen);
 	DrawFormatString(0, 10, ColorCode::COLOR_BLACK, "x=%f,y=%f", screen_pos.x, screen_pos.y);
-	// グリッドの描画(Debug用)
-	//for (int i = 0; i < GRID_ROWS; i++) {
-	//	for (int j = 0; j < GRID_COLS; j++) {
-	//		int x1 = j * gridSize - 0;
-	//		int y1 = i * gridSize - 0;
-	//		int x2 = x1 + gridSize;
-	//		int y2 = y1 + gridSize;
-	//		DrawBox(x1, y1, x2, y2, COLOR_GRAY, FALSE);
-	//	}
-	//}
 }
 
 

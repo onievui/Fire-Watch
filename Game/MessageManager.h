@@ -17,7 +17,7 @@ private:
 
 public:
 	/// <summary>
-	/// メッセージの送信
+	/// メッセージの送信（戻り値有）
 	/// </summary>
 	/// <param name="_type">メッセージタイプ</param>
 	/// <param name="_in">送信するデータ</param>
@@ -34,6 +34,11 @@ public:
 		return T();
 	}
 
+	/// <summary>
+	/// メッセージの送信（戻り値無）
+	/// </summary>
+	/// <param name="_type">メッセージタイプ</param>
+	/// <param name="_in">送信するデータ</param>
 	void sendMessage(const MessageType _type, void* _in = nullptr) {
 		for (const auto& element : watchList) {
 			if (element->getMessage(_type, nullptr, _in)) {

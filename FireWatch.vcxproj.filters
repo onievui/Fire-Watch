@@ -115,9 +115,6 @@
     <ClCompile Include="Game\Vector2.cpp">
       <Filter>ゲーム\ユーティリティ\数学関係</Filter>
     </ClCompile>
-    <ClCompile Include="Game\ShareDataManager.cpp">
-      <Filter>ゲーム\ユーティリティ</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Color.cpp">
       <Filter>ゲーム\ユーティリティ\色関係</Filter>
     </ClCompile>
@@ -175,6 +172,12 @@
     <ClCompile Include="Game\ShaderManager.cpp">
       <Filter>ゲーム</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Mouse.cpp">
+      <Filter>ゲーム\ユーティリティ\入力関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\ShareDataManager.cpp">
+      <Filter>ゲーム</Filter>
+    </ClCompile>
   </ItemGroup>
   <!-- ヘッダファイル -->
   <ItemGroup>
@@ -230,9 +233,6 @@
       <Filter>ゲーム\ユーティリティ\数学関係</Filter>
     </ClInclude>
     <ClInclude Include="Game\Singleton.h">
-      <Filter>ゲーム\ユーティリティ</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\ShareDataManager.h">
       <Filter>ゲーム\ユーティリティ</Filter>
     </ClInclude>
     <ClInclude Include="Game\RequestSceneListener.h">
@@ -308,6 +308,15 @@
       <Filter>ゲーム</Filter>
     </ClInclude>
     <ClInclude Include="Game\ShaderManager.h">
+      <Filter>ゲーム</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\FlushLight.h">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Mouse.h">
+      <Filter>ゲーム\ユーティリティ\入力関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ShareDataManager.h">
       <Filter>ゲーム</Filter>
     </ClInclude>
   </ItemGroup>
