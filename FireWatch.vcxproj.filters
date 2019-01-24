@@ -187,6 +187,9 @@
     <ClCompile Include="Game\FlashLight.cpp">
       <Filter>ゲーム\オブジェクト関係\アイテム関係</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Crossbow.cpp">
+      <Filter>ゲーム</Filter>
+    </ClCompile>
   </ItemGroup>
   <!-- ヘッダファイル -->
   <ItemGroup>
@@ -329,6 +332,12 @@
       <Filter>ゲーム</Filter>
     </ClInclude>
     <ClInclude Include="Game\FlashLight.h">
+      <Filter>ゲーム\オブジェクト関係\アイテム関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Weapon.h">
+      <Filter>ゲーム\オブジェクト関係\アイテム関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Crossbow.h">
       <Filter>ゲーム\オブジェクト関係\アイテム関係</Filter>
     </ClInclude>
   </ItemGroup>

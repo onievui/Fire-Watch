@@ -7,7 +7,7 @@ template <class T>
 class Resource {
 protected:
 	std::vector<T> resource;
-	T defaultResource;
+	T              defaultResource;
 
 public:
 	Resource(const T& _resource)

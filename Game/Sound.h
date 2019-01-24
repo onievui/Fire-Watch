@@ -8,8 +8,8 @@ class SoundPlayer : public Singleton<SoundPlayer> {
 	friend Singleton<SoundPlayer>;
 
 private:
-	std::array<int, SoundID::SOUND_NUM> readySounds;
-	std::array<int, MusicID::MUSIC_NUM> readyMusics;
+	std::array<int, SoundID::SOUND_NUM>  readySounds;
+	std::array<int, MusicID::MUSIC_NUM>  readyMusics;
 	std::array<bool, MusicID::MUSIC_NUM> continueMusics;
 
 public:

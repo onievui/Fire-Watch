@@ -7,9 +7,9 @@
 /// </summary>
 class Bonfire: public FieldObject {
 private:
-	int lifeTime;
+	int   lifeTime;
 	float power;
-	bool isFireFlag;
+	bool  isFireFlag;
 
 public:
 	Bonfire(const Vector2& _pos, const int _life_time, const bool _is_fire_flag);

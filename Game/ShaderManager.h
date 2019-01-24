@@ -17,9 +17,9 @@ class ShaderManager : public Singleton<ShaderManager> {
 	friend Singleton<ShaderManager>;
 
 private:
-	VERTEX2DSHADER vertex[4];
+	VERTEX2DSHADER                        vertex[4];
 	std::array<int, ShaderID::SHADER_NUM> shaderHandles;
-	ShaderID currentShader;
+	ShaderID                              currentShader;
 
 public:
 	ShaderManager();

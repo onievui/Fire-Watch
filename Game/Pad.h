@@ -37,6 +37,8 @@ class Pad final : public Singleton<Pad> {
 
 private:
 	static constexpr int PAD_KEY_NUM = 24;
+
+private:
 	std::array<int, PAD_KEY_NUM> padId;			//ボタンの割り当て
 	std::array<int, PAD_KEY_NUM> padStatePress;	//パッドの入力状態
 

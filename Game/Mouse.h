@@ -24,9 +24,11 @@ class Mouse : public Singleton<Mouse> {
 
 private:
 	const static int MOUSE_INPUT_NUM = 8;
+
+private:
 	std::array<int, MOUSE_INPUT_NUM> mouseStatePress;	//ƒ}ƒEƒX‚Ì“ü—Íó‘Ô
-	Vector2 mousePos;
-	int wheel;
+	Vector2                          mousePos;
+	int                              wheel;
 
 
 private:

@@ -43,11 +43,11 @@ public:
 //矩形コライダー
 class RectCollider : public Collider {
 public:
-	Vector2* pos;	//座標
-	Vector2 offset;	//オフセット
-	Vector2* vel;	//速度
-	float width;	//横幅
-	float height;	//縦幅
+	Vector2* pos;	    //座標
+	Vector2  offset;	//オフセット
+	Vector2* vel;	    //速度
+	float    width;	    //横幅
+	float    height;	//縦幅
 
 public:
 	RectCollider(Vector2* _pos, const Vector2& _offset, Vector2* _vel, const float _width, const float _height);
@@ -74,10 +74,10 @@ public:
 //円形コライダー
 class CircleCollider : public Collider {
 public:
-	Vector2* pos;	//座標
-	Vector2 offset;	//オフセット
-	Vector2* vel;	//速度
-	float radius;	//半径
+	Vector2* pos;	    //座標
+	Vector2  offset;	//オフセット
+	Vector2* vel;	    //速度
+	float    radius;	//半径
 
 public:
 	CircleCollider(Vector2* _pos, const Vector2& _offset, Vector2* _vel, const float _radius);

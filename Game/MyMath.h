@@ -5,7 +5,7 @@
 #include <assert.h>
 
 
-constexpr float PI = DX_PI_F;
+constexpr float PI  = DX_PI_F;
 constexpr float PI2 = DX_TWO_PI_F;
 
 

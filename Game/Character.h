@@ -18,13 +18,13 @@ enum Direction {
 
 class Character {
 protected:
-	Vector2 pos;
-	Vector2 vel;
-	RectCollider collider;
+	Vector2                          pos;
+	Vector2                          vel;
+	RectCollider                     collider;
 	std::shared_ptr<TextureResource> texture;
-	Direction direction;
-	int textureIndex;
-	int animeCount;
+	Direction                        direction;
+	int                              textureIndex;
+	int                              animeCount;
 
 public:
 	Character(const Vector2& _pos, const RectCollider& _collider, const std::shared_ptr<TextureResource>& _texture);

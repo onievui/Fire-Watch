@@ -24,10 +24,10 @@ class RenderManager : public Singleton<RenderManager> {
 	friend Singleton<RenderManager>;
 
 private:
-	std::array<int, ScreenType::Num> screensIndex;	//スクリーンタイプとスクリーンの対応用
-	std::vector<int> screens;                       //スクリーン
-	std::vector<Vector2> offsets;                   //オフセット
-	ScreenType currentScreenType;                   //現在使用中のスクリーン
+	std::array<int, ScreenType::Num> screensIndex;			//スクリーンタイプとスクリーンの対応用
+	std::vector<int>                 screens;				//スクリーン
+	std::vector<Vector2>             offsets;				//オフセット
+	ScreenType                       currentScreenType;		//現在使用中のスクリーン
 
 public:
 	RenderManager();

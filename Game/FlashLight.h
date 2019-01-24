@@ -7,13 +7,13 @@
 /// </summary>
 class FlashLight {
 public:
-	static constexpr float MAX_BATTERY = 100.0f;
+	static constexpr float MAX_BATTERY         = 100.0f;
 	static constexpr float BATTERY_DRAIN_SPEED = MAX_BATTERY / (60.0f * 90.0f);
 
 private:
 	float battery;
-	bool isLighting;
-	HGRP texture;
+	bool  isLighting;
+	HGRP  texture;
 
 public:
 	FlashLight();

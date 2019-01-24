@@ -57,15 +57,15 @@ class ResourceManager final : public Singleton<ResourceManager> {
 
 private:
 	std::vector<std::shared_ptr<TextureResource>> textures;
-	std::array<int, TEXTURE_NUM> texturesIndex;
-	std::vector<std::shared_ptr<AudioResource>> sounds;
-	std::array<int, SOUND_NUM> soundsIndex;
-	std::vector<std::shared_ptr<AudioResource>> musics;
-	std::array<int, MUSIC_NUM> musicsIndex;
-	std::vector<std::shared_ptr<MovieResource>> movies;
-	std::array<int, MOVIE_NUM> moviesIndex;
-	std::vector<std::shared_ptr<FontResource>> fonts;
-	std::array<int, FONT_NUM> fontsIndex;
+	std::array<int, TEXTURE_NUM>                  texturesIndex;
+	std::vector<std::shared_ptr<AudioResource>>   sounds;
+	std::array<int, SOUND_NUM>                    soundsIndex;
+	std::vector<std::shared_ptr<AudioResource>>   musics;
+	std::array<int, MUSIC_NUM>                    musicsIndex;
+	std::vector<std::shared_ptr<MovieResource>>   movies;
+	std::array<int, MOVIE_NUM>                    moviesIndex;
+	std::vector<std::shared_ptr<FontResource>>    fonts;
+	std::array<int, FONT_NUM>                     fontsIndex;
 
 
 public:

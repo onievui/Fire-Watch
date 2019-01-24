@@ -13,6 +13,8 @@ class Keyboard final : public Singleton<Keyboard> {
 
 private:
 	const static int KEY_MAX = 256;
+
+private:
 	std::array<int, KEY_MAX> keyStatePress;	//ƒL[‚Ì“ü—Íó‘Ô
 
 private:
