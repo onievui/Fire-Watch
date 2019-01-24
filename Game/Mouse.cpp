@@ -39,7 +39,7 @@ void Mouse::update() {
 		}
 	}
 	//マウス座標の更新
-	mousePos = Vector2(x, y);
+	mousePos = Vector2((float)x, (float)y);
 }
 
 /// <summary>

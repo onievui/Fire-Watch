@@ -18,7 +18,6 @@ class CircleCollider;
 
 //コライダークラス
 class Collider {
-
 public:
 	const ColliderType type;	//コライダーの種類
 
@@ -26,6 +25,10 @@ public:
 	Collider(const ColliderType _type) : type(_type){}
 	virtual ~Collider() = default;
 
+public:
+	static bool containPoint(RectCollider& _rect, const Vector2& _point);
+
+public:
 	static bool collisionRect(RectCollider& _rect1, RectCollider& _rect2, float* _time, float* _ref_normal);	//矩形同士の当たり判定
 	static bool collisionRectRotate(RectRotateCollider& _rect_rotate1, RectRotateCollider& _rect_rotate2);		//回転矩形同士の重なり判定
 	static bool collisionCircleRectRotate(CircleCollider& _circle, RectRotateCollider& _rect_rotate);	//円と回転矩形の重なり判定
@@ -39,7 +42,6 @@ public:
 
 //矩形コライダー
 class RectCollider : public Collider {
-
 public:
 	Vector2* pos;	//座標
 	Vector2 offset;	//オフセット
@@ -58,7 +60,6 @@ protected:
 
 //回転矩形コライダー
 class RectRotateCollider : public RectCollider {
-
 public:
 	float* angle;	//回転量
 
@@ -72,7 +73,6 @@ public:
 
 //円形コライダー
 class CircleCollider : public Collider {
-
 public:
 	Vector2* pos;	//座標
 	Vector2 offset;	//オフセット

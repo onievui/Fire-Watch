@@ -4,6 +4,10 @@
 using namespace std;
 
 
+float Vector2::atan2fbyVec2(const Vector2& _from, const Vector2& _target) {
+	return atan2f(_target.y - _from.y, _target.x - _from.x);
+}
+
 float Vector2::length(const Vector2& _vec) {
 	return sqrtf(lengthSquare(_vec));
 }

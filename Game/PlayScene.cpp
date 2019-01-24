@@ -7,6 +7,7 @@
 #include "MessageManager.h"
 #include "Collision.h"
 #include "ShaderManager.h"
+#include "MouseEventManager.h"
 
 
 
@@ -44,6 +45,8 @@ void PlayScene::initialize() {
 	//フィールドオブジェクト管理クラスの生成
 	fieldObjectManager = std::make_unique<FieldObjectManager>();
 	message_manager->add(fieldObjectManager.get());
+	//マウスイベント管理クラスの生成
+	mouseEventManager = std::make_unique<MouseEventManager>();
 	//使用するシェーダーの設定
 	ShaderManager::getIns()->setShader(ShaderID::SHADER_LIGHT);
 
@@ -57,6 +60,9 @@ void PlayScene::update() {
 	player->update();
 	fieldObjectManager->update();
 	map->update();
+
+	//マウスイベント処理
+	mouseEventManager->update();
 
 	//当たり判定処理
 	Collision collision;
@@ -76,6 +82,7 @@ void PlayScene::render() {
 	render_manager->changeScreen(ScreenType::MapScreen);
 	map->draw();
 	fieldObjectManager->draw();
+	player->drawFlashLight();
 
 	//シェーダーの使用
 	ShaderManager::getIns()->draw();

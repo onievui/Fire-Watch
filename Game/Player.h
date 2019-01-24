@@ -1,15 +1,16 @@
 #pragma once
 #include "Character.h"
 #include "MessageInterface.h"
-
-
-class TextureResource;
+#include "FlashLight.h"
 
 
 
 class Player : public Character, public MessageInterface {
 private:
-	static const float MOVE_SPEED;
+	static constexpr float MOVE_SPEED = 4.0f;	//プレイヤーの移動速度
+
+private:
+	FlashLight flashLight;
 
 public:
 	Player();
@@ -21,10 +22,12 @@ public:
 	void initialize() override;
 	void update() override;
 	void draw() override;
+	void drawFlashLight();
 
 private:
 	void animate() override;
 	void move();
+	void controllFlashLight();
 };
 
 

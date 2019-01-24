@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "Player.h"
 #include "FieldObjectManager.h"
+#include "MouseEventManager.h"
 #include <memory>
 
 
@@ -13,6 +14,7 @@ private:
 	std::unique_ptr<Map>                map;
 	std::unique_ptr<Player>             player;
 	std::unique_ptr<FieldObjectManager> fieldObjectManager;
+	std::unique_ptr<MouseEventManager>  mouseEventManager;
 
 public:
 	PlayScene(RequestSceneListener* _impl);

@@ -82,6 +82,8 @@ void Pad::mergeKeyboardAll() {
 	mergeKeyboard(PadCode::A,      KEY_INPUT_A);
 	mergeKeyboard(PadCode::S,      KEY_INPUT_S);
 	mergeKeyboard(PadCode::D,      KEY_INPUT_D);
+	mergeKeyboard(PadCode::Q,      KEY_INPUT_Q);
+	mergeKeyboard(PadCode::E,      KEY_INPUT_E);
 	mergeKeyboard(PadCode::SPACE,  KEY_INPUT_SPACE);
 	mergeKeyboard(PadCode::RETURN, KEY_INPUT_RETURN);
 	mergeKeyboard(PadCode::LSHIFT, KEY_INPUT_LSHIFT);

@@ -103,6 +103,7 @@ public:
 		return *this;
 	}
 
+	static float atan2fbyVec2(const Vector2& _from, const Vector2& _target);
 	static float length(const Vector2& _vec);
 	static float lengthSquare(const Vector2& _vec);
 	static float distance(const Vector2& _pos1, const Vector2& _pos2);

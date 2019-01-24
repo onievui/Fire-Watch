@@ -70,8 +70,29 @@ bool FieldObjectManager::getMessage(const MessageType _type, void* _out, void* _
 	case MessageType::GET_FIELDOBJECTS:
 		*(std::vector<std::unique_ptr<FieldObject>>**)_out = &fieldObjects;
 		return true;
+	case MessageType::CLICK_FIELDOBJECTS:
+		*(bool*)_out = clickEvent(*(Vector2*)_in);
+		return true;
 	default:
 		break;
+	}
+	return false;
+}
+
+/// <summary>
+/// フィールドオブジェクトのクリック処理
+/// </summary>
+/// <param name="_click_pos">クリックした座標</param>
+/// <returns>
+/// 範囲内のフィールドオブジェクトをクリックしたかどうか
+/// </returns>
+bool FieldObjectManager::clickEvent(const Vector2& _click_pos) {
+	for (const auto& field_object : fieldObjects) {
+		RectCollider* collider = field_object->getCollider();
+		if (Collider::containPoint(*collider, _click_pos)) {
+			field_object->clickEvent();
+			return true;
+		}
 	}
 	return false;
 }

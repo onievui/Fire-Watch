@@ -20,6 +20,8 @@ enum PadCode {
 	A,
 	S,
 	D,
+	Q,
+	E,
 	SPACE,
 	RETURN,
 	LSHIFT,
@@ -34,7 +36,7 @@ class Pad final : public Singleton<Pad> {
 	friend Singleton<Pad>;
 
 private:
-	const static int PAD_KEY_NUM = 16;
+	static constexpr int PAD_KEY_NUM = 24;
 	std::array<int, PAD_KEY_NUM> padId;			//ボタンの割り当て
 	std::array<int, PAD_KEY_NUM> padStatePress;	//パッドの入力状態
 

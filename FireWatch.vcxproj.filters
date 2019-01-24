@@ -66,6 +66,9 @@
     <Filter Include="ゲーム\オブジェクト関係\マップ関係">
       <UniqueIdentifier>{6e46bde4-67ce-4c22-8379-2589c5d597f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ゲーム\オブジェクト関係\アイテム関係">
+      <UniqueIdentifier>{e8c0afbb-213f-48bc-abee-b13c677e15a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <!-- ソースファイル -->
   <ItemGroup>
@@ -177,6 +180,12 @@
     </ClCompile>
     <ClCompile Include="Game\ShareDataManager.cpp">
       <Filter>ゲーム</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\MouseEventManager.cpp">
+      <Filter>ゲーム</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\FlashLight.cpp">
+      <Filter>ゲーム\オブジェクト関係\アイテム関係</Filter>
     </ClCompile>
   </ItemGroup>
   <!-- ヘッダファイル -->
@@ -310,14 +319,17 @@
     <ClInclude Include="Game\ShaderManager.h">
       <Filter>ゲーム</Filter>
     </ClInclude>
-    <ClInclude Include="Game\FlushLight.h">
-      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Mouse.h">
       <Filter>ゲーム\ユーティリティ\入力関係</Filter>
     </ClInclude>
     <ClInclude Include="Game\ShareDataManager.h">
       <Filter>ゲーム</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\MouseEventManager.h">
+      <Filter>ゲーム</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\FlashLight.h">
+      <Filter>ゲーム\オブジェクト関係\アイテム関係</Filter>
     </ClInclude>
   </ItemGroup>
   <!-- リソースファイル -->

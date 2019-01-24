@@ -61,6 +61,12 @@ void Bonfire::draw() {
 /// クリックイベント
 /// </summary>
 void Bonfire::clickEvent() {
+	//点火状態を切り替える
+	if (lifeTime <= 0.0f) {
+		isFireFlag = false;
+		return;
+	}
+	isFireFlag = !isFireFlag;
 }
 
 /// <summary>

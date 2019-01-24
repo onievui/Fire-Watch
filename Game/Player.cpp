@@ -4,10 +4,8 @@
 #include "RenderManager.h"
 #include "MessageManager.h"
 #include "Pad.h"
-
-
-
-const float Player::MOVE_SPEED = 4.0f;	//プレイヤーの移動速度
+#include "Mouse.h"
+#include <cmath>
 
 
 
@@ -16,7 +14,8 @@ const float Player::MOVE_SPEED = 4.0f;	//プレイヤーの移動速度
 /// コンストラクタ
 /// </summary>
 Player::Player()
-	: Character({ 0,0 }, RectCollider(&pos, { 0,0 }, &vel, 48, 48), ResourceManager::getIns()->getTexture(TextureID::TEXTURE_PLAYER)) {
+	: Character({ 0,0 }, RectCollider(&pos, { 0,0 }, &vel, 48, 48), ResourceManager::getIns()->getTexture(TextureID::TEXTURE_PLAYER)) 
+	, flashLight() {
 	initialize();
 }
 
@@ -51,6 +50,7 @@ void Player::initialize() {
 	Vector2 start_grid = message_manager->sendMessage<Vector2>(MessageType::GET_MAP_CENTER_GRID);
 	start_grid.y += 2.0f;
 	pos = MessageManager::getIns()->sendMessage<Vector2>(MessageType::GRID_TO_POS, &start_grid);
+	flashLight.initialize();
 }
 
 /// <summary>
@@ -59,6 +59,7 @@ void Player::initialize() {
 void Player::update() {
 	move();
 	animate();
+	controllFlashLight();
 }
 
 /// <summary>
@@ -66,43 +67,110 @@ void Player::update() {
 /// </summary>
 void Player::draw() {
 	RenderManager::getIns()->drawRotaGraphF(pos.x, pos.y, 1.f, 0.f, texture->getResource(textureIndex), true);
-	DrawFormatString(0, 30, ColorCode::COLOR_BLACK, "x=%f,y=%f", pos.x, pos.y);
+
+	
+}
+
+/// <summary>
+/// フラッシュライトの描画
+/// </summary>
+void Player::drawFlashLight() {
+	Vector2 mouse_pos = Mouse::getIns()->getMousePos();
+	mouse_pos += RenderManager::getIns()->getScreenOffset(ScreenType::MapScreen);
+	float mouse_direction = Vector2::atan2fbyVec2(pos, mouse_pos);
+	flashLight.draw(pos, mouse_direction);
 }
 
 /// <summary>
 /// 移動処理
 /// </summary>
 void Player::move() {
+	Pad* pad = Pad::getIns();
+	//速度の反映
 	pos += vel;
 	vel = { 0,0 };
-	switch (Pad::getIns()->statePressLater4(PadCode::A, PadCode::D, PadCode::W, PadCode::S)) {
+	//移動操作受付
+	bool will_move_horizontal = false, will_move_vertical = false;
+	PadCode horizontal_pressed_pad_code, vertical_pressed_pad_code;
+	//横移動
+	switch (pad->statePressLater(PadCode::A, PadCode::D)) {
 	case 0:
-		animeCount = 0;
 		break;
 	case 1:
 		vel.x = -MOVE_SPEED;
-		direction = Direction::DIRECTION_LEFT;
-		++animeCount;
+		will_move_horizontal = true;
+		horizontal_pressed_pad_code = PadCode::A;
 		break;
 	case 2:
 		vel.x = MOVE_SPEED;
-		direction = Direction::DIRECTION_RIGHT;
-		++animeCount;
-		break;
-	case 3:
-		vel.y = -MOVE_SPEED;
-		direction = Direction::DIRECTION_UP;
-		++animeCount;
-		break;
-	case 4:
-		vel.y = MOVE_SPEED;
-		direction = Direction::DIRECTION_DOWN;
-		++animeCount;
+		will_move_horizontal = true;
+		horizontal_pressed_pad_code = PadCode::D;
 		break;
 	default:
 		ErrorMessage("プレイヤーの移動入力で不正な値が渡されました");
 		break;
 	}
+	//縦移動
+	switch (pad->statePressLater(PadCode::W, PadCode::S)) {
+	case 0:
+		break;
+	case 1:
+		vel.y = -MOVE_SPEED;
+		will_move_vertical = true;
+		vertical_pressed_pad_code = PadCode::W;
+		break;
+	case 2:
+		vel.y = MOVE_SPEED;
+		will_move_vertical = true;
+		vertical_pressed_pad_code = PadCode::S;
+		break;
+	default:
+		ErrorMessage("プレイヤーの移動入力で不正な値が渡されました");
+		break;
+	}
+
+	//入力があったら
+	if (will_move_horizontal || will_move_vertical) {
+		++animeCount;
+		//斜め移動の場合、速度調整
+		if (will_move_horizontal&&will_move_vertical) {
+			
+			vel /= std::sqrtf(2.0f);
+		}
+		//向きの設定
+		else {
+			if (will_move_horizontal) {
+				if (horizontal_pressed_pad_code == PadCode::A) {
+					direction = Direction::DIRECTION_LEFT;
+				}
+				else {
+					direction = Direction::DIRECTION_RIGHT;
+				}
+			}
+			else {
+				if (vertical_pressed_pad_code == PadCode::W) {
+					direction = Direction::DIRECTION_UP;
+				}
+				else {
+					direction = Direction::DIRECTION_DOWN;
+				}
+			}
+		}
+	}
+	else {
+		animeCount = 0;
+	}
+
+}
+
+/// <summary>
+/// フラッシュライトの操作
+/// </summary>
+void Player::controllFlashLight() {
+	if (Mouse::getIns()->isDown(MouseCode::MOUSE_RIGHT)) {
+		flashLight.switchLight();
+	}
+	flashLight.update();
 }
 
 /// <summary>

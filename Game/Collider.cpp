@@ -4,6 +4,24 @@
 #include "MyMath.h"
 
 
+
+/// <summary>
+/// 矩形内に点が含まれているかどうか
+/// </summary>
+/// <param name="_rect">矩形コライダー</param>
+/// <param name="_point">点</param>
+/// <returns>
+/// 含まれているかどうか
+/// </returns>
+bool Collider::containPoint(RectCollider& _rect, const Vector2& _point) {
+	Vector2 pos = *_rect.pos + _rect.offset;
+	if (pos.x - _rect.width / 2 <= _point.x && pos.x + _rect.width / 2 >= _point.x &&
+		pos.y - _rect.height / 2 <= _point.y && pos.y + _rect.height / 2 >= _point.y) {
+		return true;
+	}
+	return false;
+}
+
 /// <summary>
 /// 矩形同士の衝突判定
 /// </summary>

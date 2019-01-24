@@ -96,11 +96,13 @@
     <ClCompile Include="Game\Color.cpp" />
     <ClCompile Include="Game\FieldObject.cpp" />
     <ClCompile Include="Game\FieldObjectManager.cpp" />
+    <ClCompile Include="Game\FlashLight.cpp" />
     <ClCompile Include="Game\Keyboard.cpp" />
     <ClCompile Include="Game\LogoScene.cpp" />
     <ClCompile Include="Game\Map.cpp" />
     <ClCompile Include="Game\MapChip.cpp" />
     <ClCompile Include="Game\Mouse.cpp" />
+    <ClCompile Include="Game\MouseEventManager.cpp" />
     <ClCompile Include="Game\MyMath.cpp" />
     <ClCompile Include="Game\Pad.cpp" />
     <ClCompile Include="Game\Player.cpp" />
@@ -137,8 +139,9 @@
     <ClInclude Include="Game\ErrorMessage.h" />
     <ClInclude Include="Game\FieldObject.h" />
     <ClInclude Include="Game\FieldObjectManager.h" />
-    <ClInclude Include="Game\FlushLight.h" />
+    <ClInclude Include="Game\FlashLight.h" />
     <ClInclude Include="Game\Mouse.h" />
+    <ClInclude Include="Game\MouseEventManager.h" />
     <ClInclude Include="Game\ShaderManager.h" />
     <ClInclude Include="Game\Tent.h" />
     <ClInclude Include="Game\Keyboard.h" />

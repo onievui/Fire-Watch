@@ -13,6 +13,7 @@
 #include "PlayScene.h"
 #include "ResultScene.h"
 #include "Pad.h"
+#include "Mouse.h"
 #include "ShareDataManager.h"
 #include "RenderManager.h"
 #include "ShaderManager.h"
@@ -73,6 +74,7 @@ void Game::initialize(void) {
 //----------------------------------------------------------------------
 void Game::update(void) {
 	Pad::getIns()->update();
+	Mouse::getIns()->update();
 	SoundPlayer::getIns()->playSound();
 	SoundPlayer::getIns()->playMusic();
 	if (nextScene != SCENE_NONE) {

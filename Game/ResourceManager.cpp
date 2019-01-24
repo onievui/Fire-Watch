@@ -20,6 +20,7 @@ void ResourceManager::load(const SceneID _id) {
 		addTexture(TEXTURE_FIRE, std::make_shared<TextureResource>("Protected/fire.png", 4, 4, 1, 32, 32));
 		addTexture(TEXTURE_CROSSBOW, std::make_shared<TextureResource>("Protected/cross_bow.png"));
 		addTexture(TEXTURE_LIGHT1, std::make_shared<TextureResource>("light3.png"));
+		addTexture(TEXTURE_FLASHLIGHT, std::make_shared<TextureResource>("flashlight2.png"));
 		break;
 	case SCENE_RESULT:
 		break;
