@@ -2,7 +2,9 @@
 #include "Singleton.h"
 
 
-
+/// <summary>
+/// シーン間のデータ共有用クラス
+/// </summary>
 class ShareDataManager : public Singleton<ShareDataManager> {
 
 	friend Singleton<ShareDataManager>;

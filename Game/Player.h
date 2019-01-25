@@ -2,6 +2,7 @@
 #include "Character.h"
 #include "MessageInterface.h"
 #include "FlashLight.h"
+#include "Crossbow.h"
 
 
 
@@ -11,18 +12,22 @@ private:
 
 private:
 	FlashLight flashLight;
+	Crossbow crossbow;
 
 public:
 	Player();
 
 public:
-	virtual bool getMessage(const MessageType _type, void* _out, void* _in);
+	bool getMessage(const MessageType _type, void* _out, void* _in) override;
 
 public:
 	void initialize() override;
 	void update() override;
 	void draw() override;
 	void drawFlashLight();
+
+public:
+	bool attack(const Vector2* _mouse_pos);
 
 private:
 	void animate() override;

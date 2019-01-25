@@ -89,6 +89,8 @@
   <!-- ソースファイル -->
   <ItemGroup>
     <ClCompile Include="Game\AbstractScene.cpp" />
+    <ClCompile Include="Game\Arrow.cpp" />
+    <ClCompile Include="Game\ArrowManager.cpp" />
     <ClCompile Include="Game\Bonfire.cpp" />
     <ClCompile Include="Game\Character.cpp" />
     <ClCompile Include="Game\Collider.cpp" />
@@ -132,6 +134,8 @@
   <!-- ヘッダファイル -->
   <ItemGroup>
     <ClInclude Include="Game\AbstractScene.h" />
+    <ClInclude Include="Game\Arrow.h" />
+    <ClInclude Include="Game\ArrowManager.h" />
     <ClInclude Include="Game\Bonfire.h" />
     <ClInclude Include="Game\Character.h" />
     <ClInclude Include="Game\Collider.h" />

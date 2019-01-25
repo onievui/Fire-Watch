@@ -16,11 +16,14 @@ private:
 	HGRP  texture;
 
 public:
+	Crossbow();
+
+public:
 	void update() override;
 	void draw() override;
 
 public:
-	void attack() override;
+	void attack(const Vector2& _pos, const float _angle) override;
 
 };
 

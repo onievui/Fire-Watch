@@ -45,6 +45,9 @@ void PlayScene::initialize() {
 	//フィールドオブジェクト管理クラスの生成
 	fieldObjectManager = std::make_unique<FieldObjectManager>();
 	message_manager->add(fieldObjectManager.get());
+	//矢管理クラスの生成
+	arrowManager = std::make_unique<ArrowManager>();
+	message_manager->add(arrowManager.get());
 	//マウスイベント管理クラスの生成
 	mouseEventManager = std::make_unique<MouseEventManager>();
 	//使用するシェーダーの設定
@@ -59,6 +62,7 @@ void PlayScene::update() {
 	//各オブジェクトの更新
 	player->update();
 	fieldObjectManager->update();
+	arrowManager->update();
 	map->update();
 
 	//マウスイベント処理
@@ -82,9 +86,10 @@ void PlayScene::render() {
 	render_manager->changeScreen(ScreenType::MapScreen);
 	map->draw();
 	fieldObjectManager->draw();
+	arrowManager->draw();
 	player->drawFlashLight();
 
-	//シェーダーの使用
+	//シェーダーの使用(ライトの反映)
 	ShaderManager::getIns()->draw();
 
 	player->draw();

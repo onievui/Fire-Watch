@@ -36,6 +36,9 @@ bool Player::getMessage(const MessageType _type, void* _out, void* _in) {
 	case MessageType::GET_PLAYER_POS:
 		*(Vector2*)_out = pos;
 		return true;
+	case MessageType::PLAYER_ATTACK:
+		*(bool*)_out = attack((Vector2*)_in);
+		return true;
 	default:
 		break;
 	}
@@ -60,6 +63,7 @@ void Player::update() {
 	move();
 	animate();
 	controllFlashLight();
+	crossbow.update();
 }
 
 /// <summary>
@@ -67,8 +71,7 @@ void Player::update() {
 /// </summary>
 void Player::draw() {
 	RenderManager::getIns()->drawRotaGraphF(pos.x, pos.y, 1.f, 0.f, texture->getResource(textureIndex), true);
-
-	
+	crossbow.draw();
 }
 
 /// <summary>
@@ -79,6 +82,12 @@ void Player::drawFlashLight() {
 	mouse_pos += RenderManager::getIns()->getScreenOffset(ScreenType::MapScreen);
 	float mouse_direction = Vector2::atan2fbyVec2(pos, mouse_pos);
 	flashLight.draw(pos, mouse_direction);
+}
+
+bool Player::attack(const Vector2* _mouse_pos) {
+	crossbow.attack(pos,Vector2::atan2fbyVec2(pos,*_mouse_pos));
+
+	return true;
 }
 
 /// <summary>

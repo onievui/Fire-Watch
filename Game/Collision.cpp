@@ -4,7 +4,8 @@
 #include "Player.h"
 #include "Map.h"
 #include "FieldObject.h"
-
+#include "Arrow.h"
+#include "Bonfire.h"
 
 /// <summary>
 /// コンストラクタ
@@ -23,6 +24,8 @@ void Collision::update() {
 	Map* map = message_manager->sendMessage<Map*>(MessageType::GET_MAP);
 	using FieldObjects = std::vector<std::unique_ptr<FieldObject>>;
 	FieldObjects* field_objects = message_manager->sendMessage<FieldObjects*>(MessageType::GET_FIELDOBJECTS);
+	using Arrows = std::vector<std::unique_ptr<Arrow>>;
+	Arrows* arrows = message_manager->sendMessage<Arrows*>(MessageType::GET_ARROWS);
 	
 	//プレイヤーとマップの当たり判定
 	for (int i = 0; i < Map::GRID_ROWS; i++) {
@@ -51,6 +54,23 @@ void Collision::update() {
 		if (Collider::collisionRect(*player_collider, *field_object_colider, &time, &normal)) {
 			if (!field_object->isPassabe()) {
 				*player_collider->vel *= 0;
+			}
+		}
+	}
+
+	//矢と焚火の当たり判定
+	for (auto& arrow : *arrows) {
+		for (auto& field_object : *field_objects) {
+			//焚火かどうかの確認
+			Bonfire* bonfire = dynamic_cast<Bonfire*>(field_object.get());
+			if (!bonfire) {
+				continue;
+			}
+			//仮の角度格納用変数
+			float dummy_angle = 0.0f;
+			RectRotateCollider bonfire_collider = RectRotateCollider(bonfire->getCollider(), &dummy_angle);
+			if (Collider::collisionRectRotate(*arrow->getCollider(), bonfire_collider)) {
+				arrow->hitFire();
 			}
 		}
 	}

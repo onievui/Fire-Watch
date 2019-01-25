@@ -1,6 +1,6 @@
 #pragma once
 
-
+class Vector2;
 
 /// <summary>
 /// •ŠíƒNƒ‰ƒX
@@ -11,6 +11,6 @@ public:
 	virtual void draw() = 0;
 
 public:
-	virtual void attack() = 0;
+	virtual void attack(const Vector2& _pos, const float _angle) = 0;
 };
 
