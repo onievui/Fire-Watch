@@ -1,4 +1,7 @@
 #include "Resource.h"
+#include "ErrorMessage.h"
+#include <fstream>
+
 
 const std::string TextureResource::TEXTURE_DIR = "Resources/Textures/";
 const std::string AudioResource::AUDIO_DIR = "Resources/Audio/";
@@ -9,7 +12,7 @@ TextureResource::TextureResource(const std::string& _filename)
 	: Resource(-1) {
 	resource.emplace_back(LoadGraph((TEXTURE_DIR + _filename).c_str()));
 	if (resource.back() == defaultResource) {
-		MessageBox(NULL, "画像の読み込みに失敗しました", "", MB_OK);
+		ErrorMessage("画像の読み込みに失敗しました");
 	}
 }
 
@@ -17,8 +20,13 @@ TextureResource::TextureResource(const std::string& _filename, const int _num, c
 	: Resource(-1) {
 	resource.resize(_num);
 	LoadDivGraph((TEXTURE_DIR + _filename).c_str(), _num, _xnum, _ynum, _width, _height, resource.data());
-	if (resource.back() == defaultResource) {
-		MessageBox(NULL, "画像の分割読み込みに失敗しました", "", MB_OK);
+	//LoadDivGraphはエラーチェックできない
+	std::ifstream ifs(TEXTURE_DIR + _filename);
+	if (!ifs.is_open()) {
+		ErrorMessage("画像の分割読み込みに失敗しました");
+	}
+	else {
+		ifs.close();
 	}
 }
 
@@ -44,7 +52,8 @@ AudioResource::AudioResource(const std::string& _filename)
 	: Resource(-1) {
 	resource.emplace_back(LoadSoundMem((AUDIO_DIR + _filename).c_str()));
 	if (resource.back() == defaultResource) {
-		MessageBox(NULL, "音声の読み込みに失敗しました", "", MB_OK);
+		ErrorMessage("音声の読み込みに失敗しました");
+
 	}
 }
 
@@ -60,7 +69,7 @@ MovieResource::MovieResource(const std::string& _filename)
 	: Resource(-1) {
 	resource.emplace_back(LoadGraph((MOVIE_DIR + _filename).c_str()));
 	if (resource.back() == defaultResource) {
-		MessageBox(NULL, "動画の読み込みに失敗しました", "", MB_OK);
+		ErrorMessage("動画の読み込みに失敗しました");
 	}
 }
 
@@ -93,7 +102,7 @@ FontResource::~FontResource() {
 void FontResource::addFontHandle(const int _size, const int _thick, const int _font_type, const int _char_set, const int _edge_size, const int _italic) {
 	resource.emplace_back(CreateFontToHandle(fontName.c_str(), _size, _thick, _font_type, _char_set, _edge_size, _italic));
 	if (resource.back() == defaultResource) {
-		MessageBox(NULL, "フォントハンドルの生成に失敗しました", "", MB_OK);
+		ErrorMessage("フォントハンドルの生成に失敗しました");
 	}
 }
 
@@ -104,7 +113,7 @@ FontFileResource::FontFileResource(const std::string& _filename, const std::stri
 		addFontHandle(_size, _thick, _font_type, _char_set, _edge_size, _italic);
 	}
 	else {
-		MessageBox(NULL, "フォントの読み込みに失敗しました", "", MB_OK);
+		ErrorMessage("フォントの読み込みに失敗しました");
 		fileName = "";
 	}
 }

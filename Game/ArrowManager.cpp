@@ -6,6 +6,7 @@
 /// </summary>
 ArrowManager::ArrowManager()
 	: arrows() {
+	initialize();
 }
 
 /// <summary>
@@ -29,6 +30,14 @@ bool ArrowManager::getMessage(const MessageType _type, void* _out, void* _in) {
 		break;
 	}
 	return false;
+}
+
+/// <summary>
+/// 初期化処理
+/// </summary>
+void ArrowManager::initialize() {
+	arrows.clear();
+	arrows.shrink_to_fit();
 }
 
 /// <summary>
@@ -56,4 +65,18 @@ void ArrowManager::draw() {
 /// <param name="_angle">進行方向</param>
 void ArrowManager::createArrow(const Vector2& _pos, const float _angle) {
 	arrows.emplace_back(std::make_unique<Arrow>(_pos, _angle));
+}
+
+/// <summary>
+/// 矢の削除
+/// </summary>
+void ArrowManager::destroyArrow() {
+	for (auto it = arrows.begin(); it != arrows.end();) {
+		//未使用なら削除する
+		if (!it->get()->isAlive()) {
+			it = arrows.erase(it);
+			continue;
+		}
+		++it;
+	}
 }

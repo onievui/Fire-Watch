@@ -97,6 +97,9 @@
     <ClCompile Include="Game\Collision.cpp" />
     <ClCompile Include="Game\Color.cpp" />
     <ClCompile Include="Game\Crossbow.cpp" />
+    <ClCompile Include="Game\Enemy.cpp" />
+    <ClCompile Include="Game\EnemyFactory.cpp" />
+    <ClCompile Include="Game\EnemyManager.cpp" />
     <ClCompile Include="Game\FieldObject.cpp" />
     <ClCompile Include="Game\FieldObjectManager.cpp" />
     <ClCompile Include="Game\FlashLight.cpp" />
@@ -143,6 +146,8 @@
     <ClInclude Include="Game\Color.h" />
     <ClInclude Include="Game\Crossbow.h" />
     <ClInclude Include="Game\Enemy.h" />
+    <ClInclude Include="Game\EnemyFactory.h" />
+    <ClInclude Include="Game\EnemyManager.h" />
     <ClInclude Include="Game\ErrorMessage.h" />
     <ClInclude Include="Game\FieldObject.h" />
     <ClInclude Include="Game\FieldObjectManager.h" />

@@ -199,6 +199,15 @@
     <ClCompile Include="Game\FlashLight.cpp">
       <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Enemy.cpp">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\EnemyManager.cpp">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\EnemyFactory.cpp">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
+    </ClCompile>
   </ItemGroup>
   <!-- ヘッダファイル -->
   <ItemGroup>
@@ -360,6 +369,12 @@
     </ClInclude>
     <ClInclude Include="Game\ResourceID.h">
       <Filter>ゲーム\ユーティリティ\リソース関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\EnemyFactory.h">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\EnemyManager.h">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
     </ClInclude>
   </ItemGroup>
   <!-- リソースファイル -->

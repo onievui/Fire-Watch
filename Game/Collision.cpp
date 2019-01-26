@@ -6,6 +6,8 @@
 #include "FieldObject.h"
 #include "Arrow.h"
 #include "Bonfire.h"
+#include "Enemy.h"
+
 
 /// <summary>
 /// コンストラクタ

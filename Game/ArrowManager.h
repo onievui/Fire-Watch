@@ -16,11 +16,13 @@ public:
 	bool getMessage(const MessageType _type, void* _out, void* _in) override;
 
 public:
+	void initialize();
 	void update();
 	void draw();
 
 public:
 	void createArrow(const Vector2& _pos, const float _angle);
+	void destroyArrow();
 
 };
 

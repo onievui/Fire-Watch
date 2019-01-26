@@ -6,7 +6,7 @@
 #include "FieldObjectManager.h"
 #include "MouseEventManager.h"
 #include "ArrowManager.h"
-#include <memory>
+#include "EnemyManager.h"
 
 
 
@@ -14,6 +14,7 @@ class PlayScene : public AbstractScene {
 private:
 	std::unique_ptr<Map>                map;
 	std::unique_ptr<Player>             player;
+	std::unique_ptr<EnemyManager>       enemyManager;
 	std::unique_ptr<FieldObjectManager> fieldObjectManager;
 	std::unique_ptr<ArrowManager>       arrowManager;
 	std::unique_ptr<MouseEventManager>  mouseEventManager;

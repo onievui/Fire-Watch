@@ -42,6 +42,8 @@ void PlayScene::initialize() {
 	//プレイヤーの生成
 	player = std::make_unique<Player>();
 	message_manager->add(player.get());
+	//敵管理クラスの生成
+	enemyManager = std::make_unique<EnemyManager>();
 	//フィールドオブジェクト管理クラスの生成
 	fieldObjectManager = std::make_unique<FieldObjectManager>();
 	message_manager->add(fieldObjectManager.get());
@@ -61,6 +63,7 @@ void PlayScene::initialize() {
 void PlayScene::update() {
 	//各オブジェクトの更新
 	player->update();
+	enemyManager->update();
 	fieldObjectManager->update();
 	arrowManager->update();
 	map->update();
@@ -84,14 +87,17 @@ void PlayScene::render() {
 	RenderManager* render_manager = RenderManager::getIns();
 	//描画先をマップにする
 	render_manager->changeScreen(ScreenType::MapScreen);
+	//ライティングに影響される描画
 	map->draw();
 	fieldObjectManager->draw();
+	enemyManager->draw();
 	arrowManager->draw();
 	player->drawFlashLight();
 
 	//シェーダーの使用(ライトの反映)
 	ShaderManager::getIns()->draw();
 
+	//ライティングに影響しない描画
 	player->draw();
 
 	//マップを裏画面に反映

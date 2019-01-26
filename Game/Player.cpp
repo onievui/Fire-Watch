@@ -84,6 +84,13 @@ void Player::drawFlashLight() {
 	flashLight.draw(pos, mouse_direction);
 }
 
+/// <summary>
+/// 攻撃処理
+/// </summary>
+/// <param name="_mouse_pos">マウス座標</param>
+/// <returns>
+/// 攻撃範囲をクリックしたかどうか
+/// </returns>
 bool Player::attack(const Vector2* _mouse_pos) {
 	crossbow.attack(pos,Vector2::atan2fbyVec2(pos,*_mouse_pos));
 

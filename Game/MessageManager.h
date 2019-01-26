@@ -24,14 +24,14 @@ public:
 	/// <returns>
 	/// ó‚¯æ‚Á‚½ƒf[ƒ^
 	/// </returns>
-	template <class T> T sendMessage(const MessageType _type, void* _in = nullptr) {
-		T out;
+	template <class NotVoid> NotVoid sendMessage(const MessageType _type, void* _in = nullptr) {
+		NotVoid out;
 		for (const auto& element : watchList) {
 			if (element->getMessage(_type, (void*)&out, _in)) {
 				return out;
 			}
 		}
-		return T();
+		return NotVoid();
 	}
 
 	/// <summary>
