@@ -30,7 +30,7 @@ void Bonfire::initialize() {
 /// </summary>
 void Bonfire::update() {
 	if (isFireFlag) {
-		lifeTime -= 5;
+		lifeTime -= 1;
 		power = (std::min)(lifeTime, 1800) / 1800.0f * 0.8f + 0.2f;
 		if (lifeTime <= 0) {
 			isFireFlag = false;
@@ -48,12 +48,15 @@ void Bonfire::draw() {
 	render_manager->drawRotaGraphF(pos.x, pos.y, 1.5f, 0.0f, texture->getResource(textureIndex), true);
 	//ライトの描画
 	render_manager->changeScreen(ScreenType::LightAlphaScreen);
-	if (isFireFlag) {
-		SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
+	SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
+	if (isFireFlag) {	
 		render_manager->drawRotaGraphF(pos.x, pos.y, 4.5f * power, 0.0f, ResourceManager::getIns()->getTexture(TextureID::TEXTURE_LIGHT1)->getResource(), true);
-		SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	}
-	render_manager->drawCircleAA(pos.x, pos.y, 24, 24, ColorCode::COLOR_WHITE);
+	//点火中でないときもオブジェクトが見える程度に表示
+	else {
+		render_manager->drawRotaGraphF(pos.x, pos.y, 0.25f, 0.0f, ResourceManager::getIns()->getTexture(TextureID::TEXTURE_LIGHT1)->getResource(), true);
+	}
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 	render_manager->changeScreen(ScreenType::MapScreen);
 }
 

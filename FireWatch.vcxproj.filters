@@ -69,7 +69,7 @@
     <Filter Include="ゲーム\オブジェクト関係\アイテム関係">
       <UniqueIdentifier>{e8c0afbb-213f-48bc-abee-b13c677e15a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ゲーム\オブジェクト関係\攻撃関係">
+    <Filter Include="ゲーム\オブジェクト関係\キャラクター関係\攻撃関係">
       <UniqueIdentifier>{0a7e77b9-12d7-46fc-84fe-ce60f1c6dcf4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -187,17 +187,17 @@
     <ClCompile Include="Game\MouseEventManager.cpp">
       <Filter>ゲーム</Filter>
     </ClCompile>
-    <ClCompile Include="Game\FlashLight.cpp">
-      <Filter>ゲーム\オブジェクト関係\アイテム関係</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\Crossbow.cpp">
-      <Filter>ゲーム\オブジェクト関係\アイテム関係</Filter>
-    </ClCompile>
     <ClCompile Include="Game\Arrow.cpp">
-      <Filter>ゲーム\オブジェクト関係\攻撃関係</Filter>
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係\攻撃関係</Filter>
     </ClCompile>
     <ClCompile Include="Game\ArrowManager.cpp">
-      <Filter>ゲーム\オブジェクト関係\攻撃関係</Filter>
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係\攻撃関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Crossbow.cpp">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係\攻撃関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\FlashLight.cpp">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
     </ClCompile>
   </ItemGroup>
   <!-- ヘッダファイル -->
@@ -340,20 +340,26 @@
     <ClInclude Include="Game\MouseEventManager.h">
       <Filter>ゲーム</Filter>
     </ClInclude>
-    <ClInclude Include="Game\FlashLight.h">
-      <Filter>ゲーム\オブジェクト関係\アイテム関係</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Weapon.h">
-      <Filter>ゲーム\オブジェクト関係\アイテム関係</Filter>
-    </ClInclude>
-    <ClInclude Include="Game\Crossbow.h">
-      <Filter>ゲーム\オブジェクト関係\アイテム関係</Filter>
-    </ClInclude>
     <ClInclude Include="Game\Arrow.h">
-      <Filter>ゲーム\オブジェクト関係\攻撃関係</Filter>
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係\攻撃関係</Filter>
     </ClInclude>
     <ClInclude Include="Game\ArrowManager.h">
-      <Filter>ゲーム\オブジェクト関係\攻撃関係</Filter>
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係\攻撃関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Crossbow.h">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係\攻撃関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Weapon.h">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係\攻撃関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\FlashLight.h">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Enemy.h">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\ResourceID.h">
+      <Filter>ゲーム\ユーティリティ\リソース関係</Filter>
     </ClInclude>
   </ItemGroup>
   <!-- リソースファイル -->

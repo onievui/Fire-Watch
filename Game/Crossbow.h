@@ -6,7 +6,7 @@
 class Crossbow : public Weapon {
 private:
 	static constexpr int   MAX_BULLETS = 6;
-	static constexpr float RELOAD_TIME = 300.0f;
+	static constexpr float RELOAD_TIME = 240.0f;
 	static constexpr float SHOT_DELAY  = 60.0f;
 
 private:

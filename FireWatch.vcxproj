@@ -142,12 +142,14 @@
     <ClInclude Include="Game\Collision.h" />
     <ClInclude Include="Game\Color.h" />
     <ClInclude Include="Game\Crossbow.h" />
+    <ClInclude Include="Game\Enemy.h" />
     <ClInclude Include="Game\ErrorMessage.h" />
     <ClInclude Include="Game\FieldObject.h" />
     <ClInclude Include="Game\FieldObjectManager.h" />
     <ClInclude Include="Game\FlashLight.h" />
     <ClInclude Include="Game\Mouse.h" />
     <ClInclude Include="Game\MouseEventManager.h" />
+    <ClInclude Include="Game\ResourceID.h" />
     <ClInclude Include="Game\ShaderManager.h" />
     <ClInclude Include="Game\Tent.h" />
     <ClInclude Include="Game\Keyboard.h" />

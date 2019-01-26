@@ -12,8 +12,8 @@
 Arrow::Arrow(const Vector2& _pos, const float _angle)
 	: state(ArrowState::NORMAL_ARROW)
 	, pos(_pos)
-	, vel(Vector2::createWithAngleNorm(_angle, 9))
-	, angle(_angle + PI * 3 / 4)
+	, vel(Vector2::createWithAngleNorm(_angle, 12))
+	, angle(_angle)
 	, textureIndex()
 	, animeCount()
 	, collider(RectRotateCollider(&pos, { 0,0 }, &vel, 36, 6, &angle))
@@ -43,7 +43,7 @@ void Arrow::draw() {
 	//”j‰ó‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î•`‰æ‚·‚é
 	if (state != ArrowState::DESTROYED) {
 		RenderManager* render_manager = RenderManager::getIns();
-		render_manager->drawRotaGraphF(pos.x, pos.y, 1.5f, angle, texture->getResource(textureIndex), true);
+		render_manager->drawRotaGraphF(pos.x, pos.y, 1.5f, angle + PI * 3 / 4, texture->getResource(textureIndex), true);
 		//”RÄó‘Ô‚È‚ç–¾‚è‚ðo‚·
 		if (state == ArrowState::FIRE_ARROW) {
 			render_manager->changeScreen(ScreenType::LightAlphaScreen);

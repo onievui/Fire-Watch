@@ -66,6 +66,10 @@ void Collision::update() {
 			if (!bonfire) {
 				continue;
 			}
+			//“_‰Î‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©‚ÌŠm”F
+			if (!bonfire->isFire()) {
+				continue;
+			}
 			//‰¼‚ÌŠp“xŠi”[—p•Ï”
 			float dummy_angle = 0.0f;
 			RectRotateCollider bonfire_collider = RectRotateCollider(bonfire->getCollider(), &dummy_angle);

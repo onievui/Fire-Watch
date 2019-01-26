@@ -30,10 +30,13 @@ void Tent::update() {
 /// •`‰æ
 /// </summary>
 void Tent::draw() {
-	RenderManager::getIns()->drawRotaGraphF(pos.x, pos.y, 3.0f, 0.0f, texture->getResource(), true);
-	RenderManager::getIns()->changeScreen(ScreenType::LightAlphaScreen);
-	RenderManager::getIns()->drawCircleAA(pos.x, pos.y, 48, 48, ColorCode::COLOR_WHITE);
-	RenderManager::getIns()->changeScreen(ScreenType::MapScreen);
+	RenderManager* render_manager = RenderManager::getIns();
+	render_manager->drawRotaGraphF(pos.x, pos.y, 3.0f, 0.0f, texture->getResource(), true);
+	render_manager->changeScreen(ScreenType::LightAlphaScreen);
+	SetDrawBlendMode(DX_BLENDMODE_ADD, 255);
+	render_manager->drawRotaGraphF(pos.x, pos.y, 0.4f, 0.0f, ResourceManager::getIns()->getTexture(TextureID::TEXTURE_LIGHT1)->getResource(), true);
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	render_manager->changeScreen(ScreenType::MapScreen);
 }
 
 /// <summary>

@@ -6,13 +6,16 @@
 
 
 
+/// <summary>
+/// プレイヤークラス
+/// </summary>
 class Player : public Character, public MessageInterface {
 private:
 	static constexpr float MOVE_SPEED = 4.0f;	//プレイヤーの移動速度
 
 private:
 	FlashLight flashLight;
-	Crossbow crossbow;
+	Crossbow   crossbow;
 
 public:
 	Player();
