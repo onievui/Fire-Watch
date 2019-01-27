@@ -17,9 +17,10 @@ public:
 	static const int DEFAULT_GRID_SIZE;	//初期グリッドサイズ
 
 private:
-	std::array<std::array<int,GRID_COLS>,GRID_ROWS>   cells;    //マップデータ
-	std::array<std::unique_ptr<MapChip>,NUM_MAPCHIPS> mapchips;	// マップチップリスト
-	int												  gridSize;	//グリッドの大きさ
+	std::array<std::array<int, GRID_COLS>, GRID_ROWS> cells;		//マップデータ
+	std::array<std::array<int, GRID_COLS>, GRID_ROWS> lightCells;	//マップのライトデータ
+	std::array<std::unique_ptr<MapChip>,NUM_MAPCHIPS> mapchips;		// マップチップリスト
+	int												  gridSize;		//グリッドの大きさ
 
 public:
 	Map();
@@ -31,6 +32,7 @@ public:
 public:
 	void initialize();
 	void update();
+	void updateLightData();
 	void draw() const;
 
 private:

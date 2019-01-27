@@ -75,9 +75,9 @@ int Arrow::getPower() {
 	if (state == ArrowState::NORMAL_ARROW) {
 		return 1;
 	}
-	//燃焼状態なら2ダメージ
+	//燃焼状態なら1ダメージ
 	else if (state == ArrowState::FIRE_ARROW) {
-		return 2;
+		return 1;
 	}
 	return 0;
 }

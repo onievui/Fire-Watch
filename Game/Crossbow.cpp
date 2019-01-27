@@ -53,8 +53,13 @@ void Crossbow::attack(const Vector2& _pos, const float _angle) {
 	//”­Ë‚µ‚½’¼ŒãAƒŠƒ[ƒh’†‚È‚çUŒ‚‚Å‚«‚È‚¢
 	if (wait_shot <= 0.0f && wait_reload <= 0.0f) {
 		//–î‚ğ”­Ë
-		ArrowManager* arrow_manager = MessageManager::getIns()->sendMessage<ArrowManager*>(MessageType::GET_ARROW_MANAGER);
-		arrow_manager->createArrow(_pos, _angle);
+		struct AttackInfo {
+			Vector2 pos;
+			float angle;
+		};
+		AttackInfo attack_info{ _pos,_angle };
+		MessageManager::getIns()->sendMessage(MessageType::CREATE_ARROW, &attack_info);
+		//arrow_manager->createArrow(_pos, _angle);
 		--bullets;
 		wait_shot = SHOT_DELAY;
 		if (bullets == 0) {

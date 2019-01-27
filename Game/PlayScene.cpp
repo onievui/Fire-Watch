@@ -86,6 +86,8 @@ void PlayScene::update() {
 void PlayScene::render() {
 	RenderManager* render_manager = RenderManager::getIns();
 	//描画先をマップにする
+	render_manager->changeScreen(ScreenType::LightAlphaScreen);
+	//DrawFillBox(0, 0, Map::GRID_COLS*Map::DEFAULT_GRID_SIZE, Map::GRID_ROWS*Map::DEFAULT_GRID_SIZE, ColorCode::COLOR_BLACK);
 	render_manager->changeScreen(ScreenType::MapScreen);
 	//ライティングに影響される描画
 	map->draw();
@@ -96,6 +98,9 @@ void PlayScene::render() {
 
 	//シェーダーの使用(ライトの反映)
 	ShaderManager::getIns()->draw();
+
+	//ライトデータの更新
+	map->updateLightData();
 
 	//ライティングに影響しない描画
 	player->draw();

@@ -3,7 +3,6 @@
 #include "ResourceManager.h"
 
 
-
 /// <summary>
 /// “G‚Ì¶¬
 /// </summary>
@@ -17,7 +16,7 @@ std::unique_ptr<Enemy> EnemyFactory::createEnemy(const EnemyID _id, const Vector
 	ResourceManager* resource_manager = ResourceManager::getIns();
 	switch (_id) {
 	case EnemyID::ENEMY_1:
-		return std::make_unique<Enemy>(_pos, Vector2{ 0,0 }, Vector2{ 48,64 }, resource_manager->getTexture(TextureID::TEXTURE_ENEMY1), 2);
+		return std::make_unique<Enemy>(_pos, Vector2{ 0,6 }, Vector2{ 48,42 }, resource_manager->getTexture(TextureID::TEXTURE_ENEMY1), 2);
 	default:
 		ErrorMessage("“G‚Ì¶¬‚Å•s³‚ÈID‚ª“n‚³‚ê‚Ü‚µ‚½");
 		return nullptr;

@@ -16,6 +16,7 @@ const int Map::DEFAULT_GRID_SIZE = 48;
 /// </summary>
 Map::Map()
 	: cells()
+	, lightCells()
 	, mapchips()
 	, gridSize(DEFAULT_GRID_SIZE) {
 	initialize();
@@ -81,6 +82,39 @@ void Map::update() {
 	RenderManager* render_manager = RenderManager::getIns();
 	render_manager->setScreenOffset(ScreenType::MapScreen, screen_pos);
 	render_manager->setScreenOffset(ScreenType::LightAlphaScreen, screen_pos);
+}
+
+/// <summary>
+/// ライトデータの更新処理
+/// </summary>
+void Map::updateLightData() {
+	static int row = 0;
+	RenderManager* render_manager = RenderManager::getIns();
+	Vector2 off = render_manager->getScreenOffset(ScreenType::LightAlphaScreen);
+	render_manager->changeScreen(ScreenType::LightAlphaScreen);
+	for (int j = 0; j < GRID_COLS / 2; j++) {
+		render_manager->changeScreen(ScreenType::LightAlphaScreen);
+		int x = j * DEFAULT_GRID_SIZE * 2 + DEFAULT_GRID_SIZE - (int)off.x;
+		int y = row * DEFAULT_GRID_SIZE*2 + DEFAULT_GRID_SIZE - (int)off.y;
+		if (x >= 0 && x < SCREEN_WIDTH && y >= 0 && y < SCREEN_HEIGHT) {
+			unsigned int color = GetPixel(x, y);
+			int r, g, b;
+			GetColor2(color, &r, &g, &b);
+			//2*2マスに分割して、中心の色を明るさとして扱う
+			for (int i2 = row; i2 < GRID_ROWS / 2 && i2 < row + 2; i2++) {
+				for (int j2 = j; j2 < GRID_COLS / 2 && j2 < j + 2; j2++) {
+					lightCells[i2][j2] = b;
+				}
+			}
+		}
+		//見えない部分は明るさ0として扱う
+		else {
+			lightCells[row][j] = 0;
+		}
+	}
+	//処理が重いため遅延して行う
+	row = (row + 1) % GRID_ROWS;
+	render_manager->changeScreen(ScreenType::MapScreen);
 }
 
 

@@ -20,8 +20,12 @@ ArrowManager::ArrowManager()
 /// </returns>
 bool ArrowManager::getMessage(const MessageType _type, void* _out, void* _in) {
 	switch (_type) {
-	case MessageType::GET_ARROW_MANAGER:
-		*(ArrowManager**)_out = this;
+	case MessageType::CREATE_ARROW:
+		struct AttackInfo {
+			Vector2 pos;
+			float angle;
+		};
+		createArrow(((AttackInfo*)_in)->pos, ((AttackInfo*)_in)->angle);
 		return true;
 	case MessageType::GET_ARROWS:
 		*(std::vector<std::unique_ptr<Arrow>>**)_out = &arrows;

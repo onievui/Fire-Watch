@@ -36,6 +36,9 @@ bool Player::getMessage(const MessageType _type, void* _out, void* _in) {
 	case MessageType::GET_PLAYER_POS:
 		*(Vector2*)_out = pos;
 		return true;
+	case MessageType::GET_PLAYER_POS_PTR:
+		*(Vector2**)_out = &pos;
+		return true;
 	case MessageType::PLAYER_ATTACK:
 		*(bool*)_out = attack((Vector2*)_in);
 		return true;

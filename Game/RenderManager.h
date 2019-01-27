@@ -49,6 +49,7 @@ public:
 	void drawCircleAA(const float _x, const float _y, const float _r, const int _pos_num, const unsigned int _color, const int _fill_flag = 1, const float _thickness = 1.0f);
 	void drawExtendGraphF(const float _x1, const float _y1, const float _x2, const float _y2, const int _handle, const int _trans_flag) const;
 	void drawRotaGraphF(const float _x, const float _y, const float _exrate, const float _angle, int _handle, const int _trans_flag, const int _reverse_x_flag = 0, const int _reverse_y_flag = 0) const;
+	void drawRotaGraph(const float _x, const float _y, const float _exrate, const float _angle, int _handle, const int _trans_flag, const int _reverse_x_flag = 0, const int _reverse_y_flag = 0) const;
 };
 
 
