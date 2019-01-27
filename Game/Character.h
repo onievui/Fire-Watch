@@ -18,6 +18,7 @@ enum Direction {
 
 class Character {
 protected:
+	bool                             isAlive;
 	Vector2                          pos;
 	Vector2                          vel;
 	RectCollider                     collider;

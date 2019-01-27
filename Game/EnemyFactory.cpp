@@ -1,4 +1,5 @@
 #include "EnemyFactory.h"
+#include "EnemyAI.h"
 #include "ErrorMessage.h"
 #include "ResourceManager.h"
 
@@ -14,9 +15,13 @@
 /// </returns>
 std::unique_ptr<Enemy> EnemyFactory::createEnemy(const EnemyID _id, const Vector2& _pos) {
 	ResourceManager* resource_manager = ResourceManager::getIns();
+	std::unique_ptr<Enemy> enemy;
+	std::unique_ptr<EnemyAI> AI;
 	switch (_id) {
 	case EnemyID::ENEMY_1:
-		return std::make_unique<Enemy>(_pos, Vector2{ 0,6 }, Vector2{ 48,42 }, resource_manager->getTexture(TextureID::TEXTURE_ENEMY1), 2);
+		AI = std::make_unique<EnemyAIPlayerChase>();
+		enemy = std::make_unique<Enemy>(std::move(AI), 2, _pos, Vector2{ 0,6 }, Vector2{ 48,42 }, resource_manager->getTexture(TextureID::TEXTURE_ENEMY1), 2);
+		return enemy;
 	default:
 		ErrorMessage("ìGÇÃê∂ê¨Ç≈ïsê≥Ç»IDÇ™ìnÇ≥ÇÍÇ‹ÇµÇΩ");
 		return nullptr;

@@ -27,6 +27,7 @@ void EnemyManager::update() {
 	for (const auto& enemy : enemies) {
 		enemy->update();
 	}
+	destroyEnemy();
 }
 
 /// <summary>
@@ -48,5 +49,27 @@ void EnemyManager::draw() {
 /// 有効なメッセージを受け取ったかどうか
 /// </returns>
 bool EnemyManager::getMessage(const MessageType _type, void* _out, void* _in) {
+	switch (_type) {
+	case MessageType::GET_ENEMIES:
+		*(std::vector<std::unique_ptr<Enemy>>**)_out = &enemies;
+		return true;
+	default:
+		break;
+	}
 	return false;
 }
+
+/// <summary>
+/// 敵の削除
+/// </summary>
+void EnemyManager::destroyEnemy() {
+	for (auto it = enemies.begin(); it != enemies.end();) {
+		//未使用なら削除する
+		if (it->get()->isDestroy()) {
+			it = enemies.erase(it);
+			continue;
+		}
+		++it;
+	}
+}
+

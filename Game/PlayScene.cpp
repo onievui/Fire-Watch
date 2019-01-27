@@ -44,6 +44,7 @@ void PlayScene::initialize() {
 	message_manager->add(player.get());
 	//敵管理クラスの生成
 	enemyManager = std::make_unique<EnemyManager>();
+	message_manager->add(enemyManager.get());
 	//フィールドオブジェクト管理クラスの生成
 	fieldObjectManager = std::make_unique<FieldObjectManager>();
 	message_manager->add(fieldObjectManager.get());

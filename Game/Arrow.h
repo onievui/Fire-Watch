@@ -39,6 +39,7 @@ public:
 	RectRotateCollider* getCollider();
 	int getPower();
 	bool isAlive();
+	bool isFire();
 	void hitEnemy();
 	void hitFire();
 

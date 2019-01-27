@@ -28,7 +28,9 @@ void Collision::update() {
 	FieldObjects* field_objects = message_manager->sendMessage<FieldObjects*>(MessageType::GET_FIELDOBJECTS);
 	using Arrows = std::vector<std::unique_ptr<Arrow>>;
 	Arrows* arrows = message_manager->sendMessage<Arrows*>(MessageType::GET_ARROWS);
-	
+	using Enemies = std::vector<std::unique_ptr<Enemy>>;
+	Enemies* enemies = message_manager->sendMessage<Enemies*>(MessageType::GET_ENEMIES);
+
 	//プレイヤーとマップの当たり判定
 	for (int i = 0; i < Map::GRID_ROWS; i++) {
 		for (int j = 0; j < Map::GRID_COLS; j++) {
@@ -81,5 +83,28 @@ void Collision::update() {
 		}
 	}
 
+	//敵と矢との当たり判定
+	for (auto& enemy : *enemies) {
+		for (auto& arrow : *arrows) {
+			//仮の角度格納用変数
+			float dummy_angle = 0.0f;
+			RectRotateCollider enemy_collider = RectRotateCollider(enemy->getCollider(), &dummy_angle);
+			if (Collider::collisionRectRotate(*arrow->getCollider(), enemy_collider)) {
+				enemy->hitArrow(arrow->getPower(), arrow->isFire());
+				arrow->hitEnemy();
+			}
+		}
+	}
+
+	//敵とフィールドオブジェクトとの当たり判定
+	for (auto& enemy : *enemies) {
+		for (auto& field_object : *field_objects) {
+			//衝突情報格納用
+			float time, normal;
+			if (Collider::collisionRect(*enemy->getCollider(), *field_object->getCollider(), &time, &normal)) {
+				field_object->hitEnemy();
+			}
+		}
+	}
 }
 

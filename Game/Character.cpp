@@ -8,7 +8,8 @@
 /// <param name="_collider"></param>
 /// <param name="_texture"></param>
 Character::Character(const Vector2& _pos, const RectCollider& _collider, const std::shared_ptr<TextureResource>& _texture) 
-	: pos(_pos)
+	: isAlive(true)
+	, pos(_pos)
 	, vel()
 	, collider(_collider)
 	, texture(_texture)

@@ -72,6 +72,9 @@
     <Filter Include="ゲーム\オブジェクト関係\キャラクター関係\攻撃関係">
       <UniqueIdentifier>{0a7e77b9-12d7-46fc-84fe-ce60f1c6dcf4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ゲーム\オブジェクト関係\キャラクター関係\敵関係">
+      <UniqueIdentifier>{3888708d-d455-4930-a075-4fe74653fa94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <!-- ソースファイル -->
   <ItemGroup>
@@ -200,13 +203,16 @@
       <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
     </ClCompile>
     <ClCompile Include="Game\Enemy.cpp">
-      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
-    </ClCompile>
-    <ClCompile Include="Game\EnemyManager.cpp">
-      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係\敵関係</Filter>
     </ClCompile>
     <ClCompile Include="Game\EnemyFactory.cpp">
-      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係\敵関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\EnemyManager.cpp">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係\敵関係</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\EnemyAI.cpp">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係\敵関係</Filter>
     </ClCompile>
   </ItemGroup>
   <!-- ヘッダファイル -->
@@ -364,17 +370,20 @@
     <ClInclude Include="Game\FlashLight.h">
       <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
     </ClInclude>
-    <ClInclude Include="Game\Enemy.h">
-      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
-    </ClInclude>
     <ClInclude Include="Game\ResourceID.h">
       <Filter>ゲーム\ユーティリティ\リソース関係</Filter>
     </ClInclude>
+    <ClInclude Include="Game\Enemy.h">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係\敵関係</Filter>
+    </ClInclude>
     <ClInclude Include="Game\EnemyFactory.h">
-      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係\敵関係</Filter>
     </ClInclude>
     <ClInclude Include="Game\EnemyManager.h">
-      <Filter>ゲーム\オブジェクト関係\キャラクター関係</Filter>
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係\敵関係</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\EnemyAI.h">
+      <Filter>ゲーム\オブジェクト関係\キャラクター関係\敵関係</Filter>
     </ClInclude>
   </ItemGroup>
   <!-- リソースファイル -->

@@ -22,7 +22,8 @@ public:
 public:
 	bool getMessage(const MessageType _type, void* _out, void* _in);
 
-
+private:
+	void destroyEnemy();
 };
 
 

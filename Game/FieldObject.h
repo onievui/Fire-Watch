@@ -25,6 +25,7 @@ public:
 	virtual void update() {}
 	virtual void draw() {}
 	virtual void clickEvent() {}
+	virtual void hitEnemy() {}
 
 private:
 	virtual void animate() {}

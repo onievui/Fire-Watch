@@ -93,6 +93,16 @@ bool Arrow::isAlive() {
 }
 
 /// <summary>
+/// ”RÄó‘Ô‚©‚Ç‚¤‚©‚Ìæ“¾
+/// </summary>
+/// <returns>
+/// ”RÄó‘Ô‚©‚Ç‚¤‚©
+/// </returns>
+bool Arrow::isFire() {
+	return state == ArrowState::FIRE_ARROW;
+}
+
+/// <summary>
 /// “G‚ÆÕ“Ë‚µ‚½‚Ìˆ—
 /// </summary>
 void Arrow::hitEnemy() {
