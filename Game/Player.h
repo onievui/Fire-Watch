@@ -31,6 +31,7 @@ public:
 
 public:
 	bool attack(const Vector2* _mouse_pos);
+	void hitEnemy();
 
 private:
 	void animate() override;

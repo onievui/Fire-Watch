@@ -51,7 +51,7 @@ void Collision::update() {
 	}
 
 	//プレイヤーとフィールドオブジェクトの当たり判定
-	for (auto& field_object : *field_objects) {
+	for (const auto& field_object : *field_objects) {
 		//衝突情報格納用
 		float time, normal;
 		RectCollider* field_object_colider = field_object->getCollider();
@@ -63,8 +63,8 @@ void Collision::update() {
 	}
 
 	//矢と焚火の当たり判定
-	for (auto& arrow : *arrows) {
-		for (auto& field_object : *field_objects) {
+	for (const auto& arrow : *arrows) {
+		for (const auto& field_object : *field_objects) {
 			//焚火かどうかの確認
 			Bonfire* bonfire = dynamic_cast<Bonfire*>(field_object.get());
 			if (!bonfire) {
@@ -84,8 +84,11 @@ void Collision::update() {
 	}
 
 	//敵と矢との当たり判定
-	for (auto& enemy : *enemies) {
-		for (auto& arrow : *arrows) {
+	for (const auto& enemy : *enemies) {
+		if (!enemy->isAlive()) {
+			continue;
+		}
+		for (const auto& arrow : *arrows) {
 			//仮の角度格納用変数
 			float dummy_angle = 0.0f;
 			RectRotateCollider enemy_collider = RectRotateCollider(enemy->getCollider(), &dummy_angle);
@@ -97,13 +100,25 @@ void Collision::update() {
 	}
 
 	//敵とフィールドオブジェクトとの当たり判定
-	for (auto& enemy : *enemies) {
-		for (auto& field_object : *field_objects) {
+	for (const auto& enemy : *enemies) {
+		for (const auto& field_object : *field_objects) {
 			//衝突情報格納用
 			float time, normal;
 			if (Collider::collisionRect(*enemy->getCollider(), *field_object->getCollider(), &time, &normal)) {
 				field_object->hitEnemy();
 			}
+		}
+	}
+
+	//プレイヤーと敵の当たり判定
+	for (const auto& enemy : *enemies) {
+		if (!enemy->isAlive()) {
+			continue;
+		}
+		//衝突情報格納用
+		float time, normal;
+		if (Collider::collisionRect(*player->getCollider(), *enemy->getCollider(), &time, &normal)) {
+			player->hitEnemy();
 		}
 	}
 }

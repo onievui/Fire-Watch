@@ -57,7 +57,7 @@ void Game::initialize(void) {
 	addScene(SCENE_TITLE, TitleScene::create);
 	addScene(SCENE_PLAY, PlayScene::create);
 	addScene(SCENE_RESULT, ResultScene::create);
-	nowScene = sceneFactoryMethods[SCENE_PLAY](this);
+	nowScene = sceneFactoryMethods[SCENE_LOGO](this);
 	nextScene = SCENE_NONE;
 	ShareDataManager::getIns()->initialize();
 	RenderManager::getIns()->addScreen(ScreenType::BackScreen, DX_SCREEN_BACK, Vector2(0, 0));

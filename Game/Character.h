@@ -18,7 +18,7 @@ enum Direction {
 
 class Character {
 protected:
-	bool                             isAlive;
+	bool                             isAliveFlag;
 	Vector2                          pos;
 	Vector2                          vel;
 	RectCollider                     collider;
@@ -40,6 +40,7 @@ private:
 
 public:
 	RectCollider* getCollider();
+	bool isAlive();
 };
 
 

@@ -10,6 +10,8 @@ ResourceManager::ResourceManager() {
 void ResourceManager::load(const SceneID _id) {
 	switch (_id) {
 	case SCENE_LOGO:
+		addTexture(TEXTURE_LOGO, std::make_shared<TextureResource>("Protected/Logo.png"));
+		addTexture(TEXTURE_LOGO2, std::make_shared<TextureResource>("Protected/Logo2.png"));
 		break;
 	case SCENE_TITLE:
 		break;

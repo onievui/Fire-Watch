@@ -101,6 +101,14 @@ bool Player::attack(const Vector2* _mouse_pos) {
 }
 
 /// <summary>
+/// “G‚Æ‚ÌÕ“Ëˆ—
+/// </summary>
+void Player::hitEnemy() {
+	isAliveFlag = false;
+	MessageManager::getIns()->sendMessage(MessageType::PLAYER_DEAD);
+}
+
+/// <summary>
 /// ˆÚ“®ˆ—
 /// </summary>
 void Player::move() {

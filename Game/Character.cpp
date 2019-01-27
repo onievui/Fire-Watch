@@ -8,7 +8,7 @@
 /// <param name="_collider"></param>
 /// <param name="_texture"></param>
 Character::Character(const Vector2& _pos, const RectCollider& _collider, const std::shared_ptr<TextureResource>& _texture) 
-	: isAlive(true)
+	: isAliveFlag(true)
 	, pos(_pos)
 	, vel()
 	, collider(_collider)
@@ -26,4 +26,14 @@ Character::Character(const Vector2& _pos, const RectCollider& _collider, const s
 /// </returns>
 RectCollider* Character::getCollider() {
 	return &collider;
+}
+
+/// <summary>
+/// ¶‚«‚Ä‚¢‚é‚©‚Ç‚¤‚©‚Ìæ“¾
+/// </summary>
+/// <returns>
+/// ¶‚«‚Ä‚¢‚é‚©‚Ç‚¤‚©
+/// </returns>
+bool Character::isAlive() {
+	return isAliveFlag;
 }

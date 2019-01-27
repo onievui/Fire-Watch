@@ -7,11 +7,19 @@
 #include "MouseEventManager.h"
 #include "ArrowManager.h"
 #include "EnemyManager.h"
+#include "MessageInterface.h"
 
 
-
-class PlayScene : public AbstractScene {
+class PlayScene : public AbstractScene, public MessageInterface {
 private:
+	enum class PlaySceneState {
+		PLAYING,
+		PLAYER_DEAD,
+		TENT_DESTROYED,
+	};
+
+private:
+	PlaySceneState                      state;
 	std::unique_ptr<Map>                map;
 	std::unique_ptr<Player>             player;
 	std::unique_ptr<EnemyManager>       enemyManager;
@@ -30,4 +38,11 @@ public:
 	void finalize() override;	//I—¹ˆ—
 
 	static std::unique_ptr<AbstractScene> create(RequestSceneListener* _impl);	//ƒV[ƒ“¶¬ŠÖ”
+public:
+	bool getMessage(const MessageType _type, void* _out, void* _in);
+
+private:
+	void updatePlaying();
+	void updatePlayerDead();
+	void updateTentDestroyed();
 };

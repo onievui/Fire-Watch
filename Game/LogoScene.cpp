@@ -34,12 +34,12 @@ void LogoScene::initialize() {
 void LogoScene::update() {
 	//Zキーでスキップ
 	if (Pad::getIns()->isDown(PadCode::Z)) {
-		count = 180;
+		count = 270;
 		state = 2;
 	}
 
 	//ロゴ表示時間内ならカウンタを増やす
-	if (count < 180) {
+	if (count < 270) {
 		count++;
 	}
 	//1つ目のロゴが表示し終わったら2つ目を表示する
@@ -49,7 +49,7 @@ void LogoScene::update() {
 	}
 	//タイトルシーンに遷移する
 	else {
-		implRequestScene->requestScene(SCENE_TITLE);
+		implRequestScene->requestScene(SCENE_PLAY);
 	}
 }
 
@@ -58,14 +58,19 @@ void LogoScene::update() {
 /// シーンの描画
 /// </summary>
 void LogoScene::render() {
-	//SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)(255 * (count / 90.0f)));
-	//if (state == 0) {
-	//	DrawRotaGraph(SCREEN_CENTER_X, SCREEN_CENTER_Y, 1.0f, 0.0f, ResourceManager::getIns()->getTexture(TEXTURE_LOGO)->getResource(), true);
-	//}
-	//else if (state == 1) {
-	//	DrawRotaGraph(SCREEN_CENTER_X, SCREEN_CENTER_Y, 0.5f, 0.0f, ResourceManager::getIns()->getTexture(TEXTURE_LOGO2)->getResource(), true);
-	//}
-	//SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
+	if (count < 180) {
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)(255 * (count / 90.0f)));
+	}
+	else {
+		SetDrawBlendMode(DX_BLENDMODE_ALPHA, (int)(255 * ((270.0f - count) / 90.0f)));
+	}
+	if (state == 0) {
+		DrawRotaGraph(SCREEN_CENTER_X, SCREEN_CENTER_Y, 1.0f, 0.0f, ResourceManager::getIns()->getTexture(TEXTURE_LOGO)->getResource(), true);
+	}
+	else if (state == 1) {
+		DrawRotaGraph(SCREEN_CENTER_X, SCREEN_CENTER_Y, 0.5f, 0.0f, ResourceManager::getIns()->getTexture(TEXTURE_LOGO2)->getResource(), true);
+	}
+	SetDrawBlendMode(DX_BLENDMODE_NOBLEND, 0);
 }
 
 /// <summary>

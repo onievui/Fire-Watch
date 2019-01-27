@@ -38,7 +38,7 @@ void Enemy::initialize() {
 /// </summary>
 void Enemy::update() {
 	//¶‚«‚Ä‚¢‚éŠÔ‚Ì‚Ýˆ—
-	if (isAlive) {
+	if (isAliveFlag) {
 		pos += vel;
 		vel = { 0,0 };
 		myAI->update();
@@ -59,7 +59,7 @@ void Enemy::update() {
 void Enemy::draw() {
 	int texture_index = (textureIndex % 3) + (textureIndex / 3) * 12 + (textureAreaIndex < 4 ? textureAreaIndex * 3 : 48 + (textureAreaIndex - 4) * 3);
 	//Ž€‚ñ‚Å‚¢‚éŠÔ‚ÍF‚ðˆÃ‚­‚·‚é
-	if (!isAlive) {
+	if (!isAliveFlag) {
 		RenderManager* render_manager = RenderManager::getIns();
 		int r, g, b;
 		GetDrawBright(&r, &g, &b);
@@ -137,7 +137,7 @@ void Enemy::hitArrow(const int _damage, const bool _isFireArrow) {
 	hp -= _damage;
 	if (hp <= 0) {
 		animeCount = 0;
-		isAlive = false;
+		isAliveFlag = false;
 		if (_isFireArrow) {
 			isFire = true;
 		}
