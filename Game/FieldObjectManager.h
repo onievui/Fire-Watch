@@ -24,6 +24,7 @@ public:
 
 private:
 	bool clickEvent(const Vector2& _click_pos);
+	Vector2 getTentPos();
 
 
 };

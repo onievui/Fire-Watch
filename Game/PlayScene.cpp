@@ -18,9 +18,6 @@
 PlayScene::PlayScene(RequestSceneListener* _impl) 
 	: AbstractScene(_impl) {
 	initialize();
-	RenderManager::getIns()->addScreen(ScreenType::MapScreen, MakeScreen(SCREEN_WIDTH, SCREEN_HEIGHT, TRUE), Vector2(0, 0));
-	RenderManager::getIns()->addScreen(ScreenType::LightAlphaScreen, MakeScreen(SCREEN_WIDTH, SCREEN_HEIGHT, TRUE), Vector2(0, 0));
-	RenderManager::getIns()->changeScreen(ScreenType::MapScreen);
 }
 
 /// <summary>
@@ -39,8 +36,11 @@ void PlayScene::initialize() {
 	message_manager->add(this);
 	//状態の初期化
 	state = PlaySceneState::PLAYING;
+	waitCount = 0;
+	killCount = 0;
+	liveTime = 0;
 	//マップ管理クラスの生成
-	map = std::make_unique<Map>();
+	map = std::move(ShareDataManager::getIns()->getMap());
 	message_manager->add(map.get());
 	//プレイヤーの生成
 	player = std::make_unique<Player>();
@@ -110,12 +110,15 @@ void PlayScene::render() {
 	//ライティングに影響しない描画
 	player->draw();
 
+	if (state == PlaySceneState::PLAYER_DEAD || (state == PlaySceneState::TENT_DESTROYED && waitCount >= 60)) {
+		fadeOut();
+	}
+
 	//マップを裏画面に反映
 	render_manager->flipScreen();
 	render_manager->clearScreen(ScreenType::MapScreen);
 	render_manager->clearScreen(ScreenType::LightAlphaScreen);
 
-	
 }
 
 /// <summary>
@@ -123,13 +126,13 @@ void PlayScene::render() {
 /// </summary>
 void PlayScene::finalize() {
 	MessageManager::getIns()->reset();
-	ResourceManager::getIns()->release();
+	//ResourceManager::getIns()->release();
 	SoundPlayer::getIns()->stopAll();
 	SoundPlayer::getIns()->reset();
-	RenderManager::getIns()->deleteScreen(ScreenType::MapScreen);
-	RenderManager::getIns()->deleteScreen(ScreenType::LightAlphaScreen);
+	ShareDataManager::getIns()->setMap(std::move(map));
+	ShareDataManager::getIns()->setPlayData(killCount, liveTime);
 	//使用するシェーダーの設定
-	ShaderManager::getIns()->setShader(ShaderID::SHADER_NONE);
+	//ShaderManager::getIns()->setShader(ShaderID::SHADER_NONE);
 }
 
 /// <summary>
@@ -160,6 +163,9 @@ bool PlayScene::getMessage(const MessageType _type, void* _out, void* _in) {
 	case MessageType::TENT_DESTROYED:
 		state = PlaySceneState::TENT_DESTROYED;
 		return true;
+	case MessageType::ENEMY_KILLED:
+		++killCount;
+		return true;
 	default:
 		break;
 	}
@@ -183,17 +189,53 @@ void PlayScene::updatePlaying() {
 	//当たり判定処理
 	Collision collision;
 	collision.update();
+
+	++liveTime;
 }
 
 /// <summary>
 /// プレイヤー死亡時の更新処理
 /// </summary>
 void PlayScene::updatePlayerDead() {
-
+	player->update();
+	if (waitCount >= 180) {
+		implRequestScene->requestScene(SceneID::SCENE_RESULT);
+	}
+	++waitCount;
 }
 
 /// <summary>
 /// テント破壊時の更新処理
 /// </summary>
 void PlayScene::updateTentDestroyed() {
+	if (waitCount < 60) {
+		float rate = waitCount / 60.0f;
+		Vector2 tent_pos = MessageManager::getIns()->sendMessage<Vector2>(MessageType::GET_TENT_POS);
+		Vector2 player_pos = MessageManager::getIns()->sendMessage<Vector2>(MessageType::GET_PLAYER_POS);
+		Vector2 screen_pos = tent_pos * rate + player_pos * (1 - rate);
+		screen_pos.x = ClampT(screen_pos.x - SCREEN_CENTER_X, 0.f, (float)Map::GRID_COLS*Map::DEFAULT_GRID_SIZE - SCREEN_WIDTH);
+		screen_pos.y = ClampT(screen_pos.y - SCREEN_CENTER_Y, 0.f, (float)Map::GRID_ROWS*Map::DEFAULT_GRID_SIZE - SCREEN_HEIGHT);
+		RenderManager::getIns()->setScreenOffset(ScreenType::MapScreen, screen_pos);
+		RenderManager::getIns()->setScreenOffset(ScreenType::LightAlphaScreen, screen_pos);
+	}
+	if (waitCount >= 240) {
+		implRequestScene->requestScene(SceneID::SCENE_RESULT);
+	}
+	++waitCount;
+}
+
+/// <summary>
+/// フェードアウト処理
+/// </summary>
+void PlayScene::fadeOut() {
+	RenderManager* render_manager = RenderManager::getIns();
+	render_manager->clearScreen(ScreenType::LightAlphaScreen);
+	render_manager->changeScreen(ScreenType::LightAlphaScreen);
+	int fade_count = waitCount - (state == PlaySceneState::TENT_DESTROYED ? 60 : 0);
+	DrawRotaGraph(SCREEN_CENTER_X, SCREEN_CENTER_Y, (std::max)((180 - fade_count) / 180.0f*20.0f, 0.0f), 0.0f,
+		ResourceManager::getIns()->getTexture(TextureID::TEXTURE_LIGHT1)->getResource(), true);
+	render_manager->changeScreen(ScreenType::MapScreen);
+
+	//シェーダーの使用(ライトの反映)
+	ShaderManager::getIns()->draw();
 }

@@ -73,6 +73,9 @@ bool FieldObjectManager::getMessage(const MessageType _type, void* _out, void* _
 	case MessageType::CLICK_FIELDOBJECTS:
 		*(bool*)_out = clickEvent(*(Vector2*)_in);
 		return true;
+	case MessageType::GET_TENT_POS:
+		*(Vector2*)_out = getTentPos();
+		return true;
 	default:
 		break;
 	}
@@ -95,4 +98,16 @@ bool FieldObjectManager::clickEvent(const Vector2& _click_pos) {
 		}
 	}
 	return false;
+}
+
+Vector2 FieldObjectManager::getTentPos() {
+	Vector2 pos;
+	for (const auto& field_object : fieldObjects) {
+		Tent* tent = dynamic_cast<Tent*>(field_object.get());
+		if (tent) {
+			pos = tent->getPos();
+			break;
+		}
+	}
+	return pos;
 }

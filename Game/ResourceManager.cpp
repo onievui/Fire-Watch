@@ -14,15 +14,18 @@ void ResourceManager::load(const SceneID _id) {
 		addTexture(TEXTURE_LOGO2, std::make_shared<TextureResource>("Protected/Logo2.png"));
 		break;
 	case SCENE_TITLE:
+		addTexture(TEXTURE_TITLE, std::make_shared<TextureResource>("Protected/Title.png"));
+		addTexture(TEXTURE_MAPCHIP, std::make_shared<TextureResource>("Protected/tile.png", 6, 6, 1, 32, 32));
+		addTexture(TEXTURE_LIGHT1, std::make_shared<TextureResource>("light3.png"));
 		break;
 	case SCENE_PLAY:
-		addTexture(TEXTURE_MAPCHIP, std::make_shared<TextureResource>("Protected/tile.png", 6, 6, 1, 32, 32));
+		//addTexture(TEXTURE_MAPCHIP, std::make_shared<TextureResource>("Protected/tile.png", 6, 6, 1, 32, 32));
 		addTexture(TEXTURE_PLAYER, std::make_shared<TextureResource>("Protected/player.png", 12, 3, 4, 48, 48));
 		addTexture(TEXTURE_ENEMY1, std::make_shared<TextureResource>("Protected/enemy1.png", 96, 12, 8, 48, 64));
 		addTexture(TEXTURE_TENT, std::make_shared<TextureResource>("Protected/tent2.png"));
 		addTexture(TEXTURE_FIRE, std::make_shared<TextureResource>("Protected/fire.png", 4, 4, 1, 32, 32));
 		addTexture(TEXTURE_CROSSBOW, std::make_shared<TextureResource>("Protected/cross_bow.png"));
-		addTexture(TEXTURE_LIGHT1, std::make_shared<TextureResource>("light3.png"));
+		//addTexture(TEXTURE_LIGHT1, std::make_shared<TextureResource>("light3.png"));
 		addTexture(TEXTURE_FLASHLIGHT, std::make_shared<TextureResource>("flashlight2.png"));
 		addTexture(TEXTURE_ARROW, std::make_shared<TextureResource>("Protected/arrow.png", 3, 3, 1, 32, 32));
 		break;

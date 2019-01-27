@@ -74,7 +74,7 @@ bool ShaderManager::setShader(const ShaderID _id) {
 		return false;
 	}
 	
-	if (shaderHandles[_id] == -1) {
+	if (_id != ShaderID::SHADER_NONE && shaderHandles[_id] == -1) {
 		ErrorMessage("読み込まれていないシェーダーを設定しようとしました");
 		return false;
 	}

@@ -63,17 +63,32 @@ void Player::initialize() {
 /// çXêV
 /// </summary>
 void Player::update() {
-	move();
-	animate();
-	controllFlashLight();
-	crossbow.update();
+	if (isAliveFlag) {
+		move();
+		animate();
+		controllFlashLight();
+		crossbow.update();
+	}
+	else {
+		++animeCount;
+	}
 }
 
 /// <summary>
 /// ï`âÊ
 /// </summary>
 void Player::draw() {
-	RenderManager::getIns()->drawRotaGraphF(pos.x, pos.y, 1.f, 0.f, texture->getResource(textureIndex), true);
+	if (!isAliveFlag) {
+		int r, g, b;
+		GetDrawBright(&r, &g, &b);
+		float rate = animeCount / 120.0f;
+		SetDrawBright((int)(r*(1.0f - (0.75f)*rate)), (int)(g*(1.0f - (0.9f)*rate)), (int)(b*(1.0f - (0.75f)*rate)));
+		RenderManager::getIns()->drawRotaGraphF(pos.x, pos.y, 1.0f, 0.0f, texture->getResource(textureIndex), true);
+		SetDrawBright(r, g, b);
+	}
+	else {
+		RenderManager::getIns()->drawRotaGraphF(pos.x, pos.y, 1.0f, 0.0f, texture->getResource(textureIndex), true);
+	}
 	crossbow.draw();
 }
 
@@ -85,6 +100,13 @@ void Player::drawFlashLight() {
 	mouse_pos += RenderManager::getIns()->getScreenOffset(ScreenType::MapScreen);
 	float mouse_direction = Vector2::atan2fbyVec2(pos, mouse_pos);
 	flashLight.draw(pos, mouse_direction);
+}
+
+/// <summary>
+/// ïêäÌÇÃï`âÊ
+/// </summary>
+void Player::drawWeapon() {
+	crossbow.draw();
 }
 
 /// <summary>
@@ -105,6 +127,7 @@ bool Player::attack(const Vector2* _mouse_pos) {
 /// </summary>
 void Player::hitEnemy() {
 	isAliveFlag = false;
+	animeCount = 0;
 	MessageManager::getIns()->sendMessage(MessageType::PLAYER_DEAD);
 }
 

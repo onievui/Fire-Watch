@@ -66,6 +66,15 @@ bool Map::getMessage(const MessageType _type, void* _out, void* _in) {
 void Map::initialize() {
 	loadMapData();
 	loadMapChip();
+	//オフセットの初期設定
+	RenderManager* render_manager = RenderManager::getIns();
+	Vector2 screen_pos = getCenterGrid();
+	screen_pos.y += 2.0f;
+	screen_pos = gridToPos(screen_pos.x, screen_pos.y);
+	screen_pos.x = ClampT(screen_pos.x - SCREEN_CENTER_X, 0.f, (float)GRID_COLS*DEFAULT_GRID_SIZE - SCREEN_WIDTH);
+	screen_pos.y = ClampT(screen_pos.y - SCREEN_CENTER_Y, 0.f, (float)GRID_ROWS*DEFAULT_GRID_SIZE - SCREEN_HEIGHT);
+	render_manager->setScreenOffset(ScreenType::MapScreen, screen_pos);
+	render_manager->setScreenOffset(ScreenType::LightAlphaScreen, screen_pos);
 }
 
 /// <summary>
@@ -130,8 +139,6 @@ void Map::draw() const {
 			}
 		}
 	}
-	Vector2 screen_pos = RenderManager::getIns()->getScreenOffset(ScreenType::MapScreen);
-	DrawFormatString(0, 10, ColorCode::COLOR_BLACK, "x=%f,y=%f", screen_pos.x, screen_pos.y);
 }
 
 

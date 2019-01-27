@@ -5,6 +5,7 @@
 /// メッセージタイプ
 /// </summary>
 enum class MessageType {
+	ENEMY_KILLED,
 	GET_MAP,
 	GET_MAP_CENTER_GRID,
 	GET_MAP_CENTER_POS,
@@ -17,6 +18,7 @@ enum class MessageType {
 	GET_ENEMIES,
 	GET_FIELDOBJECTS,
 	CLICK_FIELDOBJECTS,
+	GET_TENT_POS,
 	TENT_DESTROYED,
 	CREATE_ARROW,
 	GET_ARROWS,

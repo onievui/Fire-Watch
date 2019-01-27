@@ -20,6 +20,9 @@ private:
 
 private:
 	PlaySceneState                      state;
+	int                                 waitCount;
+	int                                 killCount;
+	int                                 liveTime;
 	std::unique_ptr<Map>                map;
 	std::unique_ptr<Player>             player;
 	std::unique_ptr<EnemyManager>       enemyManager;
@@ -45,4 +48,5 @@ private:
 	void updatePlaying();
 	void updatePlayerDead();
 	void updateTentDestroyed();
+	void fadeOut();
 };

@@ -45,3 +45,20 @@ void Tent::draw() {
 void Tent::clickEvent() {
 
 }
+
+/// <summary>
+/// “G‚Æ‚ÌÕ“Ëˆ—
+/// </summary>
+void Tent::hitEnemy() {
+	MessageManager::getIns()->sendMessage(MessageType::TENT_DESTROYED);
+}
+
+/// <summary>
+/// À•W‚Ìæ“¾
+/// </summary>
+/// <returns>
+/// À•W
+/// </returns>
+Vector2 Tent::getPos() {
+	return pos;
+}

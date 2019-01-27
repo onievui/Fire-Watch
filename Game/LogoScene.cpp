@@ -49,7 +49,7 @@ void LogoScene::update() {
 	}
 	//タイトルシーンに遷移する
 	else {
-		implRequestScene->requestScene(SCENE_PLAY);
+		implRequestScene->requestScene(SCENE_TITLE);
 	}
 }
 

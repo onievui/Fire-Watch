@@ -151,13 +151,13 @@ bool RenderManager::deleteScreen(const ScreenType _screen_type) {
 
 	DeleteGraph(screens[screensIndex[_screen_type]]);
 	//最後尾のデータを削除する場合
-	if (screensIndex[_screen_type] == screens.size() - 1) {
-		screensIndex[_screen_type] = -1;
-		screens.erase(screens.end());
-		offsets.erase(offsets.end());
-	}
-	//最後尾でないデータを削除する場合
-	else {
+	//if (screensIndex[_screen_type] == screens.size() - 1) {
+	//	screensIndex[_screen_type] = -1;
+	//	screens.erase(screens.end());
+	//	offsets.erase(offsets.end());
+	//}
+	////最後尾でないデータを削除する場合
+	//else {
 		int delete_index = screensIndex[_screen_type];
 		//位置をずらす
 		for (auto& index : screensIndex) {
@@ -168,7 +168,7 @@ bool RenderManager::deleteScreen(const ScreenType _screen_type) {
 		screensIndex[_screen_type] = -1;
 		screens.erase(screens.begin() + delete_index);
 		offsets.erase(offsets.begin() + delete_index);
-	}
+	//}
 
 	//選択中のスクリーンを削除した場合の処理
 	if (currentScreenType == _screen_type) {

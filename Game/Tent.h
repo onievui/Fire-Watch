@@ -15,8 +15,10 @@ public:
 	void update() override;
 	void draw() override;
 	void clickEvent() override;
+	void hitEnemy() override;
 
-private:
+public:
+	Vector2 getPos();
 
 };
 

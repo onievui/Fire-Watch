@@ -95,6 +95,9 @@ void Collision::update() {
 			if (Collider::collisionRectRotate(*arrow->getCollider(), enemy_collider)) {
 				enemy->hitArrow(arrow->getPower(), arrow->isFire());
 				arrow->hitEnemy();
+				if (!enemy->isAlive()) {
+					message_manager->sendMessage(MessageType::ENEMY_KILLED);
+				}
 			}
 		}
 	}
@@ -121,5 +124,6 @@ void Collision::update() {
 			player->hitEnemy();
 		}
 	}
+
 }
 

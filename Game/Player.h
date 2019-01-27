@@ -28,6 +28,7 @@ public:
 	void update() override;
 	void draw() override;
 	void drawFlashLight();
+	void drawWeapon();
 
 public:
 	bool attack(const Vector2* _mouse_pos);

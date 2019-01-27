@@ -4,6 +4,8 @@
 #include "MessageManager.h"
 #include "ArrowManager.h"
 #include "Vector2.h"
+#include "ScreenInfo.h"
+
 
 
 /// <summary>
@@ -42,7 +44,15 @@ void Crossbow::update() {
 /// ï`âÊèàóù
 /// </summary>
 void Crossbow::draw() {
-
+	DrawRotaGraphF(SCREEN_WIDTH / 10.0f, SCREEN_HEIGHT*7.5f / 8.0f, 3.5f, 0.0f, texture, true);
+	DrawRotaGraphF(SCREEN_WIDTH *1.8f / 10.0f, SCREEN_HEIGHT*7.7f / 8.0f, 2.0f, 0.0f,
+		ResourceManager::getIns()->getTexture(TextureID::TEXTURE_ARROW)->getResource(), true);
+	if (wait_reload == 0) {
+		DrawFormatStringF(SCREEN_WIDTH *1.8f / 10.0f + 30, SCREEN_HEIGHT*7.5f / 8.0f, ColorCode::COLOR_WHITE, "Å~ %d", bullets);
+	}
+	else {
+		DrawFormatStringF(SCREEN_WIDTH *1.8f / 10.0f + 30, SCREEN_HEIGHT*7.5f / 8.0f, ColorCode::COLOR_RED, "reloading");
+	}
 }
 
 /// <summary>

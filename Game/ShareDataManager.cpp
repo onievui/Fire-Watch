@@ -13,22 +13,41 @@ ShareDataManager::ShareDataManager() {
 /// データの初期化
 /// </summary>
 void ShareDataManager::initialize() {
-	score = 0;
-	highscore = 0;
+	map = nullptr;
+	killCount = -1;
+	liveTime = -1;
 }
 
-int ShareDataManager::getScore() const {
-	return score;
+/// <summary>
+/// マップの保存
+/// </summary>
+/// <param name="_map">マップオブジェクト</param>
+void ShareDataManager::setMap(std::unique_ptr<Map>&& _map) {
+	map = std::move(_map);
 }
 
-void ShareDataManager::setScore(const int _score) {
-	score = _score;
+/// <summary>
+/// マップの取得
+/// </summary>
+/// <returns></returns>
+std::unique_ptr<Map> ShareDataManager::getMap() {
+	return std::move(map);
 }
 
-int ShareDataManager::getHighscore() const {
-	return highscore;
+/// <summary>
+/// プレイデータの保存
+/// </summary>
+/// <param name="_kill_count">キル数</param>
+/// <param name="_live_time">生存時間</param>
+void ShareDataManager::setPlayData(const int _kill_count, const int _live_time) {
+	killCount = _kill_count;
+	liveTime = _live_time;
 }
 
-void ShareDataManager::setHighscore(const int _highscore) {
-	highscore = _highscore;
+int ShareDataManager::getKillCount() {
+	return killCount;
+}
+
+int ShareDataManager::getLiveTime() {
+	return liveTime;
 }

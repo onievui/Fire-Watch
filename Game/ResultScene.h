@@ -1,18 +1,20 @@
 #pragma once
 
 #include "AbstractScene.h"
-
+#include "Map.h"
+#include <memory>
 
 
 
 class ResultScene : public AbstractScene {
-
 private:
+	std::unique_ptr<Map> map;
+	int fadeCount;
+	int state;
 
 public:
 	ResultScene(RequestSceneListener* _impl);
 	~ResultScene();
-
 
 	void initialize() override;	//‰Šú‰»
 	void update() override;	    //XV
