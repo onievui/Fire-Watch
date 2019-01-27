@@ -14,7 +14,7 @@
 /// コンストラクタ
 /// </summary>
 Player::Player()
-	: Character({ 0,0 }, RectCollider(&pos, { 0,0 }, &vel, 48, 48), ResourceManager::getIns()->getTexture(TextureID::TEXTURE_PLAYER)) 
+	: Character({ 0,0 }, RectCollider(&pos, { 0,0 }, &vel, 20, 48), ResourceManager::getIns()->getTexture(TextureID::TEXTURE_PLAYER)) 
 	, flashLight() {
 	initialize();
 }

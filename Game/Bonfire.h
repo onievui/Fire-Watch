@@ -19,6 +19,7 @@ public:
 	void update() override;
 	void draw() override;
 	void clickEvent() override;
+	void hitEnemy() override;
 
 private:
 	void animate();

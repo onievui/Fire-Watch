@@ -45,12 +45,12 @@ void PlayScene::initialize() {
 	//プレイヤーの生成
 	player = std::make_unique<Player>();
 	message_manager->add(player.get());
-	//敵管理クラスの生成
-	enemyManager = std::make_unique<EnemyManager>();
-	message_manager->add(enemyManager.get());
 	//フィールドオブジェクト管理クラスの生成
 	fieldObjectManager = std::make_unique<FieldObjectManager>();
 	message_manager->add(fieldObjectManager.get());
+	//敵管理クラスの生成
+	enemyManager = std::make_unique<EnemyManager>();
+	message_manager->add(enemyManager.get());
 	//矢管理クラスの生成
 	arrowManager = std::make_unique<ArrowManager>();
 	message_manager->add(arrowManager.get());
@@ -91,8 +91,6 @@ void PlayScene::update() {
 void PlayScene::render() {
 	RenderManager* render_manager = RenderManager::getIns();
 	//描画先をマップにする
-	render_manager->changeScreen(ScreenType::LightAlphaScreen);
-	//DrawFillBox(0, 0, Map::GRID_COLS*Map::DEFAULT_GRID_SIZE, Map::GRID_ROWS*Map::DEFAULT_GRID_SIZE, ColorCode::COLOR_BLACK);
 	render_manager->changeScreen(ScreenType::MapScreen);
 	//ライティングに影響される描画
 	map->draw();

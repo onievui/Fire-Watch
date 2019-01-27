@@ -18,6 +18,8 @@ void EnemyManager::initialize() {
 
 	//テストコード
 	enemies.emplace_back(EnemyFactory::createEnemy(EnemyID::ENEMY_1, Vector2(500, 500)));
+	enemies.emplace_back(EnemyFactory::createEnemy(EnemyID::ENEMY_2, Vector2(1300, 400)));
+	enemies.emplace_back(EnemyFactory::createEnemy(EnemyID::ENEMY_3, Vector2(800, 1500)));
 }
 
 /// <summary>

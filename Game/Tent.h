@@ -18,7 +18,6 @@ public:
 	void hitEnemy() override;
 
 public:
-	Vector2 getPos();
 
 };
 

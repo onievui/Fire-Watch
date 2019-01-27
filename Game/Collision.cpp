@@ -32,8 +32,8 @@ void Collision::update() {
 	Enemies* enemies = message_manager->sendMessage<Enemies*>(MessageType::GET_ENEMIES);
 
 	//プレイヤーとマップの当たり判定
-	for (int i = 0; i < Map::GRID_ROWS; i++) {
-		for (int j = 0; j < Map::GRID_COLS; j++) {
+	for (int i = -1; i < Map::GRID_ROWS+1; i++) {
+		for (int j = -1; j < Map::GRID_COLS+1; j++) {
 			//通行不可マスと当たり判定を行う
 			if (!map->isPassable(i, j)) {
 				//セルの当たり判定の作成

@@ -39,3 +39,13 @@ public:
 	void update() override;
 };
 
+/// <summary>
+/// –¾‚é‚¢‚Æ‚±‚ë‚Åƒ_ƒbƒVƒ…
+/// </summary>
+class EnemyAIDashInLight : public EnemyAI {
+public:
+	void initialize(Enemy* _enemy) override;
+	void update() override;
+};
+
+

@@ -22,6 +22,14 @@ std::unique_ptr<Enemy> EnemyFactory::createEnemy(const EnemyID _id, const Vector
 		AI = std::make_unique<EnemyAIPlayerChase>();
 		enemy = std::make_unique<Enemy>(std::move(AI), 2, _pos, Vector2{ 0,6 }, Vector2{ 48,42 }, resource_manager->getTexture(TextureID::TEXTURE_ENEMY1), 2);
 		return enemy;
+	case EnemyID::ENEMY_2:
+		AI = std::make_unique<EnemyAIRandomTargetChase>();
+		enemy = std::make_unique<Enemy>(std::move(AI), 2, _pos, Vector2{ 0,6 }, Vector2{ 48,42 }, resource_manager->getTexture(TextureID::TEXTURE_ENEMY1), 2);
+		return enemy;
+	case EnemyID::ENEMY_3:
+		AI = std::make_unique<EnemyAIDashInLight>();
+		enemy = std::make_unique<Enemy>(std::move(AI), 2, _pos, Vector2{ 0,6 }, Vector2{ 48,42 }, resource_manager->getTexture(TextureID::TEXTURE_ENEMY1), 2);
+		return enemy;
 	default:
 		ErrorMessage("ìGÇÃê∂ê¨Ç≈ïsê≥Ç»IDÇ™ìnÇ≥ÇÍÇ‹ÇµÇΩ");
 		return nullptr;

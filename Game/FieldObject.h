@@ -33,6 +33,7 @@ private:
 public:
 	bool isPassabe() const;
 	RectCollider* getCollider();
+	Vector2* getPosPtr();
 };
 
 

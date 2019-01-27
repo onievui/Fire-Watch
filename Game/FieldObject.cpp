@@ -38,3 +38,13 @@ bool FieldObject::isPassabe() const {
 RectCollider* FieldObject::getCollider() {
 	return &collider;
 }
+
+/// <summary>
+/// 座標のポインタの取得
+/// </summary>
+/// <returns>
+/// 座標のポインタ
+/// </returns>
+Vector2* FieldObject::getPosPtr() {
+	return &pos;
+}

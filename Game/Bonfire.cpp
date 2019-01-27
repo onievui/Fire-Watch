@@ -73,6 +73,13 @@ void Bonfire::clickEvent() {
 }
 
 /// <summary>
+/// 敵との衝突処理
+/// </summary>
+void Bonfire::hitEnemy() {
+	isFireFlag = false;
+}
+
+/// <summary>
 /// アニメーション処理
 /// </summary>
 void Bonfire::animate() {

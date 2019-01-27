@@ -53,12 +53,3 @@ void Tent::hitEnemy() {
 	MessageManager::getIns()->sendMessage(MessageType::TENT_DESTROYED);
 }
 
-/// <summary>
-/// À•W‚Ìæ“¾
-/// </summary>
-/// <returns>
-/// À•W
-/// </returns>
-Vector2 Tent::getPos() {
-	return pos;
-}

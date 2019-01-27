@@ -73,6 +73,9 @@ bool FieldObjectManager::getMessage(const MessageType _type, void* _out, void* _
 	case MessageType::CLICK_FIELDOBJECTS:
 		*(bool*)_out = clickEvent(*(Vector2*)_in);
 		return true;
+	case MessageType::GET_RANDOM_FIELDOBJECT_POS_PTR:
+		*(Vector2**)_out = getRandomPosPtr();
+		return true;
 	case MessageType::GET_TENT_POS:
 		*(Vector2*)_out = getTentPos();
 		return true;
@@ -105,9 +108,20 @@ Vector2 FieldObjectManager::getTentPos() {
 	for (const auto& field_object : fieldObjects) {
 		Tent* tent = dynamic_cast<Tent*>(field_object.get());
 		if (tent) {
-			pos = tent->getPos();
+			pos = *tent->getPosPtr();
 			break;
 		}
 	}
 	return pos;
+}
+
+/// <summary>
+/// ランダムなオブジェクトの座標へのポインタの取得
+/// </summary>
+/// <returns>
+/// 座標へのポインタ
+/// </returns>
+Vector2* FieldObjectManager::getRandomPosPtr() {
+	int rand_index = GetRand(fieldObjects.size() - 1);
+	return fieldObjects[rand_index]->getPosPtr();
 }

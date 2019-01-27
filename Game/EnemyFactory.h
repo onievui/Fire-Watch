@@ -7,6 +7,8 @@
 /// </summary>
 enum class EnemyID {
 	ENEMY_1,
+	ENEMY_2,
+	ENEMY_3,
 };
 
 

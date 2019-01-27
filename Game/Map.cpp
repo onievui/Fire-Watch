@@ -52,6 +52,9 @@ bool Map::getMessage(const MessageType _type, void* _out, void* _in) {
 	case MessageType::GRID_TO_POS:
 		*(Vector2*)_out = gridToPos((*(Vector2*)_in).x, (*(Vector2*)_in).y);
 		return true;
+	case MessageType::POS_TO_LIGHTDATA:
+		*(int*)_out = posToLightData(*(Vector2*)_in);
+		return true;
 	default:
 		break;
 	}
@@ -110,9 +113,11 @@ void Map::updateLightData() {
 			int r, g, b;
 			GetColor2(color, &r, &g, &b);
 			//2*2マスに分割して、中心の色を明るさとして扱う
-			for (int i2 = row; i2 < GRID_ROWS / 2 && i2 < row + 2; i2++) {
-				for (int j2 = j; j2 < GRID_COLS / 2 && j2 < j + 2; j2++) {
+			render_manager->changeScreen(ScreenType::MapScreen);
+			for (int i2 = row*2; i2 < GRID_ROWS && i2 < row*2 + 2; i2++) {
+				for (int j2 = j*2; j2 < GRID_COLS  && j2 < j*2 + 2; j2++) {
 					lightCells[i2][j2] = b;
+					//DrawFormatStringF((j2 + 0.5f)*DEFAULT_GRID_SIZE, (i2 + 0.5f)*DEFAULT_GRID_SIZE, ColorCode::COLOR_WHITE, "%d", b);
 				}
 			}
 		}
@@ -192,7 +197,7 @@ MapChip* Map::getCell(int _grid_x, int _grid_y) const {
 	//範囲外チェック
 	if ((_grid_x < 0) || (_grid_x >= GRID_COLS) ||
 		(_grid_y < 0) || (_grid_y >= GRID_ROWS)) {
-		ErrorMessage("領域外のセルを取得しようとしました");
+		//ErrorMessage("領域外のセルを取得しようとしました");
 		return nullptr;
 	}
 
@@ -244,4 +249,22 @@ Vector2 Map::getCenterPos() const {
 /// </returns>
 Vector2 Map::gridToPos(float _grid_x, float _grid_y) const {
 	return Vector2((_grid_x + 0.5f)*DEFAULT_GRID_SIZE, (_grid_y + 0.5f)*DEFAULT_GRID_SIZE);
+}
+
+/// <summary>
+/// ワールド座標からマスの明るさを取得する
+/// </summary>
+/// <param name="_pos">ワールド座標</param>
+/// <returns>
+/// 明るさ
+/// </returns>
+int Map::posToLightData(const Vector2& _pos) const {
+	int grid_x = (int)(_pos.x / DEFAULT_GRID_SIZE);
+	int grid_y = (int)(_pos.y / DEFAULT_GRID_SIZE);
+	//範囲外チェック
+	if ((grid_x < 0) || (grid_x >= GRID_COLS) ||
+		(grid_y < 0) || (grid_y >= GRID_ROWS)) {
+		return 0;
+	}
+	return lightCells[grid_y][grid_x];
 }
