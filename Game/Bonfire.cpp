@@ -2,7 +2,7 @@
 #include "ResourceManager.h"
 #include "RenderManager.h"
 #include <algorithm>
-#include <functional>
+
 
 /// <summary>
 /// コンストラクタ

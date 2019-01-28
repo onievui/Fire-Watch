@@ -84,9 +84,9 @@ void Enemy::draw() {
 	else {
 		RenderManager::getIns()->drawRotaGraph(pos.x, pos.y, 1.0f, 0.0f, texture->getResource(texture_index), true);
 	}
-	//テストコード
-	Vector2 offset = pos + collider.offset - RenderManager::getIns()->getScreenOffset(ScreenType::MapScreen);
-	DrawBoxAA(offset.x - collider.width / 2, offset.y - collider.height / 2, offset.x + collider.width / 2, offset.y + collider.height / 2, ColorCode::COLOR_BLUE, 0);
+	//当たり判定確認用
+	//Vector2 offset = pos + collider.offset - RenderManager::getIns()->getScreenOffset(ScreenType::MapScreen);
+	//DrawBoxAA(offset.x - collider.width / 2, offset.y - collider.height / 2, offset.x + collider.width / 2, offset.y + collider.height / 2, ColorCode::COLOR_BLUE, 0);
 }
 
 /// <summary>

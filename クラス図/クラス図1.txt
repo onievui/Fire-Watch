@@ -1,0 +1,44 @@
+@startuml
+RequestSceneListener <|-- Game
+AbstractScene "1" o- "1" RequestSceneListener
+Game "1" o-- "0..1" AbstractScene
+AbstractScene <|-- PlayScene
+AbstractScene <|-- TitleScene
+AbstractScene <|-- ResultScene
+
+PlayScene "1" o-- "1" Map
+PlayScene "1" o-- "1" Player
+PlayScene "1" o-- "1" EnemyManager
+PlayScene "1" o-- "1" FieldObjectManager
+PlayScene "1" o-- "1" ArrowManager
+PlayScene "1" o-- "1" MouseEventManager
+PlayScene --> Collision
+
+Map "1" o-- "31*31" MapChip
+
+Character <|-- Player
+Character <|-- Enemy
+
+Player "1" o-- "1" FlashLight
+Player "1" o-- "1" Crossbow
+
+Weapon <|-- Crossbow
+
+ArrowManager "1" o-- "0..*" Arrow
+
+EnemyManager "1" o-- "0..*" Enemy
+EnemyManager --> EnemyFactory
+EnemyFactory --> Enemy
+EnemyFactory --> EnemyAI
+
+Enemy "1" o-- "1" EnemyAI
+
+EnemyAI <|-- EnemyAIPlayerChase
+EnemyAI <|-- EnemyAIRandomTargetChase
+EnemyAI <|-- EnemyAIDashInLight
+
+FieldObjectManager "1" o-- "1..*" FieldObject
+
+FieldObject <|-- Tent
+FieldObject <|-- Bonfire
+@enduml

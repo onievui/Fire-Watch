@@ -1,0 +1,22 @@
+@startuml
+MessageManager --> MessageInterface
+
+MessageInterface <|-- PlayScene
+MessageInterface <|-- Player
+MessageInterface <|-- Map
+MessageInterface <|-- EnemyManager
+MessageInterface <|-- FieldObjectManager
+MessageInterface <|-- ArrowManager
+
+MessageManager <-- Map
+MessageManager <-- EnemyAIPlayerChase
+MessageManager <-- EnemyAIRandomTargetChase
+MessageManager <-- EnemyAIDashInLight
+MessageManager <-- PlayScene
+MessageManager <-- EnemyManager
+MessageManager <-- Collision
+MessageManager <-- FieldObjectManager
+MessageManager <-- Player
+MessageManager <-- MouseEventManager
+MessageManager <-- Tent
+@enduml

@@ -46,4 +46,5 @@ public:
 	Vector2 getCenterPos() const;
 	Vector2 gridToPos(float _grid_x, float _grid_y) const;
 	int posToLightData(const Vector2& _pos) const;
+	Vector2 getRandomOutsidePos() const;
 };

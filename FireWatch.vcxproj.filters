@@ -406,5 +406,6 @@
     <Image Include="Resources\Textures\TridentLogo.png">
       <Filter>リソース\テクスチャ</Filter>
     </Image>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

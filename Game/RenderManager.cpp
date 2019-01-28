@@ -213,5 +213,5 @@ void RenderManager::drawRotaGraphF(const float _x, const float _y, const float _
 
 void RenderManager::drawRotaGraph(const float _x, const float _y, const float _exrate, const float _angle, int _handle, const int _trans_flag, const int _reverse_x_flag, const int _reverse_y_flag) const {
 	Vector2 offset = offsets[screensIndex[currentScreenType]];
-	DrawRotaGraphF((int)(_x - offset.x), (int)(_y - offset.y), _exrate, _angle, _handle, _trans_flag, _reverse_x_flag, _reverse_y_flag);
+	DrawRotaGraph((int)(_x - offset.x), (int)(_y - offset.y), _exrate, _angle, _handle, _trans_flag, _reverse_x_flag, _reverse_y_flag);
 }

@@ -55,6 +55,9 @@ bool Map::getMessage(const MessageType _type, void* _out, void* _in) {
 	case MessageType::POS_TO_LIGHTDATA:
 		*(int*)_out = posToLightData(*(Vector2*)_in);
 		return true;
+	case MessageType::GET_MAP_RANDOM_OUTSIDE_POS:
+		*(Vector2*)_out = getRandomOutsidePos();
+		return true;
 	default:
 		break;
 	}
@@ -267,4 +270,19 @@ int Map::posToLightData(const Vector2& _pos) const {
 		return 0;
 	}
 	return lightCells[grid_y][grid_x];
+}
+
+/// <summary>
+/// マップの外側のランダムな座標の取得
+/// </summary>
+/// <returns>
+/// ランダムな座標
+/// </returns>
+Vector2 Map::getRandomOutsidePos() const {
+	if (GetRand(GRID_ROWS + GRID_COLS) < GRID_ROWS) {
+		return gridToPos((float)(GetRand(1) ? -1 : (GRID_COLS + 1)), (float)GetRand(GRID_ROWS));
+	}
+	else {
+		return gridToPos((float)GetRand(GRID_COLS), (float)(GetRand(1) ? -1 : (GRID_ROWS + 1)));
+	}
 }
