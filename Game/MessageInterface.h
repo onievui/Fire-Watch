@@ -36,5 +36,3 @@ public:
 	virtual bool getMessage(const MessageType _type, void* _out, void* _in) = 0;
 };
 
-
-

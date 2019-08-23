@@ -42,6 +42,9 @@ public:
 	//マウスの入力状態の更新
 	void reset();
 
+	//マウスカーソルの表示設定
+	int setMouseDispFlag(const bool _is_use);
+
 	//マウス座標の取得
 	Vector2 getMousePos() const;
 

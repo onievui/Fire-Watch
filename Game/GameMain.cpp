@@ -62,6 +62,7 @@ void Game::initialize(void) {
 	ShareDataManager::getIns()->initialize();
 	RenderManager::getIns()->addScreen(ScreenType::BackScreen, DX_SCREEN_BACK, Vector2(0, 0));
 	ShaderManager::getIns();
+	Mouse::getIns()->setMouseDispFlag(true);
 }
 
 

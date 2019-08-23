@@ -35,7 +35,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 #if defined(_DEBUG)
 	// メモリーリーク検出機構のセットアップ
-	SetUpMemoryLeakDetector();
+	// SetUpMemoryLeakDetector();
 #endif
 
 

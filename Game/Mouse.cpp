@@ -52,6 +52,18 @@ void Mouse::reset() {
 }
 
 /// <summary>
+/// マウスカーソルの表示設定
+/// </summary>
+/// <param name="_is_use">マウスカーソルを表示するかどうか</param>
+/// <returns>
+/// 0 : 成功
+/// -1 : エラー
+/// </returns>
+int Mouse::setMouseDispFlag(const bool _is_use) {
+	return SetMouseDispFlag(_is_use);
+}
+
+/// <summary>
 /// マウス座標の取得
 /// </summary>
 /// <returns>
